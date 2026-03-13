@@ -55,6 +55,22 @@
         return $remote_addr;
     }
 
+    function get_user_agent() {
+        return !empty($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    }
+
+    function get_referer() {
+        return !empty($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+    }
+
+    function get_query_string() {
+        return !empty($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+    }
+
+    function get_browser_language() {
+        return !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : '';
+    }
+
     $client_ip = get_real_ip_address();
 
     // 1. LOCAL BLACKLIST CHECK (Blocked IPs always see White Page)
