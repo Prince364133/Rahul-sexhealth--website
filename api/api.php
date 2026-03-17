@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $date = $_POST['DATE'] ?? date('Y-m-d H:i:s');
 $rawName = $_POST['NAME'] ?? $_POST['name'] ?? '';
 $rawPhone = $_POST['PHONENO'] ?? $_POST['phone'] ?? '';
-$rawLocation = $_POST['LOCATION'] ?? $_POST['location'] ?? '';
+$rawAddress = $_POST['ADDRESS'] ?? $_POST['address'] ?? $_POST['LOCATION'] ?? $_POST['location'] ?? '';
 
 // Capture user metadata automatically
 $ipAddress = $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN';
@@ -27,7 +27,7 @@ $referrer = $_POST['REFERRER'] ?? 'UNKNOWN';
 // Sanitize inputs
 $name = htmlspecialchars(strip_tags(trim($rawName)), ENT_QUOTES, 'UTF-8');
 $phone = preg_replace('/[^0-9]/', '', $rawPhone);
-$location = htmlspecialchars(strip_tags(trim($rawLocation)), ENT_QUOTES, 'UTF-8');
+$address = htmlspecialchars(strip_tags(trim($rawAddress)), ENT_QUOTES, 'UTF-8');
 
 // 3. Validation
 if (empty($name) || strlen($phone) !== 10) {
@@ -48,7 +48,7 @@ $data = [
     'DATE' => $date,
     'NAME' => $name,
     'PHONENO' => $phone,
-    'LOCATION' => $location,
+    'ADDRESS' => $address,
     'IP_ADDRESS' => $ipAddress,
     'BROWSER' => $browser,
     'PLATFORM' => $platform,

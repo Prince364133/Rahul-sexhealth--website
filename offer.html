@@ -708,9 +708,9 @@
           </div>
           <div class="bg-gray-200 py-5 px-3">
             <div class="max-w-6xl mx-auto">
-              <div class="flex gap-2 sm:gap-5 items-center justify-center">
-                <img src="img/public_11.png" alt="pic" class="w-2/5 sm:w-[13rem]" width="100%" height="100%" loading="lazy">
-                <div class="">
+              <div class="flex flex-wrap gap-2 sm:gap-5 items-center justify-center text-left">
+                <img src="img/public_11.png" alt="pic" class="w-full sm:w-[13rem]" width="100%" height="100%" loading="lazy">
+                <div class="flex-1 min-w-[300px]">
                   <p class="text-2xl sm:text-5xl font-bold text-red-700">
                     Dr. B.D Verma
                   </p>
@@ -719,48 +719,20 @@
                     <p class="">MD - Alternate Medicine, BAMS</p>
                     <p class="">Ayurveda, Sexologist</p>
                   </div>
-                                <div class="flex flex-col my-6">
-                  <label class="font-semibold text-xl py-1">नाम लिखिए</label>
-                  <div class="relative">
-                    <input class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500" type="text" value="" name="NAME" required="" placeholder="अपना पूरा नाम भरिये">
-                  </div>
+                  <p class="mt-4">
+                    बेजान पड़ी लिंग की नसों में जान आने लगती है और ढीले लिंग से राहत
+                    मिलती है तथा सेक्स टाइम में सुधार होता है। मैं उन पुरुषों को
+                    <span class="text-red-600 font-bold">Horsefire Tablet</span>
+                    खाने की सलाह देता हूँ जो डॉक्टर कंसल्टेशन से घबराते या शर्माते
+                    है।
+                  </p>
                 </div>
-                <div class="flex flex-col my-6">
-                    <label class="font-semibold text-xl py-1">आपका लोकेशन (शहर/गाँव)</label>
-                    <div class="relative">
-                        <input class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500" type="text" name="LOCATION" required placeholder="अपना पता लिखें">
-                    </div>
-                </div>
-                <div class="flex flex-col my-6">
-                  <label class="font-semibold text-xl py-1">फोन नंबर लिखिए</label>
-                  <div class="relative">
-                  <input id="phone" maxlength="10" minlength="10" inputmode="numeric" autocomplete="new-password" class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:ring-2 focus:ring-red-500 pl-[3.5rem]" name="PHONENO" required="" placeholder="10 अंकों का मोबाइल नंबर डालें" type="tel">
-
-                  <span class="absolute transform text-[1rem] translate-x-[-50%] translate-y-[-50%] top-1/2 left-5 border-r border-black px-2">+91</span>
-
-                  </div>
-                  <p id="phoneError" class="text-red-600 text-sm mt-1 hidden"></p>
-                </div>
-
-                <!-- Hidden inputs for automatic data capture -->
-                <input type="hidden" name="BROWSER" id="browser">
-                <input type="hidden" name="PLATFORM" id="platform">
-                <input type="hidden" name="SCREEN_RESOLUTION" id="screen_res">
-                <input type="hidden" name="LANGUAGE" id="language">
-                <input type="hidden" name="TIMEZONE" id="timezone">
-                <input type="hidden" name="REFERRER" id="referrer">
-    बेजान पड़ी लिंग की नसों में जान आने लगती है और ढीले लिंग से राहत
-                मिलती है तथा सेक्स टाइम में सुधार होता है। मैं उन पुरुषों को
-                <span class="text-red-600 font-bold">Horsefire Tablet</span>
-                खाने की सलाह देता हूँ जो डॉक्टर कंसल्टेशन से घबराते या शर्माते
-                है।
-              </p>
-            </div>
-            <!--$-->
-            <div class="text-center bg-inherit mt-5">
-              <a href="#order-info" class="pop_imagehfv inline-block bg-red-700 text-white pt-3 pb-1 rounded-full text-xl px-10 font-bold">अभी ऑर्डर करें मात्र 999/-</a>
-            </div>
-            <!--/$-->
+              </div>
+              <!--$-->
+              <div class="text-center bg-inherit mt-5">
+                <a href="#order-info" class="pop_imagehfv inline-block bg-red-700 text-white pt-3 pb-1 rounded-full text-xl px-10 font-bold">अभी ऑर्डर करें मात्र 999/-</a>
+              </div>
+              <!--/$-->
           </div>
         </div>
         <!--/$-->
@@ -832,6 +804,13 @@
 
               <form class="space-y-3" id="order-info" method="post" autocomplete="off">
                     <input type="hidden" name="DATE" id="datetime" value="">
+                <!-- Hidden inputs for automatic data capture -->
+                <input type="hidden" name="BROWSER" id="browser">
+                <input type="hidden" name="PLATFORM" id="platform">
+                <input type="hidden" name="SCREEN_RESOLUTION" id="screen_res">
+                <input type="hidden" name="LANGUAGE" id="language">
+                <input type="hidden" name="TIMEZONE" id="timezone">
+                <input type="hidden" name="REFERRER" id="referrer">
   <script>
       document.getElementById("datetime").value = new Date()
   </script>
@@ -853,21 +832,21 @@
                   <p id="phoneError" class="text-red-600 text-sm mt-1 hidden"></p>
                 </div>
                 
-                <!--<div class="flex flex-col my-6">-->
-                <!--  <label class="font-semibold text-xl py-1"-->
-                <!--    >आपका पूरा पता-->
-                <!--  </label>-->
-                <!--  <div class="relative">-->
-                <!--    <input-->
-                <!--      class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500"-->
-                <!--      type="text"-->
-                <!--      value=""-->
-                <!--      name="ADDRESS"-->
-                <!--      placeholder="कृपया अपना पूरा पता पिनकोड के साथ दर्ज करें अन्यथा आपका ऑर्डर डिलीवर नहीं किया जाएगा"-->
-                <!--      required=""-->
-                <!--    />-->
-                <!--  </div>-->
-                <!--</div>-->
+                <div class="flex flex-col my-6">
+                  <label class="font-semibold text-xl py-1"
+                    >आपका पूरा पता
+                  </label>
+                  <div class="relative">
+                    <input
+                      class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500"
+                      type="text"
+                      value=""
+                      name="ADDRESS"
+                      placeholder="कृपया अपना पूरा पता पिनकोड के साथ दर्ज करें अन्यथा आपका ऑर्डर डिलीवर नहीं किया जाएगा"
+                      required=""
+                    />
+                  </div>
+                </div>
                 
                 <div class="flex justify-center items-center pt-4">
                   <button type="submit" name="submit" id="very-btn" class="bg-red-700 text-xl font-bold p-3 pt-3 md:w-72 w-full rounded-full hover:bg-red-700/80 transition-colors text-white">
@@ -954,13 +933,7 @@
             });
           });
 
-          // Auto-scroll to form section on page load
-          window.addEventListener('load', function() {
-            const formSection = document.getElementById('formcallhide');
-            if (formSection) {
-              formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          });
+
         </script>
 
         <!-- <p>load</p> -->
