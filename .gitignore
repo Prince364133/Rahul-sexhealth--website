@@ -1,7 +1,4 @@
-.gemini/
-brain/
-*.log
-.vscode/
-.DS_Store
+backend/.env
 node_modules/
-.npm/
+.DS_Store
+*.log

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /api/api.php
+Disallow: /api/index.php
+Sitemap: https://pureveda.vercel.app/sitemap.xml
