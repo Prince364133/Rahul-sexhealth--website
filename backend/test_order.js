@@ -14,7 +14,7 @@ const data = JSON.stringify({
   timezone: "Asia/Kolkata",
   referrer: "http://localhost:4200",
   pack_name: "2 Months Course",
-  pack_price: "1499"
+  pack_price: "999"
 });
 
 const options = {

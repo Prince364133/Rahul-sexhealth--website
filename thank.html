@@ -51,7 +51,7 @@
             <h4 class="mb-10 text-primary">Order Details:</h4>
             <p style="margin-bottom: 5px;"><b>Package:</b> <span id="thx-pack">2 Months Course</span></p>
             <p style="margin-bottom: 5px;"><b>Payment:</b> Cash on Delivery</p>
-            <p><b>Amount:</b> ₹<span id="thx-price">1499</span></p>
+            <p><b>Amount:</b> ₹<span id="thx-price">999</span></p>
           </div>
 
           <a href="offer.html" class="btn btn-primary w-100 btn-pulse cursor-pointer" style="background: linear-gradient(135deg,var(--color-accent),var(--color-accent-hover)); border:none; color: #111; font-weight:800; font-size:1.1rem; border-radius: 30px; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);">
@@ -68,7 +68,7 @@
     const FALLBACK_BACKEND = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('10.')) ? window.location.protocol + '//' + window.location.hostname + ':3001' : 'https://your-app.onrender.com';
     window.APP_CONFIG = { whatsapp_number: FALLBACK_WA, backend_url: FALLBACK_BACKEND };
 
-    let selectedPack = { name: "2 Months Course", price: "1499" };
+    let selectedPack = { name: "2 Months Course", price: "999" };
     try {
       const stored = localStorage.getItem('hf_selected_pack');
       if (stored) { selectedPack = JSON.parse(stored); }
