@@ -28,6 +28,24 @@
   src="https://www.facebook.com/tr?id=1467461584944608&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1436027278319972');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1436027278319972&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
 </head>
 <body style="background: var(--color-bg-light); text-align: center;">
 
@@ -51,12 +69,9 @@
             <h4 class="mb-10 text-primary">Order Details:</h4>
             <p style="margin-bottom: 5px;"><b>Package:</b> <span id="thx-pack">2 Months Course</span></p>
             <p style="margin-bottom: 5px;"><b>Payment:</b> Cash on Delivery</p>
-            <p><b>Amount:</b> ₹<span id="thx-price">999</span></p>
+            <p><b>Amount:</b> ₹<span id="thx-price">1499</span></p>
           </div>
 
-          <a href="offer.html" class="btn btn-primary w-100 btn-pulse cursor-pointer" style="background: linear-gradient(135deg,var(--color-accent),var(--color-accent-hover)); border:none; color: #111; font-weight:800; font-size:1.1rem; border-radius: 30px; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);">
-             <i class="fas fa-arrow-left" style="font-size: 1.2rem; margin-right: 12px;"></i> Go to Offer Page
-          </a>
 
           <p class="mt-20 text-muted" style="font-size: 0.9rem;">Delivery Time: 3-5 Business Days <br> Discreet and Secure Packaging (Discreet Packaging)</p>
        </div>
@@ -68,7 +83,7 @@
     const FALLBACK_BACKEND = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('10.')) ? window.location.protocol + '//' + window.location.hostname + ':3001' : 'https://your-app.onrender.com';
     window.APP_CONFIG = { whatsapp_number: FALLBACK_WA, backend_url: FALLBACK_BACKEND };
 
-    let selectedPack = { name: "2 Months Course", price: "999" };
+    let selectedPack = { name: "2 Months Course", price: "1499" };
     try {
       const stored = localStorage.getItem('hf_selected_pack');
       if (stored) { selectedPack = JSON.parse(stored); }

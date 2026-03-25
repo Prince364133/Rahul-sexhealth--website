@@ -32,7 +32,7 @@ async function seed() {
       backend_url: "https://your-app.onrender.com",
       phone_display: "Support Available",
       business_name: "Hammer of Thor",
-      offer_price: "999",
+      offer_price: "1499",
       original_price: "4999",
       updated_at: new Date()
     };
