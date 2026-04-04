@@ -11,24 +11,25 @@
   <link rel="stylesheet" href="style/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-      <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1679216680101272');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1679216680101272&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-  <!-- Dynamic Meta Pixel Codes -->
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1679216680101272');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1679216680101272&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
   <script>
     async function loadDynamicPixels() {
       try {
@@ -37,9 +38,7 @@ src="https://www.facebook.com/tr?id=1679216680101272&ev=PageView&noscript=1"
         if (result.status === 'success' && result.data) {
           result.data.forEach(pixel => {
             const pixelId = pixel.pixelId;
-            console.log('Injecting dynamic pixel:', pixelId);
-            
-            // Meta Pixel Script
+
             const script = document.createElement('script');
             script.innerHTML = `
               !function(f,b,e,v,n,t,s)
@@ -55,7 +54,6 @@ src="https://www.facebook.com/tr?id=1679216680101272&ev=PageView&noscript=1"
             `;
             document.head.appendChild(script);
 
-            // Meta Pixel Noscript
             const noscript = document.createElement('noscript');
             const img = document.createElement('img');
             img.height = "1";
@@ -70,82 +68,106 @@ src="https://www.facebook.com/tr?id=1679216680101272&ev=PageView&noscript=1"
         console.error('Error loading dynamic pixels:', error);
       }
     }
-    // Note: window.APP_CONFIG is initialized later in the body script, 
-    // so we call this after init() or within init()
   </script>
 </head>
+
 <body style="background: var(--color-bg-light); text-align: center;">
 
   <header style="background: white; border-bottom: 1px solid #eee;">
     <div class="container header-inner" style="justify-content: center;">
-      <a href="index.html"><img src="img/logo.png" alt="Hammer of Thor" style="height: 48px;"></a>
+      <a href="index.html">
+        <img src="img/logo.png" alt="Hammer of Thor" style="height: 48px;">
+      </a>
     </div>
   </header>
 
   <section style="padding: 100px 0;">
     <div class="container">
-       <div class="glass-card" style="max-width: 600px; margin: 0 auto; background: white; padding: 50px 30px;">
-          <div style="width: 100px; height: 100px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
-            <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
-          </div>
-          
-          <h1 class="mb-20" style="font-size: 2.5rem; color: var(--color-primary-dark);">Order Successful!</h1>
-          <p class="text-muted mb-30" style="font-size: 1.15rem;">Your order has been successfully placed. Our team will call you within 24 hours for confirmation.</p>
-          
-          <div style="background: #f9fafb; border: 1px dashed #ccc; padding: 20px; border-radius: var(--radius-md); margin-bottom: 30px; text-align: left;">
-            <h4 class="mb-10 text-primary">Order Details:</h4>
-            <p style="margin-bottom: 5px;"><b>Package:</b> <span id="thx-pack">2 Months Course</span></p>
-            <p style="margin-bottom: 5px;"><b>Payment:</b> Cash on Delivery</p>
-            <p><b>Amount:</b> ₹<span id="thx-price">1499</span></p>
-          </div>
+      <div class="glass-card" style="max-width: 600px; margin: 0 auto; background: white; padding: 50px 30px;">
+        
+        <div style="width: 100px; height: 100px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
+          <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+        </div>
+        
+        <h1 class="mb-20" style="font-size: 2.5rem; color: var(--color-primary-dark);">
+          Order Successful!
+        </h1>
 
-          <a href="offer.html" class="btn btn-primary w-100 btn-pulse cursor-pointer" style="background: linear-gradient(135deg,var(--color-accent),var(--color-accent-hover)); border:none; color: #111; font-weight:800; font-size:1.1rem; border-radius: 30px; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);">
-             <i class="fas fa-heart" style="font-size: 1.2rem; margin-right: 12px;"></i> Thank You
-          </a>
-UJ
-          <p class="mt-20 text-muted" style="font-size: 0.9rem;">Delivery Time: 3-5 Business Days <br> Discreet and Secure Packaging (Discreet Packaging)</p>
-       </div>
+       <p class="text-muted mb-30" style="font-size: 1.15rem;">
+  हमारे डॉक्टर आपसे जल्दी ही संपर्क करेंगे!<br>
+  🙏🙏🙏
+</p>
+
+        <a href="offer.html" class="btn btn-primary w-100 btn-pulse cursor-pointer"
+           style="background: linear-gradient(135deg,var(--color-accent),var(--color-accent-hover)); border:none; color: #111; font-weight:800; font-size:1.1rem; border-radius: 30px; box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);">
+          <i class="fas fa-heart" style="font-size: 1.2rem; margin-right: 12px;"></i> Thank You
+        </a>
+
+        <p class="mt-20 text-muted" style="font-size: 0.9rem;">
+          Delivery Time: 3-5 Business Days <br>
+          Discreet and Secure Packaging (Discreet Packaging)
+        </p>
+
+      </div>
     </div>
   </section>
 
   <script defer>
     const FALLBACK_WA = '910000000000';
-    const FALLBACK_BACKEND = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('10.')) ? window.location.protocol + '//' + window.location.hostname + ':3001' : 'https://your-app.onrender.com';
-    window.APP_CONFIG = { whatsapp_number: FALLBACK_WA, backend_url: FALLBACK_BACKEND };
+    const FALLBACK_BACKEND =
+      (window.location.hostname === 'localhost' ||
+       window.location.hostname === '127.0.0.1' ||
+       window.location.hostname.startsWith('192.168.') ||
+       window.location.hostname.startsWith('10.'))
+      ? window.location.protocol + '//' + window.location.hostname + ':3001'
+      : 'https://your-app.onrender.com';
+
+    window.APP_CONFIG = {
+      whatsapp_number: FALLBACK_WA,
+      backend_url: FALLBACK_BACKEND
+    };
 
     let selectedPack = { name: "2 Months Course", price: "1499" };
+
     try {
       const stored = localStorage.getItem('hf_selected_pack');
-      if (stored) { selectedPack = JSON.parse(stored); }
-      // Dynamic pixel value
-      fbq('track', 'Purchase', { currency: "INR", value: parseInt(selectedPack.price) });
-    } catch(e) {}
+      if (stored) {
+        selectedPack = JSON.parse(stored);
+      }
 
-    document.getElementById('thx-pack').textContent = selectedPack.name;
-    document.getElementById('thx-price').textContent = selectedPack.price;
+      fbq('track', 'Purchase', {
+        currency: "INR",
+        value: parseInt(selectedPack.price)
+      });
+    } catch(e) {}
 
     async function init() {
       try {
-        const res = await fetch(window.APP_CONFIG.backend_url + '/api/settings/public', { signal: AbortSignal.timeout(3000) });
-        if(res.ok) { window.APP_CONFIG = await res.json(); }
+        const res = await fetch(
+          window.APP_CONFIG.backend_url + '/api/settings/public',
+          { signal: AbortSignal.timeout(3000) }
+        );
+        if(res.ok) {
+          window.APP_CONFIG = await res.json();
+        }
       } catch(e){}
 
-      // Load dynamic pixels after config is ready
       if (typeof loadDynamicPixels === 'function') {
         loadDynamicPixels();
       }
 
       document.querySelectorAll('[data-wa-link]').forEach(el => {
-        el.href = 'https://wa.me/' + window.APP_CONFIG.whatsapp_number + '?text=Hi, I just ordered Hammer of Thor (' + selectedPack.name + '). Please confirm my order.';
+        el.href = 'https://wa.me/' + window.APP_CONFIG.whatsapp_number +
+          '?text=Hi, I just ordered Hammer of Thor (' +
+          selectedPack.name + '). Please confirm my order.';
       });
     }
+
     init();
 
-    // Success Animation (Confetti)
     function triggerConfetti() {
-      const duration = 3 * 1000;
+      const duration = 3000;
       const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
 
       function randomInRange(min, max) {
         return Math.random() * (max - min) + min;
@@ -153,23 +175,20 @@ UJ
 
       const interval = setInterval(function() {
         const timeLeft = animationEnd - Date.now();
-
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
+        if (timeLeft <= 0) return clearInterval(interval);
 
         const particleCount = 50 * (timeLeft / duration);
-        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
-        confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+
+        confetti({ particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+        confetti({ particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
       }, 250);
     }
-    
-    // Load confetti script dynamically
+
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js';
     script.onload = () => { triggerConfetti(); };
     document.body.appendChild(script);
   </script>
+
 </body>
 </html>
-
