@@ -16,28 +16,212 @@
 
   <!-- External Fonts & Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style/main.css">
   <link rel="preload" as="image" href="img/public13.jpeg">
 
-  <!-- Meta Pixel Code -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1880710892643408');
-    fbq('track','PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1880710892643408&ev=PageView&noscript=1"/></noscript>
+  <style>
+    :root {
+      --color-primary: #064e3b;
+      --color-primary-dark: #022c22;
+      --color-accent: #fbbf24;
+      --color-accent-hover: #f59e0b;
+      --color-danger: #dc2626;
+      --color-bg-light: #f8fafc;
+      --color-text-main: #1e293b;
+      --color-text-muted: #64748b;
+      --radius-lg: 24px;
+      --radius-md: 12px;
+    }
+
+    /* Modal Popup Styles */
+    .modal-overlay {
+      position: fixed; 
+      inset: 0;
+      background: rgba(2, 44, 34, 0.85);
+      backdrop-filter: blur(12px);
+      display: none; 
+      align-items: center; 
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    
+    .modal-content {
+      background: white;
+      width: 95%;
+      max-width: 500px;
+      margin: auto;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 40px;
+      position: relative;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      animation: modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      scrollbar-width: thin;
+      scrollbar-color: #10b981 #f1f5f9;
+    }
+    
+    @media (max-width: 640px) {
+      .modal-overlay { padding: 0; }
+      .modal-content {
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+    }
+    
+    @keyframes modalSlideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .modal-close {
+      position: absolute; 
+      top: 20px; 
+      right: 20px;
+      width: 44px; 
+      height: 44px; 
+      border-radius: 16px;
+      background: #f8fafc; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      cursor: pointer; 
+      z-index: 50; 
+      transition: all 0.3s;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+    }
+    .modal-close:hover { 
+      background: #fee2e2; 
+      color: #dc2626; 
+      transform: rotate(90deg) scale(1.1);
+      border-color: #fca5a5;
+    }
+
+    .phone-wrapper { 
+      display: flex; 
+      align-items: center; 
+      background: #f8fafc; 
+      border-radius: 20px; 
+      border: 2px solid #f1f5f9; 
+      transition: all 0.3s; 
+      width: 100%; 
+      position: relative;
+      overflow: hidden;
+    }
+    .phone-wrapper:focus-within { 
+      border-color: #10b981; 
+      background: white; 
+      box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.1); 
+    }
+    .phone-prefix { 
+      padding: 0 12px; 
+      font-weight: 800; 
+      color: #1e293b; 
+      background: #f1f5f9;
+      border-right: 2px solid #e2e8f0; 
+      display: flex; 
+      align-items: center; 
+      gap: 6px; 
+      white-space: nowrap;
+      height: 64px; /* Matches input height */
+    }
+    .phone-input { 
+      flex: 1; 
+      border: none !important; 
+      background: transparent !important; 
+      padding: 18px 20px !important; 
+      font-weight: 800; 
+      font-size: 1.15rem; 
+      outline: none !important; 
+      box-shadow: none !important; 
+      width: 100%; 
+      color: #1e293b; 
+    }
+    
+    .phone-input::placeholder { color: #94a3b8; font-weight: 500; }
+
+    /* Custom Input Polish */
+    .custom-input {
+      width: 100%;
+      padding: 18px 20px 18px 56px;
+      border: 2px solid #f1f5f9;
+      border-radius: 20px;
+      background: #f8fafc;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s;
+      outline: none;
+      color: #1e293b;
+    }
+    .custom-input:focus {
+      border-color: #10b981;
+      background: white;
+      box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.1);
+    }
+    .input-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+    .form-group:focus-within .input-icon {
+      color: #10b981;
+    }
+
+    /* Glassmorphism Product Card */
+    .order-summary-card {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 30px;
+      border-radius: 32px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .order-summary-card::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 150px; height: 150px;
+      background: rgba(16, 185, 129, 0.2);
+      filter: blur(40px);
+      border-radius: 50%;
+    }
+
+    /* Container Integrity & Text Safety */
+    .safe-container {
+      word-wrap: break-word !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
+      hyphens: auto;
+      max-width: 100%;
+    }
+    
+    .text-safety {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Limit long descriptions */
+      -webkit-box-orient: vertical;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Sticky Enterprise Header -->
-  <header>
+    <!-- High-Impact Top Banner -->
+    <div class="bg-red-700 text-white py-2 px-4 text-center text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] sticky top-0 z-[2000] shadow-lg">
+        ⚡ Special Offer: Order Now only ₹<span class="dynamic-offer-price">1499</span>/- ⚡
+    </div>
+
+    <!-- Sticky Enterprise Header -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-[28px] sm:top-[32px] z-[1900] border-b border-slate-100">
     <div class="container header-inner">
       <div class="logo">
         <a href="index.html">
@@ -50,9 +234,6 @@
         <a href="benefits.html">Benefits</a>
       </nav>
       <div class="header-contact">
-        <a href="javascript:void(0)" data-phone-link="true" class="text-primary mb-10 mr-15" style="font-weight: 700; display: inline-block; margin-right: 20px;">
-          <!-- Phone number removed -->
-        </a>
         <a href="offer.html#formcallhide" class="btn btn-primary" style="padding: 12px 24px; font-size: 0.95rem;">Select Package</a>
       </div>
     </div>
@@ -62,13 +243,13 @@
   <section class="hero-premium">
     <div class="container hero-grid">
       <div class="hero-content">
-        <div class="badge mb-20"><i class="fas fa-leaf"></i> 100% Ayurvedic & Safe</div>
-        <h1 class="mb-30">The Natural Secret of <br><span class="text-accent" style="font-family: var(--font-serif); font-style: italic;">Male Vitality & Power</span></h1>
-        <p class="mb-40" style="font-size: 1.25rem; opacity: 0.9; max-width: 500px; line-height: 1.8;">
+        <div class="badge mb-20"><i class="fas fa-leaf"></i> <span class="dynamic-business-name">Pureveda</span> - 100% Ayurvedic & Safe</div>
+        <h1 class="mb-30 safe-container">The Natural Secret of <br><span class="text-accent" style="font-family: var(--font-serif); font-style: italic;">Male Vitality & Power</span></h1>
+        <p class="mb-40 safe-container" style="font-size: 1.25rem; opacity: 0.9; max-width: 500px; line-height: 1.8;">
           Forget about weakness. Crafted from 12 powerful Himalayan herbs, Hammer of Thor gives you continuous energy, iron stamina, and peak confidence.
         </p>
         <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-          <a href="offer.html#formcallhide" class="btn btn-primary btn-pulse">
+          <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="btn btn-primary btn-pulse">
             Order Now <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
           </a>
           <div style="display: flex; gap: 12px; align-items: center; color: var(--color-bg-white); font-weight: 600;">
@@ -79,9 +260,9 @@
       </div>
       <div class="text-center relative">
         <img src="img/public13.jpeg" alt="Premium Fitness Vitality" class="floating-product" style="width: 100%; max-width: 500px; border: 4px solid rgba(255,255,255,0.1);">
-        <div style="position: absolute; bottom: 30px; left: -20px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); padding: 15px 25px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 15px;">
+        <div class="hero-customer-badge" style="position: absolute; bottom: 30px; left: -20px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); padding: 15px 25px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 15px;">
           <h2 class="text-accent" style="font-size: 2.5rem; margin:0;">50K+</h2>
-          <p style="font-size: 0.9rem; line-height: 1.2; text-align: left; opacity: 0.9; margin: 0;">Happy Customers <br>Across India</p>
+          <p style="font-size: 0.9rem; line-height: 1.2; text-align: left; opacity: 0.9; margin: 0; color: white;">Happy Customers <br>Across India</p>
         </div>
       </div>
     </div>
@@ -90,249 +271,282 @@
   <!-- Trust Badges Bar -->
   <section style="background: var(--color-primary-dark); padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
      <div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
-       <div style="display: flex; align-items: center; gap: 15px; color: var(--color-bg-white);">
-         <i class="fas fa-truck text-accent" style="font-size: 2rem;"></i>
-         <div>
-           <h4 style="color: white; margin-bottom: 2px;">Free Home Delivery</h4>
-           <p style="font-size: 0.85rem; opacity: 0.7;">Available Pan-India</p>
-         </div>
-       </div>
-       <div style="display: flex; align-items: center; gap: 15px; color: var(--color-bg-white);">
-         <i class="fas fa-rupee-sign text-accent" style="font-size: 2rem;"></i>
-         <div>
-           <h4 style="color: white; margin-bottom: 2px;">Cash on Delivery</h4>
-           <p style="font-size: 0.85rem; opacity: 0.7;">Pay upon receiving package</p>
-         </div>
-       </div>
-       <div style="display: flex; align-items: center; gap: 15px; color: var(--color-bg-white);">
-         <i class="fas fa-shield-alt text-accent" style="font-size: 2rem;"></i>
-         <div>
-           <h4 style="color: white; margin-bottom: 2px;">100% Secure Payments</h4>
-           <p style="font-size: 0.85rem; opacity: 0.7;">End-to-End Encrypted Data</p>
-         </div>
-       </div>
+        <div class="trust-badge-item">
+          <i class="fas fa-truck text-accent"></i>
+          <div>
+            <h4>Free Home Delivery</h4>
+            <p>Available Pan-India</p>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <i class="fas fa-rupee-sign text-accent"></i>
+          <div>
+            <h4>Cash on Delivery</h4>
+            <p>Pay upon receiving package</p>
+          </div>
+        </div>
+        <div class="trust-badge-item">
+          <i class="fas fa-shield-alt text-accent"></i>
+          <div>
+            <h4>100% Secure Payments</h4>
+            <p>End-to-End Encrypted Data</p>
+          </div>
+        </div>
      </div>
   </section>
 
-  <!-- Core Benefits Glassmorphism Grid -->
-  <section class="bg-light relative" style="overflow: hidden; padding-top: 120px; padding-bottom: 120px;">
-    <div style="position: absolute; top: -150px; right: -150px; width: 500px; height: 500px; border-radius: 50%; background: var(--color-accent); filter: blur(150px); opacity: 0.15;"></div>
-    
+  <!-- Core Benefits Section -->
+  <section class="bg-light relative" style="overflow: hidden; padding: 100px 0;">
     <div class="container relative">
-      <div class="text-center mb-60">
-         <h2 style="font-size: 3rem;">Are you facing these problems?</h2>
-         <p class="text-muted mt-20" style="max-width: 700px; margin: 20px auto 0; font-size: 1.15rem;">Physical and mental exhaustion can severely impact your performance. 
-         Hammer of Thor directly targets these 4 major weaknesses:</p>
+      <div class="text-center mb-60 px-4">
+         <h2 style="font-size: 2.5rem;" class="mb-20 safe-container">Are you facing these problems?</h2>
+         <p class="text-muted mx-auto safe-container" style="max-width: 700px; font-size: 1.1rem;">Physical and mental exhaustion can severely impact your performance. Hammer of Thor directly targets these major weaknesses:</p>
       </div>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-        <!-- Glass Card 1 -->
-        <div class="glass-card text-center">
-          <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: rgba(6, 78, 59, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-battery-empty text-primary" style="font-size: 2rem;"></i>
-          </div>
-          <h3 class="mb-15" style="font-family: var(--font-sans); font-weight: 700;">Daily Fatigue</h3>
-          <p class="text-muted">Feeling heavy and exhausted due to work pressure, leading to extreme lethargy in the body.</p>
+      <div class="benefits-grid">
+        <div class="glass-card">
+          <div class="benefit-icon"><i class="fas fa-battery-empty text-primary"></i></div>
+          <h3>Daily Fatigue</h3>
+          <p>Feeling heavy and exhausted due to work pressure, leading to extreme lethargy in the body.</p>
         </div>
-        
-        <!-- Glass Card 2 -->
-        <div class="glass-card text-center">
-          <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: rgba(251, 191, 36, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-bolt text-accent" style="font-size: 2rem;"></i>
-          </div>
-          <h3 class="mb-15" style="font-family: var(--font-sans); font-weight: 700;">Low Stamina</h3>
-          <p class="text-muted">Decrease in peak performance due to age or stress, resulting in getting tired quickly.</p>
+        <div class="glass-card">
+          <div class="benefit-icon"><i class="fas fa-bolt text-accent"></i></div>
+          <h3>Low Stamina</h3>
+          <p>Decrease in peak performance due to age or stress, resulting in getting tired quickly.</p>
         </div>
-
-        <!-- Glass Card 3 -->
-        <div class="glass-card text-center">
-          <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: rgba(239, 68, 68, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-brain text-primary" style="font-size: 2rem;"></i>
-          </div>
-          <h3 class="mb-15" style="font-family: var(--font-sans); font-weight: 700;">Mental Stress</h3>
-          <p class="text-muted">Irritability, depression, and anxiety caused by underlying physical weakness.</p>
+        <div class="glass-card">
+          <div class="benefit-icon"><i class="fas fa-brain text-primary"></i></div>
+          <h3>Mental Stress</h3>
+          <p>Irritability, depression, and anxiety caused by underlying physical weakness.</p>
         </div>
-
-        <!-- Glass Card 4 -->
-        <div class="glass-card text-center">
-          <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: rgba(16, 185, 129, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-shield-alt text-primary" style="font-size: 2rem;"></i>
-          </div>
-          <h3 class="mb-15" style="font-family: var(--font-sans); font-weight: 700;">Low Immunity</h3>
-          <p class="text-muted">Falling ill repeatedly and lack of natural recovery power in the body.</p>
+        <div class="glass-card">
+          <div class="benefit-icon"><i class="fas fa-shield-alt text-primary"></i></div>
+          <h3>Low Immunity</h3>
+          <p>Falling ill repeatedly and lack of natural recovery power in the body.</p>
         </div>
-
-        <!-- Glass Card 5 -->
-        <div class="glass-card text-center">
-          <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: rgba(59, 130, 246, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-dumbbell text-primary" style="font-size: 2rem;"></i>
-          </div>
-          <h3 class="mb-15" style="font-family: var(--font-sans); font-weight: 700;">Weak Muscles</h3>
-          <p class="text-muted">Decrease in physical strength and feeling of 'body breaking' after even minor tasks.</p>
+        <div class="glass-card">
+          <div class="benefit-icon"><i class="fas fa-dumbbell text-primary"></i></div>
+          <h3>Weak Muscles</h3>
+          <p>Decrease in physical strength and feeling of 'body breaking' after even minor tasks.</p>
         </div>
-
-        <!-- Glass Card 6 -->
-        <div class="glass-card text-center">
-          <div style="width: 80px; height: 80px; margin: 0 auto 24px; background: rgba(139, 92, 246, 0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-user-shield text-accent" style="font-size: 2rem;"></i>
-          </div>
-          <h3 class="mb-15" style="font-family: var(--font-sans); font-weight: 700;">Lack of Confidence</h3>
-          <p class="text-muted">Fear of non-performance and feeling embarrassed in front of your partner.</p>
+        <div class="glass-card">
+          <div class="benefit-icon"><i class="fas fa-user-shield text-accent"></i></div>
+          <h3>Lack of Confidence</h3>
+          <p>Fear of non-performance and feeling embarrassed in front of your partner.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- The Product / Ingredients Split -->
-  <section style="padding: 120px 0;">
+  <!-- Ingredients Section -->
+  <section style="padding: 100px 0;">
     <div class="container split-grid">
-      <div style="position: relative;">
-         <img src="img/ingredients.png" alt="Ayurvedic Herbs" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-float); width: 100%;">
-         <div style="position: absolute; bottom: -30px; right: -30px; background: var(--color-bg-white); padding: 20px; border-radius: var(--radius-lg); box-shadow: var(--shadow-glass); border: 1px solid #f1f1f1;">
-           <img src="img/ayurvedic_herbs_premium.png" alt="Ashwagandha" style="border-radius: var(--radius-md); width: 180px;">
-           <p class="text-center mt-10" style="font-weight: 700; color: var(--color-primary-dark);">Premium Ashwagandha Enriched</p>
+      <div class="relative">
+         <img src="img/ingredients.png" alt="Ayurvedic Herbs" style="border-radius: var(--radius-lg); width: 100%;" class="shadow-xl">
+         <div class="ingredient-bubble">
+           <img src="img/ayurvedic_herbs_premium.png" alt="Ashwagandha">
+           <p>Premium Ashwagandha Enriched</p>
          </div>
       </div>
-      <div style="padding-left: 20px;">
+      <div class="split-content">
         <div class="badge mb-20">Clinically Approved Formula</div>
-        <h2 style="font-size: 2.8rem; margin-bottom: 30px;">Gift of Nature, <br><span class="text-primary" style="font-family: var(--font-serif); font-style: italic;">Trusted by Science</span></h2>
-        <p style="font-size: 1.15rem; color: var(--color-text-muted); margin-bottom: 30px; line-height: 1.8;">
-          Hammer of Thor is not just an ordinary supplement. It is a unique blend of over 12 rare herbs like Shilajit, Safed Musli, and Ashwagandha that boost your body's inner strength from within.
+        <h2 style="font-size: 2.5rem; margin-bottom: 25px;" class="safe-container">Gift of Nature, <br><span class="text-primary italic">Trusted by Science</span></h2>
+        <p class="mb-30 safe-container" style="font-size: 1.1rem; color: var(--color-text-muted); line-height: 1.7;">
+          Hammer of Thor is a unique blend of over 12 rare herbs like Shilajit, Safed Musli, and Ashwagandha that boost your body's inner strength from within.
         </p>
-        
-        <ul style="list-style: none; margin-bottom: 40px;">
-          <li style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; font-weight: 500;">
-            <span style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 50%; color: var(--color-success);"><i class="fas fa-check"></i></span>
-            Eliminates inner weakness from the root
-          </li>
-          <li style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; font-weight: 500;">
-            <span style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 50%; color: var(--color-success);"><i class="fas fa-check"></i></span>
-            Naturally increases Testosterone levels
-          </li>
-          <li style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; font-weight: 500;">
-            <span style="background: rgba(16, 185, 129, 0.1); padding: 12px; border-radius: 50%; color: var(--color-success);"><i class="fas fa-check"></i></span>
-            Improves Blood Flow in the veins
-          </li>
+        <ul class="benefit-list mb-40">
+          <li><i class="fas fa-check-circle"></i> Eliminates inner weakness from the root</li>
+          <li><i class="fas fa-check-circle"></i> Naturally increases Testosterone levels</li>
+          <li><i class="fas fa-check-circle"></i> Improves Blood Flow in the veins</li>
         </ul>
-
-        <a href="offer.html#formcallhide" class="btn btn-secondary">Package Details <i class="fas fa-chevron-right" style="margin-left: 10px; font-size: 0.8rem;"></i></a>
+        <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="btn btn-secondary">Order Yours Today</a>
       </div>
     </div>
   </section>
 
-  <!-- Global Footer -->
-  <footer>
-    <div class="container text-center">
-      <img src="img/logo.png" alt="Hammer of Thor" width="120" loading="lazy" style="margin-bottom:20px; filter: brightness(0) invert(1); opacity: 0.7; margin: 0 auto;">
-      <div class="footer-links">
+  <!-- Main Footer -->
+  <footer class="bg-slate-900 text-white py-16 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto text-center">
+      <img src="img/logo.png" alt="Logo" class="footer-logo mb-8 h-12 mx-auto brightness-0 invert opacity-60">
+      <div class="footer-links mb-10">
         <a href="about.html">About Us</a>
         <a href="benefits.html">Benefits</a>
-        <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="terms.html">Terms & Conditions</a>
-        <a href="disclaimer.html">Disclaimer</a>
       </div>
-      <p style="margin-top:20px;opacity:0.3;font-size:0.85rem">&copy; 2026 Hammer of Thor Project. All Rights Reserved.</p>
+      <div class="trust-icons-footer mb-8 opacity-40 grayscale brightness-200 flex justify-center gap-8">
+         <img src="img/public_3.png" class="h-6" alt="Trust Icon 1">
+         <img src="img/public_4.png" class="h-6" alt="Trust Icon 2">
+         <img src="img/public_14.png" class="h-6" alt="Trust Icon 3">
+      </div>
+      <p class="text-slate-500 font-bold text-xs tracking-widest uppercase mb-4">&copy; 2026 <span class="dynamic-business-name">Pureveda</span> - All Rights Reserved</p>
+      <p class="text-[10px] text-slate-400 max-w-2xl mx-auto leading-relaxed uppercase font-bold opacity-50">
+        Disclaimer: These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease. Results may vary from person to person.
+      </p>
     </div>
   </footer>
 
+  <!-- Order Form Modal -->
+  <div id="order-modal" class="modal-overlay">
+      <div class="modal-content safe-container">
+          <div class="modal-close" onclick="toggleOrderModal(false)">
+              <i class="fas fa-times"></i>
+          </div>
+          <div class="px-6 py-10 sm:px-10">
+              <form id="order-info-form" class="space-y-4">
+                  <div class="space-y-3">
+                      <!-- Name -->
+                      <input type="text" name="NAME" placeholder="Your Full Name" required class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
+                      
+                      <!-- Phone -->
+                      <div class="flex gap-2">
+                          <input type="text" value="+91" disabled class="w-16 px-2 py-3 border border-slate-300 rounded bg-slate-100 text-center font-bold">
+                          <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}" class="flex-1 px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
+                      </div>
 
+                      <!-- Address -->
+                      <textarea name="ADDRESS" placeholder="Full Delivery Address" required rows="3" class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700"></textarea>
 
-  <!-- Sticky Offer Banner -->
-  <div id="sticky-offer-banner" style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:9999;background:#f97316;color:white;display:flex;align-items:center;justify-content:space-between;padding:10px 15px;box-shadow:0 -4px 15px rgba(0,0,0,0.2);font-family:sans-serif;box-sizing:border-box;">
-    <!-- Left: Timer -->
-    <div style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
-      <span style="font-size:0.9rem;font-weight:600;">Limited Time Offer</span>
-      <span id="sticky-timer-display" style="font-size:1.5rem;font-weight:bold;letter-spacing:1px;margin-top:2px;">09:41</span>
-    </div>
+                      <!-- City & Pin -->
+                      <div class="grid grid-cols-2 gap-3">
+                          <input type="text" name="CITY" placeholder="City" required class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
+                          <input type="tel" name="PINCODE" placeholder="Pincode" required maxlength="6" class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
+                      </div>
+                  </div>
 
-    <!-- Center: Price -->
-    <div style="display:flex;flex-direction:column;align-items:center;line-height:1.1;">
-      <span style="font-size:0.85rem;text-decoration:line-through;opacity:0.9;">MRP 3999</span>
-      <span style="font-size:1.2rem;font-weight:900;color:#fef08a;margin-top:2px;">Only 1499</span>
-      <span style="font-size:0.9rem;font-weight:bold;color:#fef08a;">Rupees</span>
-    </div>
+                  <button type="submit" id="submit-btn" class="w-full py-4 bg-slate-900 text-white rounded font-bold text-lg hover:bg-slate-800 transition-colors uppercase tracking-widest">
+                      Submit Order
+                  </button>
+              </form>
+          </div>
+      </div>
+  </div>
 
-    <!-- Right: Button -->
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <a href="offer.html#formcallhide" style="background:#16a34a;color:white;text-decoration:none;padding:10px 20px;border-radius:30px;font-weight:800;font-size:1.1rem;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.2);line-height:1.2;animation:pulseBtn 1.5s infinite;cursor:pointer;white-space:nowrap;">
-        Order<br>Now
-      </a>
-      <span style="font-size:0.75rem;margin-top:5px;opacity:0.9;">Limited Time Offer</span>
+  <!-- Sticky Mobile Bottom CTA -->
+  <div class="sticky-cta px-4 py-3" id="mobile-sticky-cta">
+    <div class="flex items-center gap-4 w-full">
+      <div class="flex-1 text-left">
+        <p class="text-[10px] font-black text-emerald-700 uppercase tracking-widest leading-none mb-1">Special Offer Price</p>
+        <p class="text-xl font-black text-slate-900 leading-none">₹<span class="dynamic-offer-price">1499</span></p>
+      </div>
+      <button onclick="toggleOrderModal(true)" class="bg-red-700 active:bg-red-800 text-white px-6 py-3.5 rounded-full font-black text-[10px] uppercase tracking-widest shadow-xl">
+        Order Now
+      </button>
     </div>
   </div>
-  <style>
-    @keyframes pulseBtn {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-  </style>
 
-  <!-- Frontend Dynamic Script -->
-  <script defer>
-    const FALLBACK_BACKEND = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('10.')) ? window.location.protocol + '//' + window.location.hostname + ':3001' : 'https://your-app.onrender.com';
-    const FALLBACK_WA = '910000000000';
-    window.APP_CONFIG = { whatsapp_number: FALLBACK_WA, backend_url: FALLBACK_BACKEND };
+  <!-- Floating FAB for Desktop/Mobile -->
+  <div class="floating-fab">
+    <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="fab-btn">
+      <i class="fas fa-shopping-cart"></i>
+    </a>
+    <a href="javascript:void(0)" target="_blank" class="whatsapp-float-new" data-wa-link style="display: none;">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
 
-    async function loadConfig() {
-      try {
-        const res = await fetch(window.APP_CONFIG.backend_url + '/api/settings/public', { signal: AbortSignal.timeout(5000) });
-        if(res.ok) {
-           const data = await res.json();
-           if (data.whatsapp_number) { window.APP_CONFIG = data; }
+  <!-- Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, onSnapshot, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAY_TN3to4yAqk7IJNqVSKFS-fSuynXwOw",
+      authDomain: "teste-erhij8.firebaseapp.com",
+      projectId: "teste-erhij8",
+      storageBucket: "teste-erhij8.firebasestorage.app",
+      messagingSenderId: "744778225564",
+      appId: "1:744778225564:web:f5d6b73e501495b3dfda59"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Dynamic Content Listener
+    function initDynamicConfig() {
+      onSnapshot(doc(db, "app_settings", "general"), (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.offer_price) {
+            document.querySelectorAll('.dynamic-offer-price').forEach(el => el.textContent = data.offer_price);
+          }
+          if (data.original_price) {
+            document.querySelectorAll('.dynamic-original-price').forEach(el => el.textContent = data.original_price);
+          }
+          if (data.business_name) {
+            document.querySelectorAll('.dynamic-business-name').forEach(el => el.textContent = data.business_name);
+          }
+          // WhatsApp Integration
+          if (data.whatsapp_number) {
+            const cleanWA = data.whatsapp_number.replace(/\D/g, '');
+            document.querySelectorAll('[data-wa-link]').forEach(el => {
+              el.href = `https://wa.me/${cleanWA}?text=I%20want%20to%20order%20Hammer%20of%20Thor`;
+              el.style.display = 'flex';
+            });
+          } else {
+            document.querySelectorAll('[data-wa-link]').forEach(el => el.style.display = 'none');
+          }
         }
-      } catch(e) { console.warn('Using fallback configuration'); }
-      document.querySelectorAll('[data-wa-link]').forEach(el => {
-        el.href = 'https://wa.me/' + window.APP_CONFIG.whatsapp_number + '?text=नमस्त�?%2C%20मुझ�?%20Horse%20Fire%20Tablet%20�.�?%20बार�?%20म�?�,%20�oान�.ार�?%20�sाहिए';
       });
-      document.querySelectorAll('[data-phone-link]').forEach(el => {
-        el.href = 'tel:+' + window.APP_CONFIG.whatsapp_number;
-      });
-      const hdrPhone = document.getElementById('hdr-phone');
-      if (hdrPhone && window.APP_CONFIG.phone_display) hdrPhone.textContent = window.APP_CONFIG.phone_display;
-    }
-    loadConfig();
-
-    // Sticky Timer Logic
-    let limitMinutes = 9;
-    let limitSeconds = 59;
-    const timerDisplay = document.getElementById('sticky-timer-display');
-    setInterval(() => {
-      if(limitSeconds === 0) {
-        if(limitMinutes === 0) { limitMinutes = 9; limitSeconds = 59; } // Reset
-        else { limitMinutes--; limitSeconds = 59; }
-      } else {
-        limitSeconds--;
-      }
-      let m = limitMinutes < 10 ? '0' + limitMinutes : limitMinutes;
-      let s = limitSeconds < 10 ? '0' + limitSeconds : limitSeconds;
-      if (timerDisplay) timerDisplay.textContent = m + ':' + s;
-    }, 1000);
-
-    // Pack selection redirect from URL params
-    const qp = new URLSearchParams(location.search);
-    if(qp.get('pack') && qp.get('price')) {
-      const names={'1m':'1 Month Course','2m':'2 Months Course','3m':'3 Months Course'};
-      localStorage.setItem('hf_selected_pack', JSON.stringify({name: names[qp.get('pack')]||qp.get('pack'), price: qp.get('price')}));
-      window.location.href = 'offer.html#formcallhide';
     }
 
-    // Scroll reveal observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.style.opacity = 1; entry.target.style.transform = 'translateY(0)'; }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.glass-card').forEach(el => {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-      observer.observe(el);
+    // Modal Operations
+    window.toggleOrderModal = (show) => {
+      const modal = document.getElementById('order-modal');
+      if (show) modal.classList.add('active');
+      else modal.classList.remove('active');
+    };
+
+    // Close on overlay click
+    document.getElementById('order-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'order-modal') toggleOrderModal(false);
     });
 
+    // Lead Submission
+    async function handleLeadSubmission(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
+      const formData = new FormData(e.target);
+      const payload = {
+        name: formData.get('NAME'),
+        phone: formData.get('PHONENO'),
+        location: formData.get('ADDRESS'),
+        city: formData.get('CITY'),
+        pincode: formData.get('PINCODE'),
+        source: 'index_page',
+        browser: navigator.userAgent,
+        platform: navigator.platform,
+        screen_resolution: window.screen.width + "x" + window.screen.height,
+        referrer: document.referrer,
+        createdAt: serverTimestamp(),
+        status: 'new'
+      };
+
+      try {
+        await addDoc(collection(db, "leads"), payload);
+        window.location.href = "thank.html";
+      } catch (error) {
+        console.error("Error adding lead: ", error);
+        alert("Failed to place order. Please check your connection.");
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    document.getElementById('order-info-form').addEventListener('submit', handleLeadSubmission);
+
+    // Scroll Listener
+    window.addEventListener('scroll', () => {
+      const sticky = document.getElementById('mobile-sticky-cta');
+      if (window.scrollY > 400) sticky.classList.add('visible');
+      else sticky.classList.remove('visible');
+    });
+
+    initDynamicConfig();
   </script>
 </body>
 </html>
-

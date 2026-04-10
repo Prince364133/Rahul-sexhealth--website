@@ -75,10 +75,32 @@ body {
   body { padding-bottom: 0; }
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--color-primary-dark);
+}
+
+/* Ensure headings in dark sections are white */
+section[style*="background: linear-gradient"], 
+section.bg-dark, 
+.hero-premium {
+  color: white !important;
+}
+
+section[style*="background: linear-gradient"] h1,
+section[style*="background: linear-gradient"] h2,
+section[style*="background: linear-gradient"] p,
+.hero-premium h1, 
+.hero-premium p {
+  color: white !important;
 }
 
 a {
@@ -136,9 +158,10 @@ img {
 
 /* Header / Navigation */
 header {
-  position: fixed;
-  top: 0; left: 0; width: 100%;
-  background: rgba(255, 255, 255, 0.9);
+  position: sticky;
+  top: 0; 
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -150,7 +173,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 70px;
 }
 
 .logo img {
@@ -468,8 +491,8 @@ footer {
 /* WhatsApp Float */
 .whatsapp-float {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 100px; /* Higher to avoid overlap with sticky bar */
+  right: 20px;
   background: #25d366;
   color: white;
   width: 60px;
@@ -480,7 +503,7 @@ footer {
   justify-content: center;
   font-size: 32px;
   box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-  z-index: 9999;
+  z-index: 10002; /* Above sticky bar */
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -499,14 +522,28 @@ footer {
 
 @media (max-width: 768px) {
   .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-  .hero-premium { padding: 120px 0 80px; }
-  .hero-premium h1 { font-size: 2.5rem; }
+  .hero-premium { padding: 60px 0 40px; }
+  .hero-premium h1 { font-size: 2.2rem; }
   
   .nav-links { display: none; }
   
   .whatsapp-float {
-    bottom: 24px;
-    right: 24px;
+    bottom: 90px;
+    right: 15px;
     width: 55px; height: 55px; font-size: 28px;
   }
+
+  /* Padding fixes for long text on mobile */
+  .container {
+    padding: 0 20px;
+  }
+
+  /* Slick Arrow Mobile Fixes */
+  .slick-prev, .slick-next {
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+  }
+  .slick-prev { left: 0 !important; }
+  .slick-next { right: 0 !important; }
 }

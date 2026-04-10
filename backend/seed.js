@@ -2,6 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Settings = require('./models/Settings');
 const Lead = require('./models/Lead');
+const User = require('./models/User');
 
 const MONGO_URI = process.env.MONGO_URI;
 const ADMIN_SECRET_TOKEN = process.env.ADMIN_SECRET_TOKEN;
@@ -44,7 +45,22 @@ async function seed() {
     );
     console.log('Settings seeded.');
 
-    // 2. Seed Leads
+    // 2. Seed Admin User
+    const adminUser = {
+      email: "admin@pureveda.com",
+      password: "364133", // Will be hashed by pre-save hook
+      role: "admin"
+    };
+
+    const existingUser = await User.findOne({ email: adminUser.email });
+    if (!existingUser) {
+      await User.create(adminUser);
+      console.log('Admin user created: admin@pureveda.com');
+    } else {
+      console.log('Admin user already exists.');
+    }
+
+    // 3. Seed Leads
     // Clear existing test leads if any (optional, but requested for testing)
     // await Lead.deleteMany({ utm_campaign: { $in: ["facebook_mens_health", "instagram_story", "fb_carousel"] } });
 
@@ -71,12 +87,15 @@ async function seed() {
     console.log('10 leads seeded.');
 
     console.log(`
-╔══════════════════════════════════════════════╗
+╚══════════════════════════════════════════════╝
 ║         HAMMER OF THOR — SEED COMPLETE       ║
 ╠══════════════════════════════════════════════╣
+║ Admin Login Details:                         ║
+║ Email: admin@pureveda.com                    ║
+║ Pass:  364133                                ║
+║                                              ║
 ║ Admin Dashboard URL:                         ║
 ║ /admin/index.html                            ║
-║ ?token=${ADMIN_SECRET_TOKEN} ║
 ║                                              ║
 ║ MongoDB: horsefiredb                         ║
 ║ Leads seeded: 10                             ║

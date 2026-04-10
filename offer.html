@@ -1,1461 +1,1071 @@
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/90f51aa8-381e-4dba-4412-7a5a4796fc00/public" fetchpriority="high">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/7d385bd5-4961-4cd6-39f3-a057383fcd00/public" fetchpriority="high">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/7b02aa68-3574-43ee-d2e2-1499e71ac500/public" fetchpriority="high">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/1b2ad385-e326-43cb-766e-f21b56370800/public">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/70eafaa9-fe4c-449d-8047-9da48c99b000/public">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/eb417cac-5d05-4a08-2b36-c199bd117d00/public">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/1008f103-30e0-4def-6b63-2d6adb77b500/public">
-    <link rel="preload" as="image" href="./img/graph.gif">
-    <link rel="preload" as="image" href="img/flipkart.png">
-    <link rel="preload" as="image" href="img/amaz.png">
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/style2.css">
-    <link rel="stylesheet" href="style/style3.css">
-    <link rel="stylesheet" href="style/style4.css">
-
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/9d8bf300-cb55-42b4-3c96-9201c0bcef00/public">
-    <link rel="preload" as="image" href="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/bd9a4c82-80fc-477c-4b3c-04838b48cd00/public">
-
-    <title>Hammer of Thor</title>
-    <meta name="description" content="Hammer of Thor">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pureveda - Special Offer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-      .img-row {
-        display: flex;
-        align-items: center;
-      }
-
-      .custom-img {
-        width: 100%;
-        max-height: 250px;
-        object-fit: contain;
-        margin: auto;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      /* Hover effect */
-      .custom-img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      }
-
-      /* Mobile fix */
-      @media (max-width: 767px) {
-        .img-row {
-          display: block;
+        :root {
+            --primary: #991b1b;
+            --primary-light: #fef2f2;
+            --accent: #dc2626;
+            --danger: #7f1d1d;
+            --slate-900: #0f172a;
         }
 
-        .custom-img {
-          margin-bottom: 15px;
-          max-height: 200px;
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: #fff;
+            color: #1e293b;
         }
-      }
-    </style>
 
-    <!-- Facebook Pixel -->
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js"
-      );
+        /* Modal & UI System (Synced with index.html) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-      fbq("init", "1457918438639700");
-      fbq("track", "PageView");
-      fbq("track", "ViewContent");
-    </script>
-    <noscript>
-      <img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=1457918438639700&ev=PageView&noscript=1"
-      />
-    </noscript>
-    <!-- End Facebook Pixel -->
-  </head>
-  <body class="__className_aaf875">
-    <div class="w-full overflow-hidden">
-      <div class="w-full bg-white text-black fontNoto text-[1.2rem] sm:text-xl lg:text-3xl">
-        <!--$-->
-        <div class="">
-          <div class="w-full relative">
-            <div class="py-2 sm:py-3 uppercase fontPoppins relative z-10 text-white text-center text-3xl sm:text-5xl font-extrabold" style="background-color: rgb(2 95 113 / var(--tw-bg-opacity))">
-              100% All Natural - 📞
-              <a href="#order-info">Order Now Only 1499/-</a>
-            </div>
-            <img src="img/logo.png" alt="bg1" class="absolute top-0 left-0 h-full" width="100%" height="100%" fetchpriority="high">
-          </div>
-          <img src="img/public13.jpeg" alt="bg1" class="hidden sm:block" width="100%" height="100%" fetchpriority="high">
-          <img src="img/public13.jpeg" alt="bg1" class="sm:hidden" width="100%" height="100%" fetchpriority="high">
-          <div class="max-w-7xl py-5 mx-auto px-3">
-            <div class="grid grid-cols-3 gap-5 justify-items-center">
-              <img src="img/public_3.png" alt="img1">
-              <img src="img/public_4.png" alt="img2">
-              <img src="img/public_14.png" alt="img3">
-            </div>
-            <p class="mt-7 max-w-6xl mx-auto sm:text-center text-justify">
-              <span class="text-red-700 font-extrabold uppercase">"Hammer of Thor"</span>
-              is a super power pack formula to eliminate male weakness. It is a combination 
-              of the power of ancient and trusted Ayurvedic herbs and Bhasmas. In this, 
-              useful parts of each herb have been used in appropriate quantities 
-              through modern research, which is why 
-              <span class="text-red-700 font-extrabold uppercase">Hammer of Thor</span>
-              has proven to be different and more effective than other products 
-              available in the market.
-            </p>
-            <!--$-->
-            <div class="text-center bg-inherit mt-5">
-              <a href="#order-info" class="pop_imagehfv inline-block bg-red-700 text-white pt-3 pb-1 rounded-full text-xl px-10 font-bold">Order Now Only 1499/-</a>
-            </div>
-            <!--/$-->
-          </div>
-        </div>
-        <!--/$-->
-        <!--$-->
-        <div class="w-full py-5 md:py-10 px-3 relative">
-          <div class="relative z-10 max-w-7xl mx-auto px-5 text-center">
-            <h1 class="text-yellow-400 font-extrabold text-3xl md:text-4xl lg:text-5xl">
-              Are you also worried about
-            </h1>
-            <div class="">
-              <div class="slick-slider center slick-initialized" dir="ltr">
-                <button type="button" data-role="none" class="slick-arrow slick-prev" style="display: block">
-                  <!-- -->
-                  Previous
-                </button>
-                <div class="slick-list">
-                  <div class="slick-track" style="width: 700%; left: -100%">
-                    <div data-index="-1" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/6e55c516-068d-444a-dd37-df48ed9ec100/public" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            Stamina & Energy
-                          </p>
-                          <p class="text-[yellow]">
-                            Lack of strength, stamina and energy
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false" style="outline: none; width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="img/public_2.gif" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            Sex Timing
-                          </p>
-                          <p class="text-[yellow]">
-                            Discharge in 2 minutes or less
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-index="1" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/294878d9-c1f9-4b9d-666f-0b3db0e8a400/public" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            Weakness
-                          </p>
-                          <p class="text-[yellow]">
-                            Loose, thin or small size issues
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-index="2" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/6e55c516-068d-444a-dd37-df48ed9ec100/public" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            Stamina & Energy
-                          </p>
-                          <p class="text-[yellow]">
-                            Lack of strength, stamina and energy
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-index="3" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/0a9d1839-6671-40d2-683f-2e5721f78c00/public" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            सेक्स टाइमिंग
-                          </p>
-                          <p class="text-[yellow]">
-                            2 मिनट या इससे कम समय में वीर्यपात से
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-index="4" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/294878d9-c1f9-4b9d-666f-0b3db0e8a400/public" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            नपुंसकता
-                          </p>
-                          <p class="text-[yellow]">
-                            लिंग में ढीलापन, पतला या छोटा साइज से
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-index="5" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 14.285714285714286%">
-                      <div>
-                        <div class="pt-3 px-3" tabindex="-1" style="width: 100%; display: inline-block">
-                          <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/6e55c516-068d-444a-dd37-df48ed9ec100/public" alt="pic" class="sm:w-1/2 mx-auto outline-offset-4 outline-white outline-dashed rounded-lg sm:rounded-3xl" loading="lazy">
-                          <p class="text-3xl sm:text-4xl lg:text-6xl mt-5 sm:mt-8 text-white font-extrabold">
-                            Stamina & Energy
-                          </p>
-                          <p class="text-[yellow]">
-                            Lack of strength, stamina and energy
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button type="button" data-role="none" class="slick-arrow slick-next" style="display: block">
-                  <!-- -->
-                  Next
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/$-->
-        <div class="row img-row">
-          <div class="col-xs-12 col-sm-6">
-            <img src="img/graph.gif" class="custom-img">
-          </div>
-          <div class="col-xs-12 col-sm-6">
-            <img src="img/sert.webp" class="custom-img">
-          </div>
-        </div>
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-        <!--$-->
-        <div class="w-full py-8 md:py-16 px-3 relative text-white" style="background-color: black">
-          <div class="relative z-10">
-            <div class="max-w-6xl mx-auto text-center">
-              <p class="leading-snug">
-                Don't worry, all your problems will vanish from the root!
-                With the use of <span class="text-red-600 uppercase font-bold">Hammer of Thor</span>,
-                within just a few days <span class="text-yellow-400">your masculinity</span> will increase 
-                and you will become a <span class="text-yellow-400">Best Performer</span> !!
-              </p>
-              <p class="text-[1.45rem] sm:text-4xl lg:text-6xl font-extrabold mt-7 sm:mt-10">
-                Trusted Herbs mixed in <span class="text-red-600 uppercase">Hammer of Thor </span>
-              </p>
-              <p class="text-xl sm:text-3xl lg:text-[2.8rem] fontPoppins font-bold">
-                100% Safe and
-                <span class="text-yellow-400">Proven Ingedients</span>
-              </p>
-            </div>
-            <div class="border-y-2 border-white border-dashed my-7 sm:mt-10 sm:mb-14">
-              <div class="max-w-7xl mx-auto px-4 sm:px-5 pt-5 pb-3 sm:py-5 text-center sm:text-left">
-                <div class="slick-slider center slick-initialized" dir="ltr">
-                  <button type="button" data-role="none" class="slick-arrow slick-prev" style="display: block">
-                    <!-- -->
-                    Previous
-                  </button>
-                  <div class="slick-list">
-                    <div class="slick-track" style="width: 700%; left: -100%">
-                      <div data-index="-2" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/214b184c-6c10-478f-f0cb-38c6955a8d00/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                Gokshru
-                              </p>
-                              <p class="">
-                                Extremely effective in increasing strength and excitement
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="-1" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/a63551db-726e-4d80-8f73-bae6de8c0c00/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                Abhrak Bhasma
-                              </p>
-                              <p class="">
-                                Best stimulant and tonic, increases firmness
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="0" class="slick-slide slick-active slick-current" tabindex="-1" aria-hidden="false" style="outline: none; width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="img/public_18.png" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                Ashwagandha
-                              </p>
-                              <p class="">
-                                Greatest Testosterone and Nitric Oxide booster
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="1" class="slick-slide slick-active" tabindex="-1" aria-hidden="false" style="outline: none; width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="img/pmjay.png" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                Shilajit
-                              </p>
-                              <p class="">
-                                Natural booster that makes you firm and full of energy
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="2" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/641ea289-1e4b-4f67-2271-e3f7d4b05700/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                Kesar
-                              </p>
-                              <p class="">
-                                Excellent power and energy booster for long duration
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="3" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/6426cc8e-1bb0-469f-7fd6-deaa1ad4b600/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                Safed Musli
-                              </p>
-                              <p class="">
-                                Effective for timing and performance issues
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="4" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/214b184c-6c10-478f-f0cb-38c6955a8d00/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                गोखरू
-                              </p>
-                              <p class="">
-                                लिंग मजबूती, व कामोत्तेजना बढ़ाने में अत्यंत
-                                असरदार
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="5" class="slick-slide" tabindex="-1" aria-hidden="true" style="outline: none; width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/a63551db-726e-4d80-8f73-bae6de8c0c00/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                अभ्रक भस्म
-                              </p>
-                              <p class="">
-                                सर्वोत्तम उत्तेजक एवं शक्तिवर्धक, लिंग की सख्ती
-                                बढाए
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="6" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="img/public_16.png" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                अश्वगंधा
-                              </p>
-                              <p class="">
-                                महानतम टेस्टोस्टेरोन और नाइट्रिक ऑक्साइड वर्धक
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="7" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="img/pmjay.png" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                शिलाजीत
-                              </p>
-                              <p class="">
-                                नेचुरल वियाग्रा जो लिंग को कड़क और जोश बढ़ाए
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="8" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/641ea289-1e4b-4f67-2271-e3f7d4b05700/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                केसर
-                              </p>
-                              <p class="">
-                                श्रेष्ठ शक्ति एवं ऊर्जा वर्धक जो बेड पर लम्बा
-                                टिकाये
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="9" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/6426cc8e-1bb0-469f-7fd6-deaa1ad4b600/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                सफ़ेद मूसली
-                              </p>
-                              <p class="">
-                                शीघ्रपतन एंव ढीले लिंग की समस्या में कारगर
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="10" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/214b184c-6c10-478f-f0cb-38c6955a8d00/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                गोखरू
-                              </p>
-                              <p class="">
-                                लिंग मजबूती, व कामोत्तेजना बढ़ाने में अत्यंत
-                                असरदार
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div data-index="11" tabindex="-1" class="slick-slide slick-cloned" aria-hidden="true" style="width: 7.142857142857143%">
-                        <div>
-                          <div class="!grid grid-cols-12 gap-1 sm:gap-5 items-center sm:px-10" tabindex="-1" style="width: 100%; display: inline-block">
-                            <div class="col-span-12 sm:col-span-4">
-                              <img src="https://imagedelivery.net/aacnHGAqlUDhaplA3bnkbA/a63551db-726e-4d80-8f73-bae6de8c0c00/public" alt="pic" class="w-1/2 sm:w-full mx-auto" loading="lazy">
-                            </div>
-                            <div class="col-span-12 sm:col-span-8">
-                              <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl mt-5 sm:mt-4 text-white font-extrabold">
-                                अभ्रक भस्म
-                              </p>
-                              <p class="">
-                                सर्वोत्तम उत्तेजक एवं शक्तिवर्धक, लिंग की सख्ती
-                                बढाए
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <button type="button" data-role="none" class="slick-arrow slick-next" style="display: block">
-                    <!-- -->
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="max-w-7xl mx-auto px-3 py-4">
-              <img src="img/gentle-sex-6.gif" alt="Ayurvedic Herbs" class="w-full rounded-2xl shadow-2xl hover:scale-[1.01] transition-transform duration-500">
-            </div>
-            <div class="sm:hidden">
-              <!--$-->
-              <div class="text-center bg-inherit mt-5">
-                <a href="#order-info" class="pop_imagehfv inline-block bg-red-700 text-white pt-3 pb-1 rounded-full text-xl px-10 font-bold">अभी ऑर्डर करें मात्र 1499/-</a>
-              </div>
-              <!--/$-->
-            </div>
-            <div class="max-w-6xl mx-auto px-4">
-              <p class="text-3xl text-center sm:text-4xl lg:text-5xl font-extrabold mt-5 sm:mt-7 leading-tight">
-                Take Care of Your <span class="text-yellow-400 uppercase">Partner's Happiness</span>
-              </p>
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 2rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 items-center gap-4 sm:gap-6 mt-4">
-                <!-- Image -->
-                <img src="img/public_12.png" alt="expert opinion" class="w-full h-auto mx-auto rounded-lg">
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
 
-                <!-- Content -->
-                <div>
-                  <p class="uppercase text-2xl sm:text-3xl lg:text-[2.5rem] font-bold leading-tight mb-2">
-                    <span class="text-yellow-400">What</span>
-                    <span class="text-red-600"> expert thinks</span>
-                  </p>
-
-                  <p class="text-justify mt-1 leading-snug text-[15px] sm:text-base text-yellow-400">
-                    According to several surveys, it has been found that the desire for intimacy in women 
-                    is stronger than in men. Not only that, most women desire long-lasting performance. 
-                    Men suffering from performance anxiety or timing issues fail to satisfy their partner. 
-                    This can lead to stress, bitterness and infidelity in relationships.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <!--$-->
-            <div class="text-center bg-inherit mt-5">
-              <a href="#order-info" class="pop_imagehfv inline-block bg-red-700 text-white pt-3 pb-1 rounded-full text-xl px-10 font-bold">अभी ऑर्डर करें मात्र 1499/-</a>
-            </div>
-            <!--/$-->
-          </div>
-          <img src="img/sawdhan.png" alt="img11" width="100%">
-        </div>
-        <!--/$-->
-        <!--$-->
-        <div class="">
-          <div class="relative text-white">
-            <div class="relative z-10">
-              <div class="max-w-7xl mx-auto px-3 py-7 sm:py-14">
-                <p class="text-[2.1rem] sm:text-5xl lg:text-6xl font-bold text-center mb-3 sm:mb-7 leading-tight">
-                  <span class="fontPoppins uppercase">Hammer of Thor</span>
-                  Capsules
-                </p>
-                <div class="grid grid-cols-2 gap-5 sm:gap-10 items-center lg:text-2xl">
-                  <div class="grid sm:grid-cols-2 items-center gap-3 sm:gap-5">
-                    <img src="img/public_7.png" alt="pic" class="" width="100%" height="100%" loading="lazy">
-                    <div class="">
-                      <p class="font-bold !leading-none mb-2 text-2xl lg:text-3xl xl:text-[2.5rem]">
-                        <span class="text-red-600">Rock Hard</span>
-                        and <span class="text-yellow-400">Better Size</span>
-                      </p>
-                      <p class="">
-                        Improve size and strength by boosting blood circulation in the veins
-                      </p>
-                    </div>
-                  </div>
-                  <div class="grid sm:grid-cols-2 items-center gap-3 sm:gap-5">
-                    <img src="img/public_10.png" alt="pic" class="" width="100%" height="100%" loading="lazy">
-                    <div class="">
-                      <p class="font-bold !leading-none mb-2 text-2xl lg:text-3xl xl:text-[2.5rem]">
-                        <span class="text-red-600">Last Over</span>
-                        1 HOUR
-                        <span class="text-yellow-400">on Bed</span>
-                      </p>
-                      <p class="">
-                        Increase mental focus and control to end quick discharge
-                      </p>
-                    </div>
-                  </div>
-                  <div class="grid sm:grid-cols-2 items-center gap-3 sm:gap-5">
-                    <img src="img/public_17.png" alt="pic" class="" width="100%" height="100%" loading="lazy">
-                    <div class="">
-                      <p class="font-bold !leading-none mb-2 text-2xl lg:text-3xl xl:text-[2.5rem]">
-                        <span class="text-red-600">Excitement</span>
-                        and <span class="text-yellow-400">Desire</span>
-                      </p>
-                      <p class="">
-                        Natural herbs increase your mood and passion instantly
-                      </p>
-                    </div>
-                  </div>
-                  <div class="grid sm:grid-cols-2 items-center gap-3 sm:gap-5">
-                    <img src="img/public_9.png" alt="pic" class="" width="100%" height="100%" loading="lazy">
-                    <div class="">
-                      <p class="font-bold !leading-none mb-2 text-2xl lg:text-3xl xl:text-[2.5rem]">
-                        <span class="text-red-600">Stamina</span>
-                        and <span class="text-yellow-400">Energy Boost</span>
-                      </p>
-                      <p class="">
-                        Nourish your body and boost Testosterone for extreme power
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="sm:pt-5">
-                  <!--$-->
-                  <div class="text-center bg-inherit mt-5">
-                    <a href="#order-info" class="pop_imagehfv inline-block bg-red-700 text-white pt-3 pb-1 rounded-full text-xl px-10 font-bold">Order Now for only ₹1499/-</a>
-                  </div>
-                  <!--/$-->
-                </div>
-              </div>
-            </div>
-            <img src="img/public_1.png" alt="img11" class="absolute top-0 left-0 h-full" width="100%" height="100%">
-          </div>
-          <div class="py-7 md:py-14 relative">
-            <div class="max-w-4xl mx-auto relative z-10">
-              <h1 class="uppercase text-3xl leading-tight font-black mb-5 text-center sm:hidden px-3 text-[yellow]">
-                Why Men Trust Hammer of Thor
-              </h1>
-              <div class="grid grid-cols-12 gap-2 sm:gap-5 items-center sm:items-center ps-2 pe-3 sm:px-5">
-                <img src="img/public13.jpeg" alt="pic" width="100%" height="100%" loading="lazy" class="col-span-4 sm:col-span-3">
-                <div class="col-span-8 sm:col-span-9">
-                  <h1 class="uppercase text-4xl leading-tight text-[yellow] font-black mb-8 hidden sm:block">
-                    Why Men Trust Hammer of Thor
-                  </h1>
-                  <div class="space-y-5 text-white text-[1.01rem] sm:text-xl lg:text-2xl">
-                    <p class="bg-red-600 rounded-tr-xl px-2 sm:px-5 sm:pt-3 pt-2">
-                      #1 Best Seller in Sexual Health
-                    </p>
-                    <p class="bg-red-600 rounded-tr-xl px-2 sm:px-5 sm:pt-3 pt-2">
-                      10 Days Money Back Guarantee
-                    </p>
-                    <p class="bg-red-600 rounded-tr-xl px-2 sm:px-5 sm:pt-3 pt-2">
-                      Cash on Delivery (COD) Available
-                    </p>
-                    <p class="bg-red-600 rounded-tr-xl px-2 sm:px-5 sm:pt-3 pt-2">
-                      10% Extra Discount on Prepaid Orders
-                    </p>
-                    <p class="bg-red-600 rounded-tr-xl px-2 sm:px-5 sm:pt-3 pt-2">
-                      Available on Flipkart & Amazon
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <img src="img/public.png" alt="img11" class="absolute top-0 left-0 h-full" width="100%" height="100%">
-          </div>
-        </div>
-        <!--/$-->
-
-        <!-- ═══════════════ WARNING / EDUCATION ═══════════════ -->
-        <div class="w-full py-12 px-4 bg-red-50" style="background: linear-gradient(135deg, #fffcf9, #ffe4e4);">
-          <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-              <h2 class="text-3xl md:text-5xl font-extrabold text-red-700 mb-4">⚠️ Crucially Important to Know</h2>
-              <p class="text-lg md:text-xl text-gray-600 font-medium">(Crucial Product Safety Information)</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-              <div class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <img src="img/sawdhan.png" alt="Warning" class="relative w-full rounded-2xl shadow-2xl border-4 border-white transform transition hover:scale-[1.02]">
-              </div>
-              
-              <div class="space-y-8">
-                <div class="bg-white border-l-[10px] border-red-600 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div class="flex items-center gap-4 mb-4">
-                    <div class="bg-red-100 p-3 rounded-full text-red-600 text-2xl"><i class="fas fa-exclamation-triangle"></i></div>
-                    <h3 class="text-2xl md:text-3xl font-black text-red-800">BEWARE</h3>
-                  </div>
-                  <p class="text-lg md:text-xl text-gray-800 leading-relaxed text-justify mb-4">
-                    Many fake and adulterated supplements are available in the market that harm your body. Always buy <b>certified and authentic Ayurvedic products</b> only. 
-                  </p>
-                  <p class="text-sm md:text-base italic text-gray-500 border-t pt-4">
-                    (Beware of fake supplements in the market that can harm your health. Always insist on certified, authentic Ayurvedic products only.)
-                  </p>
-                </div>
-                
-                <div class="bg-white border-l-[10px] border-green-600 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                  <div class="flex items-center gap-4 mb-6">
-                    <div class="bg-green-100 p-3 rounded-full text-green-600 text-2xl"><i class="fas fa-shield-alt"></i></div>
-                    <h3 class="text-2xl md:text-3xl font-black text-green-800">Why Hammer of Thor is Safe?</h3>
-                  </div>
-                  <ul class="space-y-4">
-                    <li class="flex items-start gap-3 text-lg md:text-xl font-bold text-gray-700">
-                      <span class="text-green-500 mt-1">✅</span> <span>100% Natural Ingredients — <span class="text-green-600">No Chemicals</span></span>
-                    </li>
-                    <li class="flex items-start gap-3 text-lg md:text-xl font-bold text-gray-700">
-                      <span class="text-green-500 mt-1">✅</span> <span>FSSAI Registered & Lab Tested</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-lg md:text-xl font-bold text-gray-700">
-                      <span class="text-green-500 mt-1">✅</span> <span>Clinically Proven Formula for Men</span>
-                    </li>
-                    <li class="flex items-start gap-3 text-lg md:text-xl font-bold text-gray-700">
-                      <span class="text-green-500 mt-1">✅</span> <span><span class="text-red-600">No Side Effects</span> (100% Safe)</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ═══════════════ DOCTOR SECTION ═══════════════ -->
-        <div class="w-full bg-slate-50 py-16 px-4">
-          <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl md:text-5xl font-black text-center text-slate-900 mb-12">Expert Doctor's Opinion</h2>
-            
-            <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-slate-200">
-              <div class="flex flex-col md:flex-row items-stretch">
-                <!-- Image side -->
-                <div class="w-full md:w-2/5 bg-slate-100 flex items-center justify-center p-6 md:p-0">
-                   <div class="relative w-full h-full">
-                     <img src="img/public_11.png" alt="Dr. B.D Verma" class="w-full h-full object-cover">
-                     <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-xl shadow-lg md:hidden">
-                        <h4 class="text-xl font-extrabold text-red-700">Dr. B.D Verma</h4>
-                        <p class="text-sm font-bold text-slate-600">21+ Years Experience</p>
-                     </div>
-                   </div>
-                </div>
-                
-                <!-- Content side -->
-                <div class="w-full md:w-3/5 p-8 md:p-12 flex flex-col justify-center">
-                  <div class="hidden md:block mb-6">
-                    <h4 class="text-4xl font-black text-red-700 mb-1">Dr. B.D Verma</h4>
-                    <p class="text-xl font-bold text-slate-500">MD - Alternate Medicine, BAMS | 21 YRS EXP</p>
-                    <div class="h-1 w-20 bg-red-600 mt-4 rounded-full"></div>
-                  </div>
-                  
-                  <div class="relative">
-                    <span class="absolute -top-6 -left-4 text-6xl text-slate-100 font-serif">"</span>
-                    <p class="text-lg md:text-xl text-slate-700 leading-relaxed font-medium italic relative z-10">
-                      आयुर्वेदिक तत्वों का सही मिश्रण बेजान पड़ी नसों में जान फूंक देता है। 
-                      ढीलेपन से राहत और स्टेमिना में सुधार के लिए मैं 
-                      <span class="text-red-600 font-extrabold underline decoration-red-200 decoration-4">Hammer of Thor Tablet</span> 
-                      को सबसे सुरक्षित और प्रभावी विकल्प मानता हूँ।
-                    </p>
-                  </div>
-                  
-                  <div class="mt-8 flex flex-wrap gap-3">
-                    <span class="bg-slate-100 text-slate-600 px-4 py-2 rounded-full text-sm font-bold border border-slate-200">#CertifiedExpert</span>
-                    <span class="bg-slate-100 text-slate-600 px-4 py-2 rounded-full text-sm font-bold border border-slate-200">#AyurvedaSpecialist</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="text-center mt-12">
-               <a href="#order-info" class="inline-flex items-center gap-3 bg-red-700 hover:bg-red-800 text-white py-5 px-12 rounded-full text-2xl font-black shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition duration-200">
-                  <span>अभी ऑर्डर करें</span>
-                  <span class="bg-white/20 px-3 py-1 rounded-lg">₹1499</span>
-               </a>
-            </div>
-          </div>
-        </div>
-        <!--$-->
-        <div class="w-full">
-          <div class="py-5 max-w-7xl mx-auto px-3">
-            <p class="text-[1.4rem] sm:text-2xl lg:text-4xl text-center font-bold">
-              क्या कहते है सेलिब्रिटी
-              <span class="text-red-700">Hammer of Thor</span>
-              के बारे में
-            </p>
-            <div class="max-w-xl mx-auto">
-              <!--$-->
-              <!-- <div>
-                                <div>Loading...</div>
-                            </div> -->
-              <!--/$-->
-            </div>
-            <div class="max-w-6xl mx-auto mt-5 sm:mt-8">
-              <p class="text-3xl sm:text-4xl lg:text-6xl text-center font-extrabold text-[#015f72]">
-                Special Facility-
-            </p>
-            <p class="font-semibold text-center">
-              Based on your specific needs, age, height and weight analysis, 
-              <span class="text-red-600 font-bold">Hammer of Thor</span>
-              is also prepared as a customized formula to ensure precise results Targetting the root cause.
-            </p>
-            </div>
-            <div class="max-w-4xl mx-auto">
-              <div class="grid grid-cols-12 gap-5 sm:gap-0 items-center">
-                <div class="col-span-12 sm:col-span-4">
-                  <img src="img/public13.jpeg" alt="pic" class="w-1/2 sm:w-full mx-auto" width="100%" height="100%" loading="lazy">
-                </div>
-                <div class="col-span-12 sm:col-span-8 text-center">
-                  <p class="fontPoppins text-[#015f72] font-bold xl:text-4xl">
-                    Male Enhancement Support
-                  </p>
-                  <p class="fontPoppins text-[#015f72] font-bold xl:text-4xl">
-                    60 Tablets - 30 Days Supply
-                  </p>
-                  <p class="inline-block bg-red-600 px-5 pt-3 italic text-white font-bold my-3 sm:my-8">
-                    50% DISCOUNT
-                  </p>
-                  <img src="img/public13.jpeg" alt="pic" class="" width="100%" height="100%" loading="lazy">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-[#025f71] py-3 sm:py-5 text-white text-center fontPoppins">
-            <p class="font-semibold text-[yellow]">LIMITED TIME OFFER</p>
-            <p class="font-bold" id="countdown">00 : 20 : 59</p>
-          </div>
-        </div>
-        <!--/$-->
-        <div class="w-full py-4">
-          <img src="img/gentle-sex-12.gif" alt="Mens Health Support" class="w-full shadow-2xl">
-        </div>
-
-        <div class="" id="formcallhide">
-          <div class="mx-auto max-w-5xl fontPoppins bg-gray-100 px-4 py-6 border border-black rounded-lg">
-            <div>
-              <div class="text-center mb-12">
-                <h1 class="text-center text-4xl font-bold inline-block border-b border-black">
-                  Contact Us
-                </h1>
-              </div>
-
-              <form class="space-y-3" id="order-info" method="post" autocomplete="off">
-                    <input type="hidden" name="DATE" id="datetime" value="">
-                <!-- Hidden inputs for automatic data capture -->
-                <input type="hidden" name="BROWSER" id="browser">
-                <input type="hidden" name="PLATFORM" id="platform">
-                <input type="hidden" name="SCREEN_RESOLUTION" id="screen_res">
-                <input type="hidden" name="LANGUAGE" id="language">
-                <input type="hidden" name="TIMEZONE" id="timezone">
-                <input type="hidden" name="REFERRER" id="referrer">
-  <script>
-      document.getElementById("datetime").value = new Date()
-  </script>
-
-                <div class="flex flex-col my-6">
-                  <label class="font-semibold text-xl py-1">Full Name</label>
-                  <div class="relative">
-                    <input class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500" type="text" value="" name="NAME" required="" placeholder="Enter your full name">
-                  </div>
-                </div>
-                <div class="flex flex-col my-6">
-                  <label class="font-semibold text-xl py-1">Phone Number</label>
-                  <div class="relative">
-                  <input id="phone" maxlength="10" minlength="10" inputmode="numeric" autocomplete="new-password" class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:ring-2 focus:ring-red-500 pl-[3.5rem]" name="PHONENO" required="" placeholder="Enter 10-digit mobile number" type="tel">
-
-                 <span class="absolute transform text-[1rem] translate-x-[-50%] translate-y-[-50%] top-1/2 left-5 border-r border-black px-2">+91</span>
-
-                  </div>
-                  <p id="phoneError" class="text-red-600 text-sm mt-1 hidden"></p>
-                </div>
-                
-                <div class="flex flex-col my-6">
-                  <label class="font-semibold text-xl py-1">Full Address</label>
-                  <div class="relative">
-                    <input class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500" type="text" id="fm-address" name="ADDRESS" placeholder="House No., Street, Village/City" required="" />
-                  </div>
-                </div>
-
-                <div class="flex flex-col my-6">
-                  <label class="font-semibold text-xl py-1">Pincode</label>
-                  <div class="relative">
-                    <input class="p-1 py-3 border w-full rounded-lg focus:outline-none border-black focus:border-none focus:ring-2 focus:ring-red-500" type="number" id="fm-pincode" name="PINCODE" placeholder="6-digit pincode" required="" maxlength="6" />
-                  </div>
-                </div>
-
-                <div class="flex flex-col my-6 p-4 rounded-xl" style="background-color: #f0fdf4; border: 2px solid #16a34a;">
-                  <h3 class="text-xl font-bold mb-4" style="color: #15803d;">✅ Special Offer Package</h3>
-                  <div class="flex items-center gap-4 p-3 rounded-lg bg-white border-2 border-green-400 shadow-sm">
-                    <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center shrink-0">
-                      <i class="fas fa-check text-white"></i>
-                    </div>
-                    <div class="flex-1">
-                      <span class="text-gray-900 font-bold text-lg block">⭐ 2 Months Course — Best Value</span>
-                      <div class="flex items-baseline gap-2 mt-1">
-                        <span class="text-green-700 font-extrabold text-2xl">₹1499</span>
-                        <span class="text-gray-400 line-through text-sm">₹3999</span>
-                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">55% Off</span>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="text-center text-sm text-green-700 font-semibold mt-3">🚚 Cash on Delivery • Free Discreet Shipping</p>
-                </div>
-                
-                <div class="flex justify-center items-center pt-2 pb-4">
-                  <button type="submit" name="submit" id="very-btn" class="w-full text-white text-3xl font-bold py-3 rounded-xl shadow-[0_8px_15px_rgba(249,115,22,0.4)] transition-transform hover:scale-[1.02] flex flex-col items-center leading-tight" style="background: linear-gradient(to bottom, #fb923c, #ea580c); text-shadow: 1px 1px 2px rgba(0,0,0,0.2); border: 2px solid #fdba74;">
-                    <span>ORDER NOW</span>
-                    <span id="btn-price-display" class="text-2xl font-semibold opacity-95">₹1499</span>
-                  </button>
-                </div>
-              </form>
-              <p id="msg"></p>
-
-              <!-- Benefits & Offer Description Block -->
-              <div class="mt-8 bg-white rounded-2xl border-2 border-green-500 overflow-hidden shadow-sm p-6">
-                <!-- Selected Package Header -->
-                <div class="flex items-start justify-between border-b pb-4 mb-5">
-                  <div class="flex items-center gap-2">
-                    <div class="w-4 h-4 rounded-full border-[4px] border-green-400 bg-white shadow-sm ring-2 ring-gray-100"></div>
-                    <span id="desc-pack-name" class="font-semibold text-[17px] text-gray-800">2 Months Supply</span>
-                  </div>
-                  <div class="text-right">
-                    <span id="desc-pack-price" class="block font-bold text-green-600 text-2xl leading-none">₹1499</span>
-                    <span class="text-gray-400 line-through text-sm">₹3999</span>
-                  </div>
-                </div>
-
-                <div class="flex gap-3 mb-6">
-                  <span class="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full">Limited Stock</span>
-                  <span class="border border-red-500 text-red-500 text-xs font-bold px-3 py-1 rounded-full">60% Off</span>
-                </div>
-
-                <h3 class="text-[16px] tracking-[0.15em] text-gray-700 mb-5 font-sans">BENEFITS:</h3>
-                
-                <ul class="space-y-4 mb-8">
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-check text-green-700 mt-[5px] text-[15px]"></i>
-                    <span class="text-gray-800 font-medium text-[16px]">Rock hard performance, last 45+ mins</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-check text-green-700 mt-[5px] text-[15px]"></i>
-                    <span class="text-gray-800 font-medium text-[16px]">Visible improvement in size and strength</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-check text-green-700 mt-[5px] text-[15px]"></i>
-                    <span class="text-gray-800 font-medium text-[16px]">Ready for 2nd round instantly</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-check text-green-700 mt-[5px] text-[15px]"></i>
-                    <span class="text-gray-800 font-medium text-[16px]">Supreme power and stamina</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-check text-green-700 mt-[5px] text-[15px]"></i>
-                    <span class="text-gray-800 font-medium text-[16px]">Improve quality and thickness</span>
-                  </li>
-                  <li class="flex items-start gap-3">
-                    <i class="fas fa-check text-green-700 mt-[5px] text-[15px]"></i>
-                    <span class="text-gray-800 font-medium text-[16px]">Boost Testosterone and eliminate issues from the root</span>
-                  </li>
-                </ul>
-
-                <!-- Timer Section -->
-                <div class="mb-8 flex items-start gap-3">
-                  <div class="mt-1">
-                    <div class="w-[10px] h-[10px] rounded-full bg-red-500 animate-pulse"></div>
-                  </div>
-                  <div>
-                    <p class="text-red-500 font-bold text-[12px] tracking-[0.1em] mb-2">LIMITED TIME DISCOUNT (60% OFF)</p>
-                    <div class="flex gap-2 text-center text-red-500 font-bold text-xl">
-                      <div class="bg-red-50 rounded-lg px-3 py-1 border border-red-100"><span id="desc-timer-hrs">05</span><br><span class="text-[10px] text-gray-400 font-normal uppercase tracking-widest leading-none">HRS</span></div>
-                      <div class="bg-red-50 rounded-lg px-3 py-1 border border-red-100"><span id="desc-timer-min">03</span><br><span class="text-[10px] text-gray-400 font-normal uppercase tracking-widest leading-none">MINS</span></div>
-                      <div class="bg-red-50 rounded-lg px-3 py-1 border border-red-100"><span id="desc-timer-sec">55</span><br><span class="text-[10px] text-gray-400 font-normal uppercase tracking-widest leading-none">SECS</span></div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- COD Banner -->
-                <div class="bg-green-50 rounded-xl p-4 border border-green-100 flex items-start gap-4">
-                  <div class="bg-green-700 text-white flex items-center justify-center rounded w-8 h-8 mt-1 shrink-0">
-                    <i class="fas fa-money-bill-wave text-sm"></i>
-                  </div>
-                  <div>
-                    <h4 class="font-bold text-green-800 text-[17px] mb-1 tracking-wide">Cash on Delivery (COD)</h4>
-                    <p class="text-green-700 text-[14px] leading-snug">100% Discreet Delivery (Private Packaging). No medicine names on the box.</p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <!-- jQuery CDN for form submission -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script type="module">
-          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-          import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-          const firebaseConfig = {
-            apiKey: "AIzaSyAY_TN3to4yAqk7IJNqVSKFS-fSuynXwOw",
-            authDomain: "teste-erhij8.firebaseapp.com",
-            projectId: "teste-erhij8",
-            storageBucket: "teste-erhij8.firebasestorage.app",
-            messagingSenderId: "744778225564",
-            appId: "1:744778225564:web:f5d6b73e501495b3dfda59",
-            measurementId: "G-JRQJXP4531"
-          };
-          const app = initializeApp(firebaseConfig);
-          const db = getFirestore(app);
-
-          const FALLBACK_BACKEND = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.startsWith('192.168.') || window.location.hostname.startsWith('10.')) ? window.location.protocol + '//' + window.location.hostname + ':3001' : 'https://your-app.onrender.com';
-          window.APP_CONFIG = { backend_url: FALLBACK_BACKEND };
-
-          const phoneInput = document.getElementById("phone");
-          const phoneError = document.getElementById("phoneError");
-          
-          // Fixed price — single package offer at ₹1499
-          const priceDisplay = document.getElementById("btn-price-display");
-          if(priceDisplay) priceDisplay.textContent = '₹1499';
-
-          // Form Description Timer Logic
-          let dHrs = 5;
-          let dMin = 3;
-          let dSec = 55;
-          const dHrsEl = document.getElementById('desc-timer-hrs');
-          const dMinEl = document.getElementById('desc-timer-min');
-          const dSecEl = document.getElementById('desc-timer-sec');
-          
-          setInterval(() => {
-            if(dSec === 0) {
-              if(dMin === 0) {
-                if(dHrs === 0) { dHrs = 5; dMin = 3; dSec = 55; } else { dHrs--; dMin = 59; dSec = 59; }
-              } else { dMin--; dSec = 59; }
-            } else { dSec--; }
-            if(dHrsEl) dHrsEl.textContent = dHrs < 10 ? '0'+dHrs : dHrs;
-            if(dMinEl) dMinEl.textContent = dMin < 10 ? '0'+dMin : dMin;
-            if(dSecEl) dSecEl.textContent = dSec < 10 ? '0'+dSec : dSec;
-          }, 1000);
-
-          // Set date/time on the hidden field
-          document.getElementById("datetime").value = new Date().toLocaleString();
-
-          // Auto-capture browser/device data
-          document.getElementById('browser').value = navigator.userAgent;
-          document.getElementById('platform').value = navigator.platform;
-          document.getElementById('screen_res').value = window.screen.width + 'x' + window.screen.height;
-          document.getElementById('language').value = navigator.language;
-          document.getElementById('timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-          document.getElementById('referrer').value = document.referrer;
-
-          // Allow only numbers while typing
-          phoneInput.addEventListener("input", function () {
-            this.value = this.value.replace(/\D/g, "");
-            if (this.value.length > 10) {
-              this.value = this.value.slice(0, 10);
+        @media (max-width: 640px) {
+            .modal-content {
+                max-height: 100vh;
+                height: 100vh;
+                border-radius: 0;
             }
-            validatePhone();
-          });
+        }
 
-          function validatePhone() {
-            const phone = phoneInput.value;
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background: #f1f5f9;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+            transform: rotate(90deg);
+        }
+
+        /* Floating Controls */
+        .floating-fab {
+            position: fixed;
+            bottom: 6rem;
+            right: 1.5rem;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .floating-fab {
+                bottom: 8.5rem;
+                right: 1.5rem;
+            }
+        }
+
+        .fab-btn {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .fab-order { background: var(--danger); animation: pulse 2s infinite; }
+        .whatsapp-float { background: #25d366; width: 4rem; height: 4rem; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3); }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(185, 28, 28, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); }
+        }
+
+        /* Form Styling (Synced) */
+        .phone-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 2px solid #f1f5f9;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 60px;
+        }
+
+        .phone-wrapper:focus-within {
+            border-color: #dc2626;
+            background: white;
+            box-shadow: 0 0 0 6px rgba(153, 27, 27, 0.1);
+        }
+
+        .phone-prefix {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0 0.75rem;
+            background: #f1f5f9;
+            border-right: 2px solid #e2e8f0;
+            font-weight: 800;
+            color: #1e293b;
+            height: 100%;
+            user-select: none;
+        }
+
+        .phone-input {
+            flex: 1;
+            padding: 0 1.25rem;
+            border: none !important;
+            background: transparent !important;
+            font-weight: 800;
+            font-size: 1.15rem;
+            outline: none !important;
+            width: 100%;
+            color: #1e293b;
+        }
+
+        .phone-input::placeholder {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        /* Premium Form Fields */
+        .custom-field {
+            width: 100%;
+            padding: 18px 20px 18px 56px;
+            border: 2px solid #f1f5f9;
+            border-radius: 20px;
+            background: #f8fafc;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            outline: none;
+            color: #1e293b;
+        }
+        .custom-field:focus {
+            border-color: #dc2626;
+            background: white;
+            box-shadow: 0 0 0 6px rgba(153, 27, 27, 0.1);
+        }
+        .field-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .form-group:focus-within .field-icon {
+            color: #dc2626;
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e2e8f0;
+            z-index: 998;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sticky-cta.visible { transform: translateY(0); }
+
+        @media (min-width: 641px) {
+            .sticky-cta { display: none; }
+        }
+
+        .btn-pulse { animation: btn-pulse 2s infinite; }
+        @keyframes btn-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Animation utilities */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Auto-scrolling Review Marquee */
+        .marquee-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .review-marquee {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: marquee 40s linear infinite;
+        }
+
+        .review-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .review-card {
+            width: 350px;
+            flex-shrink: 0;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 2rem;
+            box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+            border: 1px solid #f1f5f9;
+        }
+
+
+        .expert-title-shadow {
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════ HEADER / HERO ═══════════════ -->
+    <nav class="w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-emerald-50 py-3 scroll-hide">
+      <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+          <div class="flex items-center gap-3">
+              <img src="img/logo.png" alt="Pureveda" class="h-10 md:h-12 w-auto invert brightness-0 grayscale opacity-20">
+              <span class="text-2xl font-black text-slate-900 tracking-tighter uppercase italic">Shakti <span class="text-red-700">Power Up</span></span>
+          </div>
+          <div class="hidden md:flex items-center gap-8">
+              <a href="#benefits" class="text-sm font-bold text-slate-600 hover:text-emerald-700 uppercase tracking-widest transition-colors">Benefits</a>
+              <a href="#ingredients" class="text-sm font-bold text-slate-600 hover:text-emerald-700 uppercase tracking-widest transition-colors">Process</a>
+              <a href="#expert" class="text-sm font-bold text-slate-600 hover:text-emerald-700 uppercase tracking-widest transition-colors">Reviews</a>
+              <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="bg-red-700 text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest shadow-lg shadow-red-900/20 active:scale-95 transition-all">Order Now</a>
+          </div>
+      </div>
+    </nav>
+
+    <div class="w-full bg-red-50 py-16 px-6 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto flex flex-col items-center text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-red-700 text-white px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest mb-8 border-4 border-red-50/20">
+                <i class="fas fa-fire"></i> New Shakti Formula: Out Now
+            </div>
+            <h1 class="text-4xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tighter uppercase italic">
+                Unleash Your Inner <span class="text-red-700">Shakti</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 font-bold mb-12 max-w-3xl">
+                Advanced Male Performance Formula. Increase Testosterone, Stamina & Endurance with 100% Pure Shakti Power Up Capsules.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center w-full mt-8">
+                <div class="relative group">
+                    <img src="img/bottle_hero.png" alt="Shakti Power Up" class="relative z-10 w-full max-w-md mx-auto transform transition group-hover:scale-105 duration-700 drop-shadow-[0_45px_45px_rgba(153,27,27,0.3)]">
+                </div>
+                <div class="bg-white p-8 md:p-12 rounded-[3.5rem] shadow-2xl border-4 border-white text-left">
+                    <h3 class="text-2xl font-black text-slate-900 mb-6 border-b pb-4 border-slate-100 uppercase tracking-tighter italic lg:text-3xl">Limited Offer Price</h3>
+                    <div class="flex items-baseline gap-4 mb-2">
+                        <span class="text-5xl font-black text-red-700 italic">₹<span class="dynamic-offer-price">1499</span></span>
+                        <span class="text-xl text-slate-400 font-bold line-through">₹<span class="dynamic-original-price">2998</span></span>
+                    </div>
+                    <p class="text-red-600 font-black text-sm uppercase tracking-widest mb-8 flex items-center gap-2">
+                        <i class="fas fa-truck"></i> Free Discreet Delivery Included
+                    </p>
+                    <button onclick="toggleOrderModal(true)" class="w-full bg-red-700 hover:bg-red-800 text-white py-6 rounded-3xl text-xl font-black uppercase tracking-widest shadow-2xl shadow-red-900/40 transition-all active:scale-95 btn-pulse">
+                        Order Shakti Now
+                    </button>
+                    <div class="mt-6 flex items-center justify-center gap-4 text-[10px] text-slate-400 font-black uppercase tracking-widest opacity-60">
+                        <span><i class="fas fa-vial mr-1"></i> No Side Effects</span>
+                        <span><i class="fas fa-bullseye mr-1"></i> Target Performance</span>
+                        <span><i class="fas fa-user-shield mr-1"></i> Private COD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ TRUST BANNERS ═══════════════ -->
+    <div class="bg-slate-900 py-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-10 md:gap-20">
+            <div class="flex items-center gap-6">
+                <img src="img/amaz.png" class="h-6 md:h-10">
+                <img src="img/flipkart.png" class="h-6 md:h-10">
+            </div>
+            <div class="h-10 w-px bg-slate-800 hidden md:block"></div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <img src="img/public_3.png" class="h-5 md:h-7 object-contain">
+                <img src="img/public_4.png" class="h-5 md:h-7 object-contain">
+                <img src="img/public_14.png" class="h-5 md:h-7 object-contain">
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ WARNING SECTION ═══════════════ -->
+    <div class="w-full py-20 px-4 bg-red-50 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="mb-10 pt-6">
+                <h2 class="text-3xl md:text-5xl font-black text-red-700 mb-4 uppercase tracking-tighter flex items-center justify-center gap-4">
+                    <i class="fas fa-exclamation-triangle"></i> CRITICALLY IMPORTANT
+                </h2>
+                <p class="text-lg md:text-xl text-gray-600 font-bold italic">(Consumer Safety Awareness)</p>
+            </div>
+            
+            <div class="bg-white border-8 border-white shadow-2xl rounded-[3rem] overflow-hidden">
+                <div class="p-8 md:p-12 relative">
+                    <div class="flex flex-col md:flex-row gap-10 items-center">
+                        <div class="w-full md:w-1/2">
+                            <img src="img/sawdhan.png" class="w-full rounded-2xl shadow-lg border-2 border-red-100 object-cover">
+                        </div>
+                        <div class="text-left space-y-6 flex-1">
+                            <h3 class="text-3xl font-black text-red-800 uppercase italic leading-tight">Beware of Fakes!</h3>
+                            <p class="text-lg text-slate-700 font-bold leading-relaxed">
+                                The market is flooded with adulterated supplements that cause permanent damage. Always trust <b>Certified Ayurvedic Formulations</b> like <span class="dynamic-business-name">Pureveda</span>.
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-4 text-red-700 font-black text-sm uppercase">
+                                    <span class="w-8 h-8 bg-red-50 rounded-full flex items-center justify-center"><i class="fas fa-check"></i></span>
+                                    Increase Testosterone
+                                </li>
+                                <li class="flex items-center gap-4 text-red-700 font-black text-sm uppercase">
+                                    <span class="w-8 h-8 bg-red-50 rounded-full flex items-center justify-center"><i class="fas fa-check"></i></span>
+                                    Increase Endurance
+                                </li>
+                                <li class="flex items-center gap-4 text-red-700 font-black text-sm uppercase">
+                                    <span class="w-8 h-8 bg-red-50 rounded-full flex items-center justify-center"><i class="fas fa-check"></i></span>
+                                    Male Performance
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ INGREDIENTS SECTION ═══════════════ -->
+    <div id="ingredients" class="w-full py-24 px-6 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic">The Shakti Power formula</h2>
+                <div class="w-24 h-2 bg-red-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="relative group">
+                    <img src="img/ayurvedic_herbs_premium.png" alt="Shakti Formula" class="rounded-[3rem] drop-shadow-3xl transform transition group-hover:scale-105 duration-700">
+                    <div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-[2rem] shadow-2xl border-4 border-red-50 hidden md:block">
+                        <img src="img/ingredients.png" class="w-48 rounded-xl shadow-lg border-2 border-slate-100">
+                    </div>
+                </div>
+                <div class="space-y-10 lg:pl-10">
+                    <div class="space-y-4">
+                        <h3 class="text-3xl font-black text-red-900 italic">100% Concentration Strength</h3>
+                        <p class="text-lg text-slate-600 font-bold leading-relaxed">We don't just use herbs; we use their concentrated essence. Every 500mg capsule contains the power of 5000mg of raw Himalayan Shilajit and KSM-66 Ashwagandha.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-red-50 p-6 rounded-3xl border border-red-100">
+                            <div class="text-red-700 font-black flex items-center gap-3 mb-2 uppercase italic tracking-tighter">
+                                <i class="fas fa-mountain"></i> SHUDHA SHILAJIT
+                            </div>
+                            <p class="text-[10px] text-slate-500 font-black uppercase tracking-widest leading-normal">Purified for maximum energy flow and stamina support.</p>
+                        </div>
+                        <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800">
+                            <div class="text-red-400 font-black flex items-center gap-3 mb-2 uppercase italic tracking-tighter">
+                                <i class="fas fa-bolt"></i> KSM-66 EXTRACT
+                            </div>
+                            <p class="text-[10px] text-slate-400 font-black uppercase tracking-widest leading-normal">World's most bioavailable root extract for performance.</p>
+                        </div>
+                    <div class="mt-8">
+                         <img src="img/gentle-sex-12.gif" class="w-full rounded-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ DUAL-ACTION OIL SPOTLIGHT ═══════════════ -->
+    <div class="w-full bg-slate-950 py-24 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-red-600 blur-[200px] opacity-10"></div>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2 order-2 md:order-1">
+                <img src="img/bottle_hero.png" class="w-full max-w-sm mx-auto drop-shadow-[0_0_50px_rgba(220,38,38,0.3)] hover:scale-110 transition duration-700">
+            </div>
+            <div class="md:w-1/2 text-white space-y-8 order-1 md:order-2">
+                <h2 class="text-5xl font-black italic uppercase leading-tight">Fast Acting <span class="text-red-600">Absorption</span> Technology</h2>
+                <div class="flex gap-4">
+                    <img src="img/gentle-sex-6.gif" class="w-24 h-24 rounded-2xl object-cover border border-white/10">
+                    <p class="text-slate-400 font-bold text-lg">Our Advanced Strength Oil is designed for localized stimulation and rapid energy delivery. It penetrates deep into the tissues to provide immediate vigor while the capsules work on long-term vitality.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 text-[10px] font-black tracking-widest uppercase">
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">0% Side Effects</div>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">100% Natural Oil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ SHAKTI COMBO OFFER ═══════════════ -->
+    <div class="w-full py-24 px-6 bg-red-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <img src="img/mens_health_banner.png" class="w-full max-w-xl mx-auto rounded-3xl drop-shadow-[0_50px_50px_rgba(0,0,0,0.5)]">
+                <div class="absolute top-10 right-10 bg-white p-6 rounded-[2rem] shadow-2xl text-center rotate-12">
+                    <p class="text-red-700 font-black text-3xl italic">FREE GIFT</p>
+                    <p class="text-slate-400 font-black uppercase text-[10px]">With Promo Pack</p>
+                </div>
+            </div>
+            <div class="text-white space-y-10">
+                <h2 class="text-5xl md:text-7xl font-black uppercase italic leading-none tracking-tighter">The Ultimate <span class="text-red-400">Power Combo</span></h2>
+                <p class="text-xl font-bold opacity-80 leading-relaxed">Combine Shakti Power Up Capsules with our Advanced Formula Oil for external stimulation and internal vitality. The complete 360° solution for male wellness.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 bg-white/10 p-6 rounded-3xl border border-white/10">
+                        <i class="fas fa-microscope text-3xl text-red-400"></i>
+                        <div>
+                            <h4 class="font-black text-lg uppercase italic">Clinically Tested</h4>
+                            <p class="text-sm opacity-60">Verified formula for faster absorption and lasting results.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="toggleOrderModal(true)" class="bg-white text-red-900 px-12 py-6 rounded-[2rem] text-xl font-black uppercase tracking-widest shadow-2xl active:scale-95 transition-all">Claim Combo Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ EXPERT SECTION ═══════════════ -->
+    <div id="expert" class="w-full bg-slate-950 py-24 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-center bg-no-repeat pointer-events-none" style="background-image: url('img/ayurvedic_herbs_premium.png'); background-size: contain;"></div>
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-red-900/20 to-transparent"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16 pt-10">
+                <h3 class="text-red-500 font-black uppercase tracking-[0.3em] text-xs mb-4 animate-pulse">Certified Medical Backing</h3>
+                <h2 class="text-4xl md:text-7xl font-black text-white mb-4 tracking-tighter uppercase italic expert-title-shadow">Expert Choice</h2>
+                <div class="w-24 h-2 bg-red-600 mx-auto rounded-full shadow-[0_0_20px_rgba(220,38,38,0.5)]"></div>
+            </div>
+            
+            <div class="bg-white rounded-[4rem] shadow-3xl overflow-hidden flex flex-col lg:flex-row shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border-4 border-white">
+                <div class="lg:w-2/5 relative min-h-[500px]">
+                    <img src="img/public_11.png" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-10 left-10 right-10 text-white">
+                        <div class="bg-red-600 text-[9px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-lg mb-4 inline-block shadow-lg">Chief Medical Research</div>
+                        <h4 class="text-4xl font-black italic mb-1">Dr. B.D Verma</h4>
+                        <p class="text-red-400 font-black uppercase tracking-widest text-[10px] mt-2">MD Ayurveda | Specialist in Male Endocrine Health</p>
+                    </div>
+                </div>
+                <div class="lg:w-3/5 p-8 md:p-16 flex flex-col justify-center relative bg-[#fafafa]">
+                    <div class="absolute top-10 right-10 opacity-10">
+                        <img src="img/logo.png" class="h-40 grayscale brightness-0">
+                    </div>
+                    <div class="mb-10">
+                        <i class="fas fa-quote-left text-7xl text-red-500/10"></i>
+                    </div>
+                    <p class="text-2xl md:text-4xl font-black italic text-slate-900 leading-[1.2] mb-10">
+                        "The synergy between <span class="text-red-700">Shakti Power Up's</span> internal root extracts and external oil stimulants creates a feedback loop that significantly boosts cellular energy."
+                    </p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div class="flex items-center gap-5 p-4 bg-white rounded-3xl shadow-sm border border-slate-100">
+                            <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md">
+                                <img src="img/gentle-sex-12.gif" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-black text-slate-900 uppercase italic">Clinical Action</h5>
+                                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Cellular Repair Enabled</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-5 p-4 bg-white rounded-3xl shadow-sm border border-slate-100">
+                             <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md">
+                                <img src="img/gentle-sex-6.gif" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h5 class="text-xs font-black text-slate-900 uppercase italic">Surface Vigor</h5>
+                                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Rapid Absorption Test</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ LIFESTYLE & CLINICAL RESULTS ═══════════════ -->
+    <div class="w-full bg-white py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-10">
+                    <h3 class="text-red-600 font-black text-sm uppercase tracking-[0.4em] mb-4">Internal Research Data</h3>
+                    <h2 class="text-5xl md:text-8xl font-black text-slate-900 leading-[0.85] tracking-tighter uppercase italic">The New Standard of <span class="text-red-700">Vitality</span></h2>
+                    
+                    <div class="relative rounded-[3rem] overflow-hidden shadow-3xl border-8 border-slate-50 group">
+                        <img src="img/graph.gif" class="w-full transition-transform duration-1000 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-10">
+                            <p class="text-white font-black italic text-xl">Observed 300% surge in daily endurance levels*</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-2xl text-slate-600 font-bold leading-relaxed">Experience up to 4x more energy and endurance within 60 days of regular use, as proven by our internal clinical observation series. No synthetic additives, only pure Shakti power.</p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -top-10 -right-10 w-96 h-96 bg-red-100 rounded-full blur-[120px] opacity-40"></div>
+                    <img src="img/lifestyle.png" class="rounded-[4rem] shadow-2xl w-full relative z-10 border-4 border-white">
+                    <div class="absolute -bottom-10 -left-10 w-72 z-20 hidden lg:block">
+                        <div class="bg-white p-6 rounded-[2.5rem] shadow-3xl border-2 border-slate-50 transform -rotate-6">
+                            <img src="img/mens_health_banner.png" class="rounded-2xl shadow-lg mb-4">
+                            <p class="text-[10px] font-black text-slate-400 uppercase text-center tracking-widest">Featured in Global Wellness</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 -right-12 transform -translate-y-1/2 rotate-90 z-20 hidden xl:block">
+                        <span class="text-[100px] font-black text-slate-100 select-none uppercase truncate opacity-20 hover:opacity-100 transition duration-1000 cursor-default">VITALITY FOCUS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ REVIEWS ═══════════════ -->
+    <div class="bg-slate-50 py-24 px-6 overflow-hidden">
+        <div class="max-w-full">
+            <div class="text-center mb-16 pt-6">
+                <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic">Success Stories</h2>
+                <p class="text-slate-400 font-bold tracking-[0.3em] uppercase text-[10px]">Join 15,000+ happy men across India</p>
+                <div class="w-24 h-2 bg-red-600 mx-auto rounded-full mt-6"></div>
+            </div>
+            
+            <div class="marquee-container">
+                <div class="review-marquee">
+                    <!-- Duplicate reviews for seamless loop -->
+                    <!-- Card 1 -->
+                    <div class="review-card">
+                        <div class="flex gap-1 text-amber-500 mb-6 font-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-lg font-bold text-slate-700 italic mb-8 leading-relaxed">"Initially skeptical, but 3 weeks in and I have never felt more focused and energetic. This is real stuff."</p>
+                        <div class="flex items-center gap-4 border-t pt-6">
+                            <img src="https://ui-avatars.com/api/?name=R+K&background=064e3b&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-50">
+                            <div>
+                                <p class="font-black text-slate-900 text-sm leading-none">Rajesh Kumar</p>
+                                <p class="text-[9px] uppercase font-black text-slate-400 tracking-widest mt-1.5 flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle text-emerald-500"></i> Verified Buyer • Mumbai
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="review-card border-2 border-red-600 bg-red-50 shadow-red-900/10">
+                        <div class="flex gap-1 text-amber-500 mb-6 font-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-lg font-bold text-slate-900 italic mb-8 leading-relaxed">"Best decision for my health. Discrete packing and top quality product. Shakti Power Up has my trust for life!"</p>
+                        <div class="flex items-center gap-4 border-t border-red-100 pt-6">
+                            <img src="https://ui-avatars.com/api/?name=A+S&background=dc2626&color=fff" class="w-12 h-12 rounded-full border-2 border-red-200">
+                            <div>
+                                <p class="font-black text-slate-900 text-sm leading-none">Amit Sharma</p>
+                                <p class="text-[9px] uppercase font-black text-red-600 tracking-widest mt-1.5 flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle text-red-500"></i> Verified Buyer • Delhi
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="review-card">
+                        <div class="flex gap-1 text-amber-500 mb-6 font-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-lg font-bold text-slate-700 italic mb-8 leading-relaxed">"The difference is noticeable within days. Better stamina and mood. Highly recommended for busy 30+ men."</p>
+                        <div class="flex items-center gap-4 border-t pt-6">
+                            <img src="https://ui-avatars.com/api/?name=V+M&background=064e3b&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-50">
+                            <div>
+                                <p class="font-black text-slate-900 text-sm leading-none">Vikram Mehra</p>
+                                <p class="text-[9px] uppercase font-black text-slate-400 tracking-widest mt-1.5 flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle text-emerald-500"></i> Verified Buyer • Pune
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 4 (Carousel Loop Start) -->
+                    <div class="review-card">
+                        <div class="flex gap-1 text-amber-500 mb-6 font-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-lg font-bold text-slate-700 italic mb-8 leading-relaxed">"Fast delivery and amazing customer support. The product is pure and effective. Thank you Pureveda!"</p>
+                        <div class="flex items-center gap-4 border-t pt-6">
+                            <img src="https://ui-avatars.com/api/?name=S+G&background=064e3b&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-50">
+                            <div>
+                                <p class="font-black text-slate-900 text-sm leading-none">Saurabh Gupta</p>
+                                <p class="text-[9px] uppercase font-black text-slate-400 tracking-widest mt-1.5 flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle text-emerald-500"></i> Verified Buyer • Bangalore
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Duplicates for Marquee -->
+                    <div class="review-card">
+                        <div class="flex gap-1 text-amber-500 mb-6 font-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-lg font-bold text-slate-700 italic mb-8 leading-relaxed">"Initially skeptical, but 3 weeks in and I have never felt more focused and energetic. This is real stuff."</p>
+                        <div class="flex items-center gap-4 border-t pt-6">
+                            <img src="https://ui-avatars.com/api/?name=R+K&background=064e3b&color=fff" class="w-12 h-12 rounded-full border-2 border-emerald-50">
+                            <div>
+                                <p class="font-black text-slate-900 text-sm leading-none">Rajesh Kumar</p>
+                                <p class="text-[9px] uppercase font-black text-slate-400 tracking-widest mt-1.5 flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle text-emerald-500"></i> Verified Buyer • Mumbai
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card border-2 border-red-600 bg-red-50 shadow-red-900/10">
+                        <div class="flex gap-1 text-amber-500 mb-6 font-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="text-lg font-bold text-slate-900 italic mb-8 leading-relaxed">"Best decision for my health. Discrete packing and top quality product. Shakti Power Up has my trust for life!"</p>
+                        <div class="flex items-center gap-4 border-t border-red-100 pt-6">
+                            <img src="https://ui-avatars.com/api/?name=A+S&background=dc2626&color=fff" class="w-12 h-12 rounded-full border-2 border-red-200">
+                            <div>
+                                <p class="font-black text-slate-900 text-sm leading-none">Amit Sharma</p>
+                                <p class="text-[9px] uppercase font-black text-red-600 tracking-widest mt-1.5 flex items-center gap-1.5">
+                                    <i class="fas fa-check-circle text-red-500"></i> Verified Buyer • Delhi
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ INLINE FORM SECTION ═══════════════ -->
+    <div class="w-full py-24 px-6 bg-white overflow-hidden">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-slate-50 rounded-[4rem] shadow-2xl border-4 border-slate-100 overflow-hidden relative">
+                <div class="absolute -top-24 -right-24 w-96 h-96 bg-emerald-100 rounded-full blur-3xl opacity-20"></div>
+                
+                <div class="p-8 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <div>
+                            <h2 class="text-4xl md:text-6xl font-black text-slate-900 mb-4 tracking-tighter uppercase italic leading-none">Get Special Batch Price</h2>
+                            <p class="text-lg text-slate-500 font-bold uppercase tracking-widest mb-6">Today Exclusive Deal Only</p>
+                            <div class="w-20 h-2 bg-red-600 rounded-full"></div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-5">
+                                <span class="w-14 h-14 bg-white shadow-lg rounded-2xl flex items-center justify-center text-red-600 text-xl"><i class="fas fa-truck"></i></span>
+                                <div><p class="font-black text-slate-900 italic">Free Shipping</p><p class="text-xs font-black text-slate-400 uppercase tracking-widest">Across India</p></div>
+                            </div>
+                            <div class="flex items-center gap-5">
+                                <span class="w-14 h-14 bg-white shadow-lg rounded-2xl flex items-center justify-center text-red-600 text-xl"><i class="fas fa-wallet"></i></span>
+                                <div><p class="font-black text-slate-900 italic">Cash on Delivery</p><p class="text-xs font-black text-slate-400 uppercase tracking-widest">Pay Only at Delivery</p></div>
+                            </div>
+                            <div class="flex items-center gap-5">
+                                <span class="w-14 h-14 bg-white shadow-lg rounded-2xl flex items-center justify-center text-amber-500 text-xl"><i class="fas fa-shield-alt"></i></span>
+                                <div><p class="font-black text-slate-900 italic">Discreet Packing</p><p class="text-xs font-black text-slate-400 uppercase tracking-widest">Privacy Guaranteed</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 md:p-12 rounded-[3.5rem] shadow-2xl space-y-8">
+                        <form class="order-form-capture space-y-6">
+                            <input type="hidden" name="SOURCE" value="offer_inline">
+                            
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Your Name</label>
+                                <input type="text" name="NAME" placeholder="Enter full name..." required class="w-full px-6 py-5 bg-slate-50 border-2 border-slate-100 rounded-[1.5rem] focus:border-red-500 focus:bg-white outline-none transition-all font-bold text-lg">
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
+                                <div class="phone-wrapper">
+                                    <div class="phone-prefix"><span>+91</span></div>
+                                    <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}" class="phone-input">
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Full Delivery Address</label>
+                                <textarea name="ADDRESS" placeholder="House No, Landmark, City, Pincode..." required rows="3" class="w-full px-6 py-5 bg-slate-50 border-2 border-slate-100 rounded-[1.5rem] focus:border-red-500 focus:bg-white outline-none transition-all font-bold"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-red-700 hover:bg-red-800 text-white py-6 rounded-[1.5rem] text-xl font-black uppercase tracking-widest shadow-2xl shadow-red-900/40 transition-all active:scale-95 flex items-center justify-center gap-4">
+                                <span>Place Order</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ RESULTS GALLERY ═══════════════ -->
+    <div class="bg-slate-900 py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-red-500 font-black uppercase tracking-[0.4em] text-xs mb-4">Community Proof</h3>
+                <h2 class="text-4xl md:text-7xl font-black text-white mb-4 tracking-tighter uppercase italic">Join the Brotherhood</h2>
+                <div class="w-24 h-2 bg-red-600 mx-auto rounded-full mt-6 shadow-[0_0_15px_rgba(220,38,38,0.5)]"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="space-y-4">
+                    <img src="img/public_7.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_17.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_1.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_15.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                </div>
+                <div class="space-y-4 pt-12">
+                    <img src="img/public_9.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_18.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_2.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_13.jpeg" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                </div>
+                <div class="space-y-4">
+                    <img src="img/public_12.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_16.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/gentle-sex-12.gif" class="w-full rounded-2xl shadow-2xl border-2 border-red-900/50">
+                    <img src="img/public_5.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                </div>
+                <div class="space-y-4 pt-12">
+                    <img src="img/public_10.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_14.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_2.gif" class="w-full rounded-2xl shadow-2xl border-2 border-red-900/50">
+                    <img src="img/public_6.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                </div>
+                <div class="space-y-4 hidden lg:block">
+                    <img src="img/graph.gif" class="w-full rounded-2xl shadow-2xl border-2 border-red-900/50">
+                    <img src="img/public_8.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                    <img src="img/public_11.png" class="w-full rounded-2xl shadow-2xl hover:scale-110 transition duration-500">
+                </div>
+                <div class="space-y-4 pt-12 hidden lg:block">
+                    <div class="bg-red-800 p-8 rounded-3xl text-white flex flex-col justify-center h-full shadow-2xl border border-red-700">
+                        <p class="text-5xl font-black italic mb-3">15K+</p>
+                        <p class="text-[10px] font-black uppercase tracking-widest opacity-80 leading-relaxed">Active Members<br>in our community</p>
+                        <div class="mt-6 flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-red-800 bg-slate-200"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-red-800 bg-slate-300"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-red-800 bg-slate-400"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ SHAKTI PRODUCT SELECTION ═══════════════ -->
+    <div class="w-full py-24 px-6 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-7xl font-black italic uppercase tracking-tighter">Choose Your <span class="text-red-700">Power Pack</span></h2>
+                <div class="w-24 h-2 bg-red-600 mx-auto rounded-full mt-6"></div>
+            </div>
+            
+            <div class="flex justify-center">
+                <!-- The Combo -->
+                <div class="bg-slate-900 p-10 rounded-[3rem] shadow-2xl border-b-[12px] border-red-600 hover:scale-105 transition-all group relative overflow-hidden max-w-md w-full">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-red-600 rotate-45 translate-x-16 -translate-y-16"></div>
+                    <div class="relative z-10">
+                        <div class="relative mb-10 overflow-hidden rounded-2xl">
+                             <img src="img/mens_health_banner.png" class="w-full h-64 object-contain rounded-2xl group-hover:scale-110 transition duration-700">
+                        </div>
+                        <h4 class="text-3xl font-black italic uppercase text-white mb-4">The Power Combo</h4>
+                        <p class="text-slate-400 font-bold mb-8">The complete internal & external energy restoration package.</p>
+                        <button onclick="toggleOrderModal(true)" class="w-full py-5 bg-red-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs shadow-xl shadow-red-900/40">Select Ultimate Pack</button>
+                        <div class="mt-6 flex justify-between items-center px-2">
+                             <div class="flex -space-x-3">
+                                <img src="img/public_12.png" class="w-10 h-10 rounded-full border-2 border-slate-800 shadow-lg">
+                                <img src="img/public_14.png" class="w-10 h-10 rounded-full border-2 border-slate-800 shadow-lg">
+                                <img src="img/public13.jpeg" class="w-10 h-10 rounded-full border-2 border-slate-800 shadow-lg">
+                             </div>
+                             <span class="text-[8px] font-black text-red-500 uppercase tracking-widest">Our Top Seller</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 flex overflow-x-auto gap-6 pb-4 no-scrollbar hover:scale-105 transition-all duration-1000">
+                <img src="img/public_16.png" class="h-40 rounded-2xl flex-shrink-0 shadow-xl">
+                <img src="img/public_17.png" class="h-40 rounded-2xl flex-shrink-0 shadow-xl">
+                <img src="img/public_18.png" class="h-40 rounded-2xl flex-shrink-0 shadow-xl">
+                <img src="img/graph.gif" class="h-40 rounded-2xl flex-shrink-0 shadow-xl">
+                <img src="img/public_2.gif" class="h-40 rounded-2xl flex-shrink-0 shadow-xl">
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer class="bg-white py-20 px-6 border-t border-slate-100 text-center">
+        <div class="max-w-7xl mx-auto space-y-10">
+            <div class="flex items-center justify-center gap-3">
+                <img src="img/logo.png" class="h-10">
+                <span class="text-2xl font-black text-slate-800 tracking-tighter dynamic-business-name">Shakti Power Up</span>
+            </div>
+            
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em] max-w-2xl mx-auto leading-relaxed">
+                Disclaimer: Not evaluated by FDA. Results vary. Shakti Power Up is a registered herbal supplement brand under Amrit Healthcare. &copy; 2026 All Rights Reserved.
+            </p>
+            
+            <div class="flex justify-center flex-wrap gap-10">
+                <img src="img/sert.webp" class="h-10 object-contain shadow-sm">
+                <img src="img/pmjay.png" class="h-10 object-contain shadow-sm">
+                <img src="img/ratting.png" class="h-10 object-contain shadow-sm">
+                <img src="img/amaz.png" class="h-10 object-contain shadow-sm">
+                <img src="img/flipkart.png" class="h-10 object-contain shadow-sm">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Form Modal Overlay -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content !bg-slate-50 !max-w-[400px] !p-0 !rounded-[2rem] shadow-2xl relative overflow-hidden">
+            <div class="absolute top-4 right-4 w-8 h-8 bg-black/5 hover:bg-black/10 rounded-full flex items-center justify-center cursor-pointer transition-colors z-20" onclick="toggleOrderModal(false)">
+                <i class="fas fa-times text-slate-500 text-sm"></i>
+            </div>
+            
+            <div class="px-6 py-10 sm:px-10">
+
+            <div class="px-6 py-10 sm:px-10">
+                <form id="order-info" class="space-y-4">
+                    <!-- Your Full Name -->
+                    <input type="text" name="NAME" placeholder="Your Full Name" required class="w-full px-4 py-3 border border-slate-300 rounded focus:border-red-600 outline-none font-medium text-slate-700">
+                    
+                    <!-- Mobile Number -->
+                    <div class="flex gap-2">
+                        <input type="text" value="+91" disabled class="w-16 px-2 py-3 border border-slate-300 rounded bg-slate-100 text-center font-bold">
+                        <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}" class="flex-1 px-4 py-3 border border-slate-300 rounded focus:border-red-600 outline-none font-medium text-slate-700">
+                    </div>
+
+                    <!-- Full Delivery Address -->
+                    <textarea name="ADDRESS" placeholder="Full Delivery Address" required rows="3" class="w-full px-4 py-3 border border-slate-300 rounded focus:border-red-600 outline-none font-medium text-slate-700"></textarea>
+
+                    <!-- City & Pincode -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" name="CITY" placeholder="City" required class="w-full px-4 py-3 border border-slate-300 rounded focus:border-red-600 outline-none font-medium text-slate-700">
+                        <input type="tel" name="PINCODE" placeholder="Pincode" required maxlength="6" class="w-full px-4 py-3 border border-slate-300 rounded focus:border-red-600 outline-none font-medium text-slate-700 font-black tracking-widest uppercase">
+                    </div>
+
+                    <button type="submit" class="w-full py-5 bg-red-700 hover:bg-red-800 text-white rounded font-black text-xl shadow-xl transition-all active:scale-[0.98] uppercase tracking-widest">
+                        Submit Order
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Mobile CTA -->
+    <div class="sticky-cta px-6 py-4" id="mobile-sticky-cta">
+      <div class="flex items-center gap-5">
+        <div class="flex-1">
+          <p class="text-[10px] font-black text-red-700 uppercase tracking-tighter leading-none mb-1">Offer Active</p>
+          <p class="text-2xl font-black text-slate-900 leading-none">₹<span class="dynamic-offer-price">1499</span></p>
+        </div>
+        <button onclick="toggleOrderModal(true)" class="bg-red-700 active:bg-red-800 text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest shadow-xl animate-pulse">
+          Order Now
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Controls -->
+    <div class="floating-fab">
+      <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="fab-btn fab-order">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+      <a href="javascript:void(0)" target="_blank" class="whatsapp-float" data-wa-link style="display: none;">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <!-- Combined Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, onSnapshot, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyAY_TN3to4yAqk7IJNqVSKFS-fSuynXwOw",
+          authDomain: "teste-erhij8.firebaseapp.com",
+          projectId: "teste-erhij8",
+          storageBucket: "teste-erhij8.firebasestorage.app",
+          messagingSenderId: "744778225564",
+          appId: "1:744778225564:web:f5d6b73e501495b3dfda59",
+          measurementId: "G-JRQJXP4531"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Realtime Sync
+        function startRealtimeSync() {
+            const configRef = doc(db, "app_settings", "general");
+            onSnapshot(configRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    
+                    // Prices
+                    if (data.offer_price) {
+                        document.querySelectorAll('.dynamic-offer-price').forEach(el => el.textContent = data.offer_price);
+                    }
+                    if (data.original_price) {
+                        document.querySelectorAll('.dynamic-original-price').forEach(el => el.textContent = data.original_price);
+                    }
+
+                    // WhatsApp
+                    const waLink = document.querySelectorAll('[data-wa-link]');
+                    const waFloat = document.querySelector('.whatsapp-float');
+                    if (data.whatsapp_number) {
+                        const cleanWA = data.whatsapp_number.replace(/\D/g, '');
+                        const msg = encodeURIComponent("नमस्ते, मुझे Shakti Power Up के बारे में जानकारी चाहिए");
+                        waLink.forEach(el => el.href = `https://wa.me/${cleanWA}?text=${msg}`);
+                        if (waFloat) waFloat.style.display = 'flex';
+                    } else if (waFloat) {
+                        waFloat.style.display = 'none';
+                    }
+
+                    // Business Name
+                    if (data.business_name) {
+                        document.querySelectorAll('.dynamic-business-name').forEach(el => el.textContent = data.business_name);
+                        document.title = `${data.business_name} - Official Offer`;
+                    }
+                }
+            });
+        }
+
+        // Form Submission
+        async function submitLead(e) {
+            e.preventDefault();
+            const form = e.target;
+            const phoneInput = form.querySelector('input[name="PHONENO"]');
+            const phone = phoneInput.value.trim();
             const phoneRegex = /^[6-9]\d{9}$/;
 
-            if (phone.length === 0) {
-              phoneError.classList.add("hidden");
-              return false;
-            }
-
             if (!phoneRegex.test(phone)) {
-              phoneError.textContent = "❌ Please enter a valid 10-digit mobile number starting with 6-9";
-              phoneError.classList.remove("hidden");
-              phoneInput.classList.add("border-red-500");
-              return false;
+                alert("Please enter a valid 10-digit mobile number.");
+                return;
             }
 
-            phoneError.classList.add("hidden");
-            phoneInput.classList.remove("border-red-500");
-            return true;
-          }
-
-          document.getElementById("order-info").addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            if (!validatePhone()) {
-              phoneInput.focus();
-              return;
-            }
-
-            const pbBtn = document.getElementById("very-btn");
-            const pMsg = document.getElementById("msg");
-            pMsg.innerHTML = "Please wait...";
-            pbBtn.disabled = true;
-            pbBtn.style.opacity = "0.7";
-
-            // Single fixed pricing
-            const packName = '2 Months Course';
-            const packPrice = '1499';
+            const btn = form.querySelector('button[type="submit"]');
+            const orig = btn.innerHTML;
+            btn.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Processing...";
+            btn.disabled = true;
 
             const payload = {
-              name: document.querySelector('input[name="NAME"]').value.trim(),
-              phone: document.getElementById('phone').value.trim(),
-              location: document.getElementById('fm-address').value.trim(), // Backend expects 'location'
-              pincode: document.getElementById('fm-pincode').value.trim(),
-              consent: true,
-              page_source: "offer",
-              // Quality metadata
-              browser: navigator.userAgent,
-              platform: navigator.platform,
-              screen_resolution: window.screen.width + "x" + window.screen.height,
-              language: navigator.language,
-              timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-              referrer: document.referrer,
-              pack_name: packName,
-              pack_price: packPrice
+                name: form.querySelector('input[name="NAME"]').value.trim(),
+                phone: phone,
+                location: form.querySelector('[name="ADDRESS"]').value.trim(),
+                pincode: form.querySelector('[name="PINCODE"]')?.value.trim() || '',
+                city: form.querySelector('[name="CITY"]')?.value.trim() || '',
+                source: form.querySelector('[name="SOURCE"]')?.value || 'offer_modal',
+                browser: navigator.userAgent,
+                platform: navigator.platform,
+                screen: `${window.screen.width}x${window.screen.height}`,
+                createdAt: serverTimestamp(),
+                status: "new"
             };
 
             try {
-              payload.date = new Date().toISOString();
-              payload.createdAt = serverTimestamp();
-              payload.status = 'new';
-              
-              await addDoc(collection(db, "leads"), payload);
-              
-              localStorage.setItem('hf_selected_pack', JSON.stringify({ name: packName, price: packPrice }));
-              window.location.href = "thank.html";
-            } catch(e) {
-              console.error("Firebase Error: ", e);
-              pMsg.innerHTML = "❌ Network error. Please check connection.";
-              pbBtn.disabled = false;
-              pbBtn.style.opacity = "1";
+                await addDoc(collection(db, "leads"), payload);
+                window.location.href = "thank.html";
+            } catch (err) {
+                console.error(err);
+                alert("Submission failed. Please try again.");
+                btn.innerHTML = orig;
+                btn.disabled = false;
             }
-          });
-
-
-        </script>
-
-        <!-- <p>load</p> -->
-        <!--/$-->
-        <!--$-->
-        <div class="">
-          <div class="bg-[#3851a3]">
-            <div class="md:w-10/12 mx-auto md:mt-7 px-4 mt-6">
-              <h1 class="text-center pb-3 pt-6 text-white font-bold font-noto text-3xl md:text-4xl leading-wide">
-                Customer Reviews for Hammer of Thor
-              </h1>
-            </div>
-          </div>
-          <div class="px-3 max-w-5xl mx-auto">
-            <ul class="space-y-3 fontPoppins pt-4">
-              <li class="border p-3 rounded-lg shadow-sm flex flex-col">
-                <div class="flex items-center">
-                  <div class="w-24 rounded-full overflow-hidden">
-                    <img alt="pic" loading="lazy" width="1000" height="1000" decoding="async" data-nimg="1" class="w-full h-full" style="color: transparent" src="img/11.jpg">
-                  </div>
-                  <div class="flex flex-col ml-2">
-                    <img alt="pic" loading="lazy" width="80" height="50" decoding="async" data-nimg="1" style="color: transparent" src="img/ratting.png">
-                    <h1 class="text-zinc-900 text-xl md:text-3xl mt-2 font-semibold py-2">
-                      Hemraj Prasad
-                    </h1>
-                  </div>
-                </div>
-                <div class="ml-2 mt-2">
-                  <p class="md:text-xl text-justify">
-                    Earlier I was losing steam very quickly, within a few strokes. 
-                    But since taking Hammer of Thor, my performance has improved dramatically. 
-                    I feel way more confident and my partner is extremely happy. 
-                    This supplement is truly effective.
-                  </p>
-                  <small class="text-[1rem] text-red-500 mt-2">13 Jun 2024</small>
-                </div>
-              </li>
-              <li class="border p-3 rounded-lg shadow-sm flex flex-col">
-                <div class="flex items-center">
-                  <div class="w-24 rounded-full overflow-hidden">
-                    <img alt="pic" loading="lazy" width="1000" height="1000" decoding="async" data-nimg="1" class="w-full h-full" style="color: transparent" src="img/22.jpg">
-                  </div>
-                  <div class="flex flex-col ml-2">
-                    <img alt="pic" loading="lazy" width="80" height="50" decoding="async" data-nimg="1" style="color: transparent" src="img/ratting.png">
-                    <h1 class="text-zinc-900 text-xl md:text-3xl mt-2 font-semibold py-2">
-                      Prakash Yadav
-                    </h1>
-                  </div>
-                </div>
-                <div class="ml-2 mt-2">
-                  <p class="md:text-xl text-justify">
-                    Before Hammer of Thor, I felt weak and lacked energy. 
-                    Now my endurance has increased multi-fold. 
-                    This product delivers results exactly as promised.
-                  </p>
-                  <small class="text-[1rem] text-red-500 mt-2">12 Jun 2024</small>
-                </div>
-              </li>
-              <li class="border p-3 rounded-lg shadow-sm flex flex-col">
-                <div class="flex items-center">
-                  <div class="w-24 rounded-full overflow-hidden">
-                    <img alt="pic" loading="lazy" width="1000" height="1000" decoding="async" data-nimg="1" class="w-full h-full" style="color: transparent" src="img/33.jpg">
-                  </div>
-                  <div class="flex flex-col ml-2">
-                    <img alt="pic" loading="lazy" width="80" height="50" decoding="async" data-nimg="1" style="color: transparent" src="img/ratting.png">
-                    <h1 class="text-zinc-900 text-xl md:text-3xl mt-2 font-semibold py-2">
-                      Pravin Kumar
-                    </h1>
-                  </div>
-                </div>
-                <div class="ml-2 mt-2">
-                  <p class="md:text-xl text-justify">
-                    This medicine is very effective. After taking it, my vigor, 
-                    power, and timing have improved significantly. Men facing 
-                    stamina issues must use this product. The results are unbelievable.
-                  </p>
-                  <small class="text-[1rem] text-red-500 mt-2">11 Jun 2024</small>
-                </div>
-              </li>
-              <li class="border p-3 rounded-lg shadow-sm flex flex-col">
-                <div class="flex items-center">
-                  <div class="w-24 rounded-full overflow-hidden">
-                    <img alt="pic" loading="lazy" width="1000" height="1000" decoding="async" data-nimg="1" class="w-full h-full" style="color: transparent" src="img/44.jpg">
-                  </div>
-                  <div class="flex flex-col ml-2">
-                    <img alt="pic" loading="lazy" width="80" height="50" decoding="async" data-nimg="1" style="color: transparent" src="img/ratting.png">
-                    <h1 class="text-zinc-900 text-xl md:text-3xl mt-2 font-semibold py-2">
-                      Sanjiv Gupta
-                    </h1>
-                  </div>
-                </div>
-                <div class="ml-2 mt-2">
-                  <p class="md:text-xl text-justify">
-                    I had timing issues and lacked confidence. My friend 
-                    suggested Hammer of Thor, and it gave me intense benefits. 
-                    My endurance has increased multi-fold in just 2 packs.
-                  </p>
-                  <small class="text-[1rem] text-red-500 mt-2">10 Jun 2024</small>
-                </div>
-              </li>
-              <li class="border p-3 rounded-lg shadow-sm flex flex-col">
-                <div class="flex items-center">
-                  <div class="w-24 rounded-full overflow-hidden">
-                    <img alt="pic" loading="lazy" width="1000" height="1000" decoding="async" data-nimg="1" class="w-full h-full" style="color: transparent" src="img/55.jpg">
-                  </div>
-                  <div class="flex flex-col ml-2">
-                    <img alt="pic" loading="lazy" width="80" height="50" decoding="async" data-nimg="1" style="color: transparent" src="img/ratting.png">
-                    <h1 class="text-zinc-900 text-xl md:text-3xl mt-2 font-semibold py-2">
-                      Ajay Shukla
-                    </h1>
-                  </div>
-                </div>
-                <div class="ml-2 mt-2">
-                  <p class="md:text-xl text-justify">
-                    I've been using this for 2 months. It has vanished many of 
-                    my internal problems. This Hammer of Thor supplement has 
-                    boosted my stamina, mood, and endurance significantly.
-                  </p>
-                  <small class="text-[1rem] text-red-500 mt-2">09 Jun 2024</small>
-                </div>
-              </li>
-            </ul>
-            <div class="flex justify-center items-center py-4">
-              <a href="#order-info"><button class="bg-slate-600 fontPoppins text-white flex justify-center hover:bg-slate-800 duration-200 items-center text-xl w-80 py-4 rounded-full">
-                  Order Now for ₹1499 Only
-                </button></a>
-            </div>
-          </div>
-        </div>
-        <!--/$-->
-        <!--$-->
-        <div class="">
-          <div class="pb-3 pt-1 bg-white">
-            <!--$-->
-            <div class="bg-inherit flex items-center justify-center flex-col gap-5">
-              <p class="text-[1.1rem] sm:text-3xl -mb-3 font-semibold text-black">
-                We are Available:
-              </p>
-              <div class="flex w-8/12 sm:w-full justify-center items-center gap-3 sm:gap-5">
-                <a href="#order-info" class="">
-                  <img src="img/flipkart.png" alt="pic" class="w-40" width="100%" height="100%">
-                </a>
-                <a href="#order-info" class="">
-                  <img src="img/amaz.png" alt="pic" class="w-40" width="100%" height="100%">
-                </a>
-              </div>
-            </div>
-            <!--/$-->
-          </div>
-          <div class="w-full py-4 mb-[5rem] sm:mb-0 text-center text-white bg-black">
-            <p class="text-center text-xl m-0 font-bold">
-              Hammer of Thor Copyright © 2024
-            </p>
-            <div class="flex justify-center gap-4 py-2 text-sm">
-                <a href="privacy.html" class="text-zinc-600">Privacy Policy</a>
-                <a href="terms.html" class="text-zinc-600">Terms of Use</a>
-                <a href="disclaimer.html" class="text-zinc-600">Disclaimer</a>
-                <a href="contact.html" class="text-zinc-600">Contact Us</a>
-            </div>
-            <div class="poppins p-0 text-xs opacity-50 max-w-2xl mx-auto py-2">
-                This site is not a part of the Facebook website or Facebook Inc. Additionally, This site is NOT endorsed by Facebook in any way. FACEBOOK is a trademark of FACEBOOK, Inc.
-            </div>
-            <div class="poppins p-0">
-              Food supplement/Dietary supplement/Not a drug<br>The results may
-              vary depending on your individual features.
-            </div>
-            <div class="pt-1">
-              Results may vary based on individual features and source data.
-            </div>
-          </div>
-        </div>
-        <!--/$-->
-        <!--$-->
-        <div class="w-full block sm:hidden xx fixed z-[10000] text-white">
-          <!--$-->
-          <div class="w-full bg-[#262525] py-1">
-            <p class="text-center text-[1.2rem] m-0">
-              Discount Ends: <span class="text-[#e1c231]">01:00:00</span>
-            </p>
-            <div class="flex justify-center items-center gap-2 text-white">
-              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="arrow-3 commonArrow" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"></path>
-              </svg>
-              <a href="#order-info" class="text-center decoration-none border-0 rounded-lg pt-1 px-3 font-bold bg-[red]">ORDER WITH 50% OFF</a>
-              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="arrow-4 commonArrow" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"></path>
-              </svg>
-            </div>
-          </div>
-          <!--/$-->
-        </div>
-        <!--/$-->
-      </div>
-    </div>
-    <script>
-      (function () {
-        // ⏱️ Total time in seconds (20 minutes 59 seconds)
-        let totalSeconds = 20 * 60 + 59;
-
-        const countdownEl = document.getElementById("countdown");
-
-        function updateCountdown() {
-          let minutes = Math.floor(totalSeconds / 60);
-          let seconds = totalSeconds % 60;
-
-          minutes = minutes < 10 ? "0" + minutes : minutes;
-          seconds = seconds < 10 ? "0" + seconds : seconds;
-
-          countdownEl.innerHTML = `00 : ${minutes} : ${seconds}`;
-
-          if (totalSeconds <= 0) {
-            clearInterval(timer);
-            countdownEl.innerHTML = "⏰ OFFER EXPIRED";
-          }
-
-          totalSeconds--;
         }
 
-        updateCountdown(); // run immediately
-        const timer = setInterval(updateCountdown, 1000);
-      })();
+        // Event Listeners
+        document.querySelectorAll('form').forEach(f => f.addEventListener('submit', submitLead));
+        
+        // Sticky CTA Scroll listener
+        window.addEventListener('scroll', () => {
+            const sticky = document.getElementById('mobile-sticky-cta');
+            if (sticky) {
+                if (window.scrollY > 600) sticky.classList.add('visible');
+                else sticky.classList.remove('visible');
+            }
+        });
+
+        // Global Modal Function
+        window.toggleOrderModal = (show) => {
+            const modal = document.getElementById('order-modal');
+            if (modal) {
+                if (show) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        };
+
+        // Close on Escape & Backdrop
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleOrderModal(false);
+        });
+        
+        document.getElementById('order-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'order-modal') toggleOrderModal(false);
+        });
+
+        // Initialize
+        startRealtimeSync();
     </script>
-
-  
-  <!-- Age Verification Overlay -->
-  <div id="age-gate" style="position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);z-index:9999999;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;">
-    <div style="background:#111;padding:40px;border-radius:24px;border:1px solid #333;max-width:450px;width:90%;box-shadow:0 20px 50px rgba(0,0,0,0.5)">
-      <i class="fas fa-exclamation-triangle" style="color:#ef4444;font-size:3.5rem;margin-bottom:20px"></i>
-      <h2 style="font-size:2rem;margin-bottom:15px;font-weight:900;font-family:sans-serif">Age Verification (18+)</h2>
-      <p style="color:#ccc;margin-bottom:30px;line-height:1.6;font-size:1.1rem;font-family:sans-serif">This website contains adult content.<br>Are you 18/21 years or older?</p>
-      <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap">
-         <button id="btn-yes-18" style="background:#22c55e;color:#fff;border:none;padding:14px 35px;font-size:1.1rem;border-radius:50px;cursor:pointer;font-weight:bold;flex:1">Yes</button>
-         <button id="btn-no-18" style="background:#444;color:#fff;border:none;padding:14px 35px;font-size:1.1rem;border-radius:50px;cursor:pointer;font-weight:bold;flex:1">No</button>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- Sticky Offer Banner -->
-  <div id="sticky-offer-banner" style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:9999;background:#f97316;color:white;display:flex;align-items:center;justify-content:space-between;padding:10px 15px;box-shadow:0 -4px 15px rgba(0,0,0,0.2);font-family:sans-serif;box-sizing:border-box;">
-    <!-- Left: Timer -->
-    <div style="display:flex;flex-direction:column;align-items:center;line-height:1.2;">
-      <span style="font-size:0.9rem;font-weight:600;">Limited Time Offer</span>
-      <span id="sticky-timer-display" style="font-size:1.5rem;font-weight:bold;letter-spacing:1px;margin-top:2px;">09:41</span>
-    </div>
-
-    <!-- Center: Price -->
-    <div style="display:flex;flex-direction:column;align-items:center;line-height:1.1;">
-      <span style="font-size:0.85rem;text-decoration:line-through;opacity:0.9;">MRP 3999</span>
-      <span style="font-size:1.2rem;font-weight:900;color:#fef08a;margin-top:2px;">Only 1499</span>
-      <span style="font-size:0.9rem;font-weight:bold;color:#fef08a;">Rupees</span>
-    </div>
-
-    <!-- Right: Button -->
-    <div style="display:flex;flex-direction:column;align-items:center;">
-      <a href="#formcallhide" style="background:#16a34a;color:white;text-decoration:none;padding:10px 20px;border-radius:30px;font-weight:800;font-size:1.1rem;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,0.2);line-height:1.2;animation:pulseBtn 1.5s infinite;cursor:pointer;white-space:nowrap;">
-        Order<br>Now
-      </a>
-      <span style="font-size:0.75rem;margin-top:5px;opacity:0.9;">Limited Time Offer</span>
-    </div>
-  </div>
-  <style>
-    @keyframes pulseBtn {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-  </style>
-
-  <script>
-    (function() {
-      // Sticky Timer Logic
-      let limitMinutes = 9;
-      let limitSeconds = 59;
-      const timerDisplay = document.getElementById('sticky-timer-display');
-      setInterval(() => {
-        if(limitSeconds === 0) {
-          if(limitMinutes === 0) { limitMinutes = 9; limitSeconds = 59; } // Reset
-          else { limitMinutes--; limitSeconds = 59; }
-        } else {
-          limitSeconds--;
-        }
-        let m = limitMinutes < 10 ? '0' + limitMinutes : limitMinutes;
-        let s = limitSeconds < 10 ? '0' + limitSeconds : limitSeconds;
-        if (timerDisplay) timerDisplay.textContent = m + ':' + s;
-      }, 1000);
-
-      // Age Gate Logic
-      const ageGate = document.getElementById('age-gate');
-      document.body.style.overflow = 'hidden';
-
-      document.getElementById('btn-yes-18').onclick = function() {
-        ageGate.style.opacity = '0';
-        setTimeout(() => {
-          ageGate.style.display = 'none';
-          document.body.style.overflow = '';
-        }, 300);
-
-      };
-
-      document.getElementById('btn-no-18').onclick = function() {
-        window.location.href = 'https://www.google.com';
-      };
-      
-
-    })();
-  </script>
-
-</body></html>
+</body>
+</html>

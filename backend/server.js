@@ -1,12 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-const rateLimit = require('express-rate-limit');
-
-const leadsRouter = require('./routes/leads');
-const adminRouter = require('./routes/admin');
-const pixelsRouter = require('./routes/pixels');
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,38 +17,29 @@ app.use((req, res, next) => {
 
 // ===== MIDDLEWARE =====
 app.use(cors());
-app.use(express.json({ limit: '10kb' })); // Limit request body size
+app.use(express.json({ limit: '10kb' })); 
 
-// ===== RATE LIMITING =====
-const leadsLimiter = rateLimit({
-  windowMs: 60 * 60 * 1000, // 1 hour
-  max: 100, // Increased for testing and active traffic
-  message: { status: 'error', message: 'Too many submissions. Please try again after 1 hour.' },
-  standardHeaders: true,
-  legacyHeaders: false
+// ===== STATIC FILES (Serve Frontend) =====
+// Deny access to the backend folder when served statically
+app.use('/backend', (req, res, next) => {
+  res.status(403).send('Access Denied');
 });
+
+// Serve everything else from the root
+app.use(express.static(path.join(__dirname, '..'), {
+  index: 'index.html',
+  extensions: ['html']
+}));
 
 // ===== HEALTH CHECK =====
 app.get('/health', async (req, res) => {
-  const dbStatus = mongoose.connection.readyState === 1 ? 'connected' : 'disconnected';
-  res.json({ status: 'ok', db: dbStatus, time: new Date().toISOString(), uptime: process.uptime() });
+  res.json({ status: 'ok', message: 'Pureveda Server Running', time: new Date().toISOString(), uptime: process.uptime() });
 });
 
-// ===== ROUTES =====
-app.use('/api/leads', leadsLimiter, leadsRouter);
-app.use('/api/admin', adminRouter);
-app.use('/api/settings', leadsRouter); // For /api/settings/public
-app.use('/api/pixels', pixelsRouter);
-
-// ===== DB CONNECT =====
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('✅ MongoDB connected — horsefiredb');
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-  })
-  .catch(err => {
-    console.error('❌ MongoDB connection error:', err.message);
-    process.exit(1);
-  });
+// Start Server
+app.listen(PORT, () => {
+  console.log(`🚀 Pureveda Static Server running on port ${PORT}`);
+  console.log(`📡 MongoDB has been removed as per user request.`);
+});
 
 module.exports = app;
