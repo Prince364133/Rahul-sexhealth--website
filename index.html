@@ -1,762 +1,647 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#064e3b">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="apple-touch-icon" href="img/logo.png">
-
-  <title class="dynamic-business-name">Pureveda</title>
-  <meta name="description" content="Official Store - Premium Ayurvedic Male Power Supplement. 100% Safe and Certified.">
-
-  <link rel="canonical" href="https://pureveda.vercel.app/index.html">
-  <link rel="icon" href="img/logo.png" type="image/png">
-
-  <!-- External Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style/main.css">
-  <link rel="preload" as="image" href="img/public13.jpeg">
-
-  <style>
-    :root {
-      --color-primary: #064e3b;
-      --color-primary-dark: #022c22;
-      --color-accent: #fbbf24;
-      --color-accent-hover: #f59e0b;
-      --color-danger: #dc2626;
-      --color-bg-light: #f8fafc;
-      --color-text-main: #1e293b;
-      --color-text-muted: #64748b;
-      --radius-lg: 24px;
-      --radius-md: 12px;
-    }
-
-    /* Modal Popup Styles */
-    .modal-overlay {
-      position: fixed; 
-      inset: 0;
-      background: rgba(2, 44, 34, 0.85);
-      backdrop-filter: blur(12px);
-      display: none; 
-      align-items: center; 
-      justify-content: center;
-      z-index: 10000;
-      padding: 20px;
-    }
-    .modal-overlay.active { display: flex; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#991b1b">
+    <title class="dynamic-business-name">Pureveda</title>
     
-    .modal-content {
-      background: white;
-      width: 95%;
-      max-width: 500px;
-      margin: auto;
-      max-height: 90vh;
-      overflow-y: auto;
-      border-radius: 40px;
-      position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-      animation: modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      scrollbar-width: thin;
-      scrollbar-color: #10b981 #f1f5f9;
-    }
-    
-    @media (max-width: 640px) {
-      .modal-overlay { padding: 0; }
-      .modal-content {
-        height: 100%;
-        max-height: 100vh;
-        border-radius: 0;
-      }
-    }
-    
-    @keyframes modalSlideUp {
-      from { transform: translateY(100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    
-    .modal-close {
-      position: absolute; 
-      top: 20px; 
-      right: 20px;
-      width: 44px; 
-      height: 44px; 
-      border-radius: 16px;
-      background: #f8fafc; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      cursor: pointer; 
-      z-index: 50; 
-      transition: all 0.3s;
-      border: 1px solid #e2e8f0;
-      color: #64748b;
-    }
-    .modal-close:hover { 
-      background: #fee2e2; 
-      color: #dc2626; 
-      transform: rotate(90deg) scale(1.1);
-      border-color: #fca5a5;
-    }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <script type="module" src="js/dynamic-config.js"></script>
 
-    .phone-wrapper { 
-      display: flex; 
-      align-items: center; 
-      background: #f8fafc; 
-      border-radius: 20px; 
-      border: 2px solid #f1f5f9; 
-      transition: all 0.3s; 
-      width: 100%; 
-      position: relative;
-      overflow: hidden;
-    }
-    .phone-wrapper:focus-within { 
-      border-color: #10b981; 
-      background: white; 
-      box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.1); 
-    }
-    .phone-prefix { 
-      padding: 0 12px; 
-      font-weight: 800; 
-      color: #1e293b; 
-      background: #f1f5f9;
-      border-right: 2px solid #e2e8f0; 
-      display: flex; 
-      align-items: center; 
-      gap: 6px; 
-      white-space: nowrap;
-      height: 64px; /* Matches input height */
-    }
-    .phone-input { 
-      flex: 1; 
-      border: none !important; 
-      background: transparent !important; 
-      padding: 18px 20px !important; 
-      font-weight: 800; 
-      font-size: 1.15rem; 
-      outline: none !important; 
-      box-shadow: none !important; 
-      width: 100%; 
-      color: #1e293b; 
-    }
-    
-    .phone-input::placeholder { color: #94a3b8; font-weight: 500; }
+    <style>
+        :root {
+            --primary: #991b1b;
+            --primary-light: #fef2f2;
+            --accent: #dc2626;
+            --slate-900: #0f172a;
+        }
 
-    /* Custom Input Polish */
-    .custom-input {
-      width: 100%;
-      padding: 18px 20px 18px 56px;
-      border: 2px solid #f1f5f9;
-      border-radius: 20px;
-      background: #f8fafc;
-      font-weight: 700;
-      font-size: 1.05rem;
-      transition: all 0.3s;
-      outline: none;
-      color: #1e293b;
-    }
-    .custom-input:focus {
-      border-color: #10b981;
-      background: white;
-      box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.1);
-    }
-    .input-icon {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #94a3b8;
-      font-size: 1.2rem;
-      transition: all 0.3s;
-    }
-    .form-group:focus-within .input-icon {
-      color: #10b981;
-    }
+        body { font-family: 'Inter', sans-serif; }
 
-    /* Glassmorphism Product Card */
-    .order-summary-card {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      padding: 30px;
-      border-radius: 32px;
-      position: relative;
-      overflow: hidden;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-    .order-summary-card::before {
-      content: '';
-      position: absolute;
-      top: -50px; right: -50px;
-      width: 150px; height: 150px;
-      background: rgba(16, 185, 129, 0.2);
-      filter: blur(40px);
-      border-radius: 50%;
-    }
+        /* Modal System */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    /* Container Integrity & Text Safety */
-    .safe-container {
-      word-wrap: break-word !important;
-      overflow-wrap: break-word !important;
-      word-break: break-word !important;
-      hyphens: auto;
-      max-width: 100%;
-    }
-    
-    .text-safety {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3; /* Limit long descriptions */
-      -webkit-box-orient: vertical;
-    }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
 
-    /* Location Autocomplete Styles */
-    .address-wrapper { position: relative; }
-    .location-suggestions {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        z-index: 1000;
-        max-height: 250px;
-        overflow-y: auto;
-        display: none;
-        text-align: left;
-    }
-    .suggestion-item {
-        padding: 12px 16px;
-        cursor: pointer;
-        border-bottom: 1px solid #f1f5f9;
-        font-size: 13px;
-        transition: 0.2s;
-        color: #1e293b;
-    }
-    .suggestion-item:last-child { border-bottom: none; }
-    .suggestion-item:hover { background: #f8fafc; color: #10b981; }
-    .suggestion-item i { margin-right: 10px; color: #94a3b8; }
-    
-    .locate-btn {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: #f1f5f9;
-        color: #64748b;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-size: 10px;
-        font-weight: 800;
-        cursor: pointer;
-        transition: 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        z-index: 10;
-        text-transform: uppercase;
-    }
-    .locate-btn:hover { background: #e2e8f0; color: #10b981; }
-  </style>
+        .modal-content {
+            background: white;
+            width: 95%;
+            max-width: 500px;
+            border-radius: 2.5rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            .modal-content {
+                width: 100%;
+                max-height: 100dvh;
+                height: 100dvh;
+                border-radius: 0;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 3rem;
+            height: 3rem;
+            background: #f1f5f9;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.2s;
+        }
+
+        /* Location Styles */
+        .address-wrapper { position: relative; }
+        .location-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1001;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+        .suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 13px;
+        }
+        .suggestion-item:hover { background: #f8fafc; color: var(--accent); }
+
+        .locate-btn {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            background: #f1f5f9;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #64748b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        /* Floating Controls */
+        .floating-fab { position: fixed; bottom: 2rem; right: 1.5rem; z-index: 999; display: flex; flex-direction: column; gap: 1rem; }
+        .fab-btn { width: 3.5rem; height: 3.5rem; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .fab-order { background: var(--primary); animation: bounce 2s infinite; }
+        .whatsapp-float { background: #25d366; }
+
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+            z-index: 998;
+            display: none;
+        }
+        @media (max-width: 640px) { .sticky-cta.visible { display: block; } }
+    </style>
 </head>
-<body>
+<body class="bg-slate-50">
 
-    <!-- High-Impact Top Banner -->
-    <div class="bg-red-700 text-white py-2 px-4 text-center text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] sticky top-0 z-[2000] shadow-lg">
-        ⚡ Special Offer: Order Now only ₹<span class="dynamic-offer-price">1499</span>/- ⚡
+    <!-- Top Announcement -->
+    <div class="bg-red-800 text-white py-2 px-4 text-center text-[10px] sm:text-xs font-black uppercase tracking-widest sticky top-0 z-[1000]">
+        Limited Time Offer: Free Delivery Nationwide on All Orders
     </div>
 
-    <!-- Sticky Enterprise Header -->
-    <header class="bg-white/95 backdrop-blur-md sticky top-[28px] sm:top-[32px] z-[1900] border-b border-slate-100">
-    <div class="container header-inner">
-      <div class="logo">
-        <a href="index.html">
-          <img src="img/logo.png" alt="Hammer of Thor" width="140" height="46" style="object-fit: contain;">
+    <!-- Hero Section -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden mb-8">
+            <div class="grid md:grid-cols-2">
+                <div class="relative h-72 md:h-auto overflow-hidden">
+                    <img src="img/hammer_of_thor_hero_ritual.png" alt="Pureveda Premium Pack" class="w-full h-full object-cover dynamic-hero-image">
+                    <div class="absolute top-4 left-4 z-10">
+                        <span class="bg-red-700 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">New Formula</span>
+                    </div>
+                </div>
+                <div class="p-8 md:p-16 flex flex-col justify-center">
+                    <div class="inline-block bg-red-100 text-red-800 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">#1 Ayurvedic Supplement</div>
+                    <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-tight mb-6 tracking-tighter uppercase italic hidden md:block">
+                        <span class="dynamic-business-name">Pureveda</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 font-bold mb-10 leading-relaxed italic">
+                        The ultimate natural formula for energy, stamina, and performance. Crafted from 100% pure Ayurvedic herbs.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="toggleOrderModal(true)" class="bg-red-700 hover:bg-red-800 text-white px-10 py-5 rounded-2xl text-lg font-black uppercase tracking-widest transition-all shadow-xl active:scale-95">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Intro Section -->
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="bg-white/40 backdrop-blur-sm p-4 md:p-8 rounded-[3rem] border border-slate-100">
+                <h2 class="text-4xl md:text-5xl font-black text-red-700 leading-tight mb-6 tracking-tighter uppercase italic text-center dynamic-business-name">
+                    "Hammer of Thor"
+                </h2>
+                <p class="text-xl md:text-2xl text-slate-800 font-bold leading-relaxed mb-10 text-center">
+                    is a super power pack formula to eliminate male weakness. It is a combination of the power of ancient and trusted Ayurvedic herbs and Bhasmas. In this, useful parts of each herb have been used in appropriate quantities through <span class="text-red-700">meticulous extraction processes...</span>
+                </p>
+                
+                <div class="rounded-3xl overflow-hidden shadow-2xl mb-10 max-w-2xl mx-auto border-4 border-white/50">
+                    <img src="img/ayurvedic_herbs_premium.png" alt="Performance Boost" class="w-full object-cover">
+                </div>
+
+                <div class="flex justify-center">
+                    <button onclick="toggleOrderModal(true)" class="w-full md:w-auto md:px-16 bg-slate-900 hover:bg-black text-white py-6 rounded-2xl text-xl font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95 leading-none">
+                        Claim Your Discount Now<br>
+                        <span class="text-xs opacity-60 font-medium">Limited Stock Available</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Section -->
+        <div class="grid md:grid-cols-3 gap-8 py-12 border-y border-slate-200">
+            <div class="space-y-4">
+                <h3 class="text-xl font-extrabold text-slate-900 uppercase italic tracking-tighter">100% Pure Ayurveda</h3>
+                <p class="text-slate-600 font-bold text-sm leading-relaxed text-left">
+                    Our formula is derived from ancient Vedic texts, using only premium-grade Himalayan Shilajit, KSM-66 Ashwagandha, and Safed Musli. No synthetic chemicals, just pure nature.
+                </p>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xl font-extrabold text-slate-900 uppercase italic tracking-tighter">Instant Energy Flow</h3>
+                <p class="text-slate-600 font-bold text-sm leading-relaxed text-left">
+                    Experience a noticeable surge in stamina and mental focus. The unique extraction process ensures maximum bioavailability, reaching your cells faster for immediate results.
+                </p>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xl font-extrabold text-slate-900 uppercase italic tracking-tighter">Doctor Recommended</h3>
+                <p class="text-slate-600 font-bold text-sm leading-relaxed text-left">
+                    Trusted by men across the globe and recommended by Ayurvedic practitioners for its effectiveness in boosting male endurance and overall metabolic health safely.
+                </p>
+            </div>
+        </div>
+
+        <!-- DUAL-ACTION OIL SPOTLIGHT (Migrated and Dynamic) -->
+        <div class="w-full bg-slate-950 py-24 px-6 -mx-4 sm:-mx-8 md:-mx-16 relative overflow-hidden mt-12 rounded-[4rem]">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-red-600 blur-[200px] opacity-10"></div>
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
+                <div class="md:w-1/2 order-2 md:order-1">
+                    <img src="img/bottle_hero.png" class="w-full max-w-sm mx-auto drop-shadow-[0_0_50px_rgba(220,38,38,0.3)] hover:scale-110 transition duration-700 dynamic-hero-image">
+                </div>
+                <div class="md:w-1/2 text-white space-y-8 order-1 md:order-2">
+                    <h1 class="text-4xl md:text-6xl font-black italic uppercase leading-tight dynamic-business-name">Product Name</h1>
+                    <h2 class="text-2xl md:text-3xl font-bold italic uppercase leading-tight text-red-500">Fast Acting <span class="text-white">Absorption</span> Technology</h2>
+                    <div class="flex gap-4 items-center">
+                        <div class="w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2">
+                            <img src="img/public_14.png" class="w-full h-full object-contain grayscale">
+                        </div>
+                        <p class="text-slate-400 font-bold text-lg">Our Advanced Strength Formula is designed for rapid energy delivery. It penetrates deep into the tissues to provide immediate vigor and sustainable performance.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-[10px] font-black tracking-widest uppercase">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm">0% Side Effects</div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm">100% Natural Oil</div>
+                    </div>
+                    <div class="pt-6">
+                        <button onclick="toggleOrderModal(true)" class="bg-red-700 hover:bg-red-800 text-white px-12 py-5 rounded-2xl text-lg font-black uppercase tracking-widest transition-all shadow-xl active:scale-95">Claim Your Bottle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How To Use Section -->
+        <div class="py-16 bg-slate-900 rounded-[3rem] my-12 px-8 md:px-16 text-center text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[url('img/ayurvedic_herbs_premium.png')] bg-cover bg-center"></div>
+            <div class="relative z-10 text-left">
+                <h2 class="text-3xl md:text-5xl font-black mb-10 tracking-tighter uppercase italic text-center">How to use <span class="text-red-500">Pureveda</span></h2>
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <div class="text-red-500 text-4xl mb-4 font-black italic tracking-tighter">STEP 01</div>
+                        <p class="text-xl font-bold leading-relaxed">
+                            Take 1 Capsule twice a day, preferably with lukewarm milk or water after meals for consistent results.
+                        </p>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <div class="text-red-500 text-4xl mb-4 font-black italic tracking-tighter">STEP 02</div>
+                        <p class="text-xl font-bold leading-relaxed">
+                            For external care, massage 3-5 drops of the Advanced Strength Oil gently until fully absorbed.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center">
+                    <p class="text-slate-400 font-bold text-xs uppercase tracking-[0.3em]">Consistency is Key: Use for 60 days for permanent vitality</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Form Section -->
+        <div class="max-w-3xl mx-auto py-12">
+            <div class="bg-[#0f172a] text-white rounded-[3rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-red-900/20 rounded-full blur-3xl"></div>
+                <div class="relative z-10 text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-black mb-4 tracking-tighter uppercase italic">Secure Your Pack</h2>
+                    <p class="text-slate-400 font-bold uppercase tracking-widest text-sm">Fill the details for express shipping</p>
+                </div>
+
+                <form id="order-info-form" class="relative z-10 space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Full Name</label>
+                            <input type="text" name="NAME" placeholder="Enter your name" required 
+                                   onfocus="triggerAutoLocation(this)"
+                                   class="w-full bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Mobile Number</label>
+                            <div class="flex gap-2">
+                                <span class="bg-slate-800 border-2 border-slate-700 rounded-2xl px-4 flex items-center font-bold text-slate-400">+91</span>
+                                <input type="tel" name="PHONENO" placeholder="10-digit number" required maxlength="10" pattern="[0-9]{10}"
+                                       onfocus="triggerAutoLocation(this)"
+                                       class="flex-1 bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 address-wrapper">
+                        <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Delivery Address</label>
+                        <textarea name="ADDRESS" placeholder="House No, Street, Landmark" required rows="3"
+                                  onfocus="triggerAutoLocation(this)"
+                                  oninput="handleAddressInput(this)"
+                                  class="w-full bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all resize-none"></textarea>
+                        <button type="button" onclick="detectUserLocation(this)" class="locate-btn !top-12">
+                            <i class="fas fa-location-arrow"></i> Detect Location
+                        </button>
+                        <div class="location-suggestions"></div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">City</label>
+                            <input type="text" name="CITY" placeholder="City" required 
+                                   onfocus="triggerAutoLocation(this)"
+                                   class="w-full bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Pincode</label>
+                            <input type="tel" name="PINCODE" placeholder="Pincode" required maxlength="6"
+                                   onfocus="triggerAutoLocation(this)"
+                                   class="w-full bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Package Selection (Inline) -->
+                    <div class="bg-slate-800/50 border-2 border-slate-700 rounded-3xl p-6">
+                        <div class="flex items-center gap-2 mb-4 text-green-500">
+                            <i class="fas fa-certificate"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest pl-1">Selected Package</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-slate-800 border-2 border-red-600 rounded-2xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
+                                </div>
+                                <p class="font-black text-white italic tracking-tight">2 Months Course — Best Value</p>
+                            </div>
+                            <span class="font-black text-white block">₹<span class="dynamic-offer-price">1499</span></span>
+                            <input type="hidden" name="PACKAGE" value="2 Months Course — Best Value">
+                        </div>
+                    </div>
+
+                    <div class="pt-6">
+                        <button type="submit" class="w-full bg-red-700 hover:bg-red-800 py-6 rounded-3xl text-xl font-black uppercase tracking-widest shadow-2xl transition-all active:scale-95 leading-none">
+                            Place Cash on Delivery Order<br>
+                            <span class="text-sm opacity-60 font-medium">Free Shipping Included</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Unified Order Modal -->
+    <div id="order-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-close" onclick="toggleOrderModal(false)">
+                <i class="fas fa-times text-slate-600"></i>
+            </div>
+            <div class="p-8 sm:p-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-black text-slate-900 uppercase italic tracking-tighter">Express Delivery Order</h2>
+                    <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mt-2">Cash on Delivery Available</p>
+                </div>
+                
+                <form id="modal-order-form" class="space-y-4">
+                    <div class="space-y-1">
+                        <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Full Name</label>
+                        <input type="text" name="NAME" placeholder="Enter your full name" required 
+                               onfocus="triggerAutoLocation(this)"
+                               class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Phone Number</label>
+                        <div class="flex gap-2">
+                            <span class="bg-slate-100 border-2 border-slate-100 rounded-2xl px-4 flex items-center font-bold text-slate-500">+91</span>
+                            <input type="tel" name="PHONENO" placeholder="10-digit number" required maxlength="10" pattern="[0-9]{10}"
+                                   onfocus="triggerAutoLocation(this)"
+                                   class="flex-1 px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold">
+                        </div>
+                    </div>
+
+                    <div class="space-y-1 address-wrapper">
+                        <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Address</label>
+                        <textarea name="ADDRESS" placeholder="Flat, Street, Landmark" required rows="2"
+                                  onfocus="triggerAutoLocation(this)"
+                                  oninput="handleAddressInput(this)"
+                                  class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold resize-none pr-32"></textarea>
+                        <button type="button" onclick="detectUserLocation(this)" class="locate-btn !top-12">
+                            <i class="fas fa-location-arrow"></i> Detect
+                        </button>
+                        <div class="location-suggestions"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-black text-slate-800 uppercase tracking-widest">City</label>
+                            <input type="text" name="CITY" placeholder="City" required 
+                                   onfocus="triggerAutoLocation(this)"
+                                   class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Pincode</label>
+                            <input type="tel" name="PINCODE" placeholder="Pincode" required maxlength="6"
+                                   onfocus="triggerAutoLocation(this)"
+                                   class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold">
+                        </div>
+                    </div>
+
+                    <!-- Special Offer Package Selection -->
+                    <div class="bg-green-50/50 border-2 border-green-200 rounded-3xl p-6 mt-4">
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                            <span class="text-sm font-black text-green-800 uppercase tracking-widest">Special Offer Package</span>
+                        </div>
+                        <label class="flex items-center justify-between p-4 bg-white border-2 border-green-500 rounded-2xl cursor-pointer">
+                            <div class="flex items-center gap-4">
+                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
+                                </div>
+                                <div>
+                                    <p class="font-black text-slate-900 leading-tight">2 Months Course — <span class="text-red-600">Best Value</span></p>
+                                    <p class="text-xs font-bold text-slate-500">Includes Advanced Strength Oil & Vitality Capsules</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="font-black text-slate-900 block">₹<span class="dynamic-offer-price">1499</span></span>
+                                <input type="radio" name="PACKAGE" value="2 Months Course — Best Value" checked class="hidden">
+                            </div>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full bg-slate-900 hover:bg-black text-white py-5 rounded-2xl text-lg font-black uppercase tracking-widest shadow-xl transition-all active:scale-95 mt-4">
+                        Confirm Order
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Bottom Mobile CTA -->
+    <div class="sticky-cta px-4 py-3" id="mobile-sticky-cta">
+        <div class="flex items-center justify-between gap-4">
+            <div>
+                <p class="text-[10px] font-black text-slate-500 uppercase leading-none mb-1">Price Now</p>
+                <p class="text-xl font-black text-slate-900">₹<span class="dynamic-offer-price">1499</span></p>
+            </div>
+            <button onclick="toggleOrderModal(true)" class="bg-red-700 text-white px-10 py-4 rounded-xl font-black uppercase tracking-widest text-xs">Order Now</button>
+        </div>
+    </div>
+
+    <!-- Floating controls -->
+    <div class="floating-fab">
+        <button onclick="toggleOrderModal(true)" class="fab-btn fab-order">
+            <i class="fas fa-shopping-cart"></i>
+        </button>
+        <a href="javascript:void(0)" data-wa-link class="fab-btn whatsapp-float" style="display: none;">
+            <i class="fab fa-whatsapp"></i>
         </a>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="benefits.html">Benefits</a>
-      </nav>
-      <div class="header-contact">
-        <a href="offer.html#formcallhide" class="btn btn-primary" style="padding: 12px 24px; font-size: 0.95rem;">Select Package</a>
-      </div>
     </div>
-  </header>
 
-  <!-- Premium Hero Section -->
-  <section class="hero-premium">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <div class="badge mb-20"><i class="fas fa-leaf"></i> <span class="dynamic-business-name">Pureveda</span> - 100% Ayurvedic & Safe</div>
-        <h1 class="mb-30 safe-container">The Natural Secret of <br><span class="text-accent" style="font-family: var(--font-serif); font-style: italic;">Male Vitality & Power</span></h1>
-        <p class="mb-40 safe-container" style="font-size: 1.25rem; opacity: 0.9; max-width: 500px; line-height: 1.8;">
-          Forget about weakness. Crafted from 12 powerful Himalayan herbs, Hammer of Thor gives you continuous energy, iron stamina, and peak confidence.
-        </p>
-        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-          <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="btn btn-primary btn-pulse">
-            Order Now <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
-          </a>
-          <div style="display: flex; gap: 12px; align-items: center; color: var(--color-bg-white); font-weight: 600;">
-            <i class="fas fa-check-circle text-accent" style="font-size: 1.5rem;"></i>
-            <span>FDA Approved &<br>GMP Certified</span>
-          </div>
-        </div>
-      </div>
-      <div class="text-center relative">
-        <img src="img/public13.jpeg" alt="Premium Fitness Vitality" class="floating-product dynamic-hero-image" style="width: 100%; max-width: 500px; border: 4px solid rgba(255,255,255,0.1);">
-        <div class="hero-customer-badge" style="position: absolute; bottom: 30px; left: -20px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); padding: 15px 25px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 15px;">
-          <h2 class="text-accent" style="font-size: 2.5rem; margin:0;">50K+</h2>
-          <p style="font-size: 0.9rem; line-height: 1.2; text-align: left; opacity: 0.9; margin: 0; color: white;">Happy Customers <br>Across India</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <script type="module">
+        import { db } from "./js/dynamic-config.js";
+        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  <!-- Trust Badges Bar -->
-  <section style="background: var(--color-primary-dark); padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
-     <div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
-        <div class="trust-badge-item">
-          <i class="fas fa-truck text-accent"></i>
-          <div>
-            <h4>Free Home Delivery</h4>
-            <p>Available Pan-India</p>
-          </div>
-        </div>
-        <div class="trust-badge-item">
-          <i class="fas fa-rupee-sign text-accent"></i>
-          <div>
-            <h4>Cash on Delivery</h4>
-            <p>Pay upon receiving package</p>
-          </div>
-        </div>
-        <div class="trust-badge-item">
-          <i class="fas fa-shield-alt text-accent"></i>
-          <div>
-            <h4>100% Secure Payments</h4>
-            <p>End-to-End Encrypted Data</p>
-          </div>
-        </div>
-     </div>
-  </section>
+        // Modal Controls
+        window.toggleOrderModal = (show) => {
+            const modal = document.getElementById('order-modal');
+            if (show) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
 
-  <!-- Core Benefits Section -->
-  <section class="bg-light relative" style="overflow: hidden; padding: 100px 0;">
-    <div class="container relative">
-      <div class="text-center mb-60 px-4">
-         <h2 style="font-size: 2.5rem;" class="mb-20 safe-container">Are you facing these problems?</h2>
-         <p class="text-muted mx-auto safe-container" style="max-width: 700px; font-size: 1.1rem;">Physical and mental exhaustion can severely impact your performance. Hammer of Thor directly targets these major weaknesses:</p>
-      </div>
+        // Lead Submission
+        async function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
 
-      <div class="benefits-grid">
-        <div class="glass-card">
-          <div class="benefit-icon"><i class="fas fa-battery-empty text-primary"></i></div>
-          <h3>Daily Fatigue</h3>
-          <p>Feeling heavy and exhausted due to work pressure, leading to extreme lethargy in the body.</p>
-        </div>
-        <div class="glass-card">
-          <div class="benefit-icon"><i class="fas fa-bolt text-accent"></i></div>
-          <h3>Low Stamina</h3>
-          <p>Decrease in peak performance due to age or stress, resulting in getting tired quickly.</p>
-        </div>
-        <div class="glass-card">
-          <div class="benefit-icon"><i class="fas fa-brain text-primary"></i></div>
-          <h3>Mental Stress</h3>
-          <p>Irritability, depression, and anxiety caused by underlying physical weakness.</p>
-        </div>
-        <div class="glass-card">
-          <div class="benefit-icon"><i class="fas fa-shield-alt text-primary"></i></div>
-          <h3>Low Immunity</h3>
-          <p>Falling ill repeatedly and lack of natural recovery power in the body.</p>
-        </div>
-        <div class="glass-card">
-          <div class="benefit-icon"><i class="fas fa-dumbbell text-primary"></i></div>
-          <h3>Weak Muscles</h3>
-          <p>Decrease in physical strength and feeling of 'body breaking' after even minor tasks.</p>
-        </div>
-        <div class="glass-card">
-          <div class="benefit-icon"><i class="fas fa-user-shield text-accent"></i></div>
-          <h3>Lack of Confidence</h3>
-          <p>Fear of non-performance and feeling embarrassed in front of your partner.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+            const formData = new FormData(e.target);
+            const payload = {
+                name: formData.get('NAME'),
+                phone: formData.get('PHONENO'),
+                location: formData.get('ADDRESS'),
+                city: formData.get('CITY'),
+                pincode: formData.get('PINCODE'),
+                package: formData.get('PACKAGE') || 'Standard Pack',
+                source: e.target.id === 'modal-order-form' ? 'index_modal' : 'index_inline',
+                date: new Date().toISOString(),
+                createdAt: serverTimestamp(),
+                status: 'new'
+            };
 
-  <!-- Ingredients Section -->
-  <section style="padding: 100px 0;">
-    <div class="container split-grid">
-      <div class="relative">
-         <img src="img/ingredients.png" alt="Ayurvedic Herbs" style="border-radius: var(--radius-lg); width: 100%;" class="shadow-xl">
-         <div class="ingredient-bubble">
-           <img src="img/ayurvedic_herbs_premium.png" alt="Ashwagandha">
-           <p>Premium Ashwagandha Enriched</p>
-         </div>
-      </div>
-      <div class="split-content">
-        <div class="badge mb-20">Clinically Approved Formula</div>
-        <h2 style="font-size: 2.5rem; margin-bottom: 25px;" class="safe-container">Gift of Nature, <br><span class="text-primary italic">Trusted by Science</span></h2>
-        <p class="mb-30 safe-container" style="font-size: 1.1rem; color: var(--color-text-muted); line-height: 1.7;">
-          Hammer of Thor is a unique blend of over 12 rare herbs like Shilajit, Safed Musli, and Ashwagandha that boost your body's inner strength from within.
-        </p>
-        <ul class="benefit-list mb-40">
-          <li><i class="fas fa-check-circle"></i> Eliminates inner weakness from the root</li>
-          <li><i class="fas fa-check-circle"></i> Naturally increases Testosterone levels</li>
-          <li><i class="fas fa-check-circle"></i> Improves Blood Flow in the veins</li>
-        </ul>
-        <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="btn btn-secondary">Order Yours Today</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ BENEFITS GRID (IMAGE 1) ═══════════════ -->
-  <div class="w-full py-20 px-4 bg-[#0a0f1a] text-white relative overflow-hidden">
-      <!-- Pattern Overlay -->
-      <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
-      
-      <div class="max-w-4xl mx-auto relative z-10">
-          <h2 class="text-4xl md:text-5xl font-black text-center mb-12 uppercase tracking-tighter">
-              <span class="dynamic-business-name">Hammer of Thor</span><br>
-              <span class="text-slate-400 text-2xl md:text-3xl">Capsules</span>
-          </h2>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <!-- Benefit 1 -->
-              <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 backdrop-blur-sm">
-                  <img src="https://images.unsplash.com/photo-1518611012118-296072bb5fe7?w=800&q=80" alt="Rock Hard" class="w-full h-48 object-cover rounded-2xl mb-6 shadow-xl border-2 border-slate-700">
-                  <h3 class="text-2xl font-black mb-3 italic"><span class="text-red-500">Rock Hard</span> and<br><span class="text-amber-500">Better Size</span></h3>
-                  <p class="text-slate-400 font-bold leading-relaxed">Improve size and strength by boosting blood circulation in the veins</p>
-              </div>
-              
-              <!-- Benefit 2 -->
-              <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 backdrop-blur-sm">
-                  <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80" alt="Last Over" class="w-full h-48 object-cover rounded-2xl mb-6 shadow-xl border-2 border-slate-700">
-                  <h3 class="text-2xl font-black mb-3 italic"><span class="text-red-500">Last Over</span> <span class="text-slate-100">1 HOUR</span><br><span class="text-slate-100">on Bed</span></h3>
-                  <p class="text-slate-400 font-bold leading-relaxed">Increase mental focus and control to end quick discharge</p>
-              </div>
-
-              <!-- Benefit 3 -->
-              <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 backdrop-blur-sm">
-                  <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?w=800&q=80" alt="Excitement" class="w-full h-48 object-cover rounded-2xl mb-6 shadow-xl border-2 border-slate-700">
-                  <h3 class="text-2xl font-black mb-3 italic"><span class="text-red-500">Excitement</span> and<br><span class="text-amber-500">Desire</span></h3>
-                  <p class="text-slate-400 font-bold leading-relaxed">Natural herbs increase your mood and passion instantly</p>
-              </div>
-
-              <!-- Benefit 4 -->
-              <div class="bg-slate-900/50 p-6 rounded-3xl border border-slate-800 backdrop-blur-sm">
-                  <img src="https://images.unsplash.com/photo-1517438476312-10d79c67750d?w=800&q=80" alt="Stamina" class="w-full h-48 object-cover rounded-2xl mb-6 shadow-xl border-2 border-slate-700">
-                  <h3 class="text-2xl font-black mb-3 italic"><span class="text-red-500">Stamina</span> and<br><span class="text-amber-500">Energy Boost</span></h3>
-                  <p class="text-slate-400 font-bold leading-relaxed">Nourish your body and boost Testosterone for extreme power</p>
-              </div>
-          </div>
-
-          <div class="mt-12 text-center">
-              <button onclick="toggleOrderModal(true)" class="bg-red-700 hover:bg-red-800 text-white px-10 py-4 rounded-xl text-xl font-black uppercase tracking-tight shadow-2xl transition-all">
-                  Order Now for only ₹<span class="dynamic-offer-price">1499</span>/-
-              </button>
-          </div>
-      </div>
-  </div>
-
-  <!-- ═══════════════ EXPERT OPINION (IMAGE 2) ═══════════════ -->
-  <div class="w-full py-20 px-4 bg-black text-white">
-      <div class="max-w-2xl mx-auto text-center">
-          <div class="inline-block bg-red-900/40 text-red-500 border border-red-900 px-6 py-2 rounded-full font-black text-sm mb-8 uppercase tracking-widest">
-              अभी ऑर्डर करें मात्र <span class="dynamic-offer-price">1499</span>/-
-          </div>
-          
-          <h2 class="text-3xl md:text-5xl font-black leading-tight mb-10 tracking-tight uppercase">
-              Take Care of Your<br>
-              <span class="text-amber-500 italic">PARTNER'S HAPPINESS</span>
-          </h2>
-
-          <div class="mb-12 relative p-4 bg-slate-900 rounded-[3rem] border border-slate-800">
-              <img src="https://images.unsplash.com/photo-1511108690759-001951916096?w=800&q=80" alt="Partner Happiness" class="w-full rounded-[2.5rem] border-2 border-dashed border-slate-700 p-2">
-          </div>
-
-          <div class="text-left bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-              <h3 class="text-2xl font-black mb-6 uppercase tracking-tighter">
-                  <span class="text-amber-500 italic">WHAT</span>
-                  <span class="text-red-600"> EXPERT THINKS</span>
-              </h3>
-              <p class="text-[1.1rem] text-slate-300 font-bold leading-relaxed space-y-4">
-                  According to several surveys, it has been found that the desire for intimacy in women is stronger than in men. Not only that, most women desire long-lasting performance. Men suffering from performance anxiety or timing issues fail to satisfy their partner. This can lead to stress, bitterness and infidelity in relationships.
-              </p>
-          </div>
-
-          <div class="mt-12">
-              <button onclick="toggleOrderModal(true)" class="bg-red-700 hover:bg-red-800 text-white px-12 py-5 rounded-3xl text-xl font-black uppercase tracking-tight shadow-2xl transition-all">
-                  अभी ऑर्डर करें मात्र <span class="dynamic-offer-price">1499</span>/-
-              </button>
-          </div>
-      </div>
-  </div>
-
-  <!-- Main Footer -->
-  <footer class="bg-slate-900 text-white py-16 px-6 border-t border-white/5">
-    <div class="max-w-7xl mx-auto text-center">
-      <img src="img/logo.png" alt="Logo" class="footer-logo mb-8 h-12 mx-auto brightness-0 invert opacity-60">
-      <div class="footer-links mb-10">
-        <a href="about.html">About Us</a>
-        <a href="benefits.html">Benefits</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms & Conditions</a>
-      </div>
-      <div class="trust-icons-footer mb-8 opacity-40 grayscale brightness-200 flex justify-center gap-8">
-         <img src="img/public_3.png" class="h-6" alt="Trust Icon 1">
-         <img src="img/public_4.png" class="h-6" alt="Trust Icon 2">
-         <img src="img/public_14.png" class="h-6" alt="Trust Icon 3">
-      </div>
-      <p class="text-slate-500 font-bold text-xs tracking-widest uppercase mb-4">&copy; 2026 <span class="dynamic-business-name">Pureveda</span> - All Rights Reserved</p>
-      <p class="text-[10px] text-slate-400 max-w-2xl mx-auto leading-relaxed uppercase font-bold opacity-50">
-        Disclaimer: These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease. Results may vary from person to person.
-      </p>
-    </div>
-  </footer>
-
-  <!-- Order Form Modal -->
-  <div id="order-modal" class="modal-overlay">
-      <div class="modal-content safe-container">
-          <div class="modal-close" onclick="toggleOrderModal(false)">
-              <i class="fas fa-times"></i>
-          </div>
-          <div class="px-6 py-10 sm:px-10">
-              <form id="order-info-form" class="space-y-4">
-                  <div class="space-y-3">
-                      <!-- Name -->
-                      <input type="text" name="NAME" placeholder="Your Full Name" required class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
-                      
-                      <!-- Phone -->
-                      <div class="flex gap-2">
-                          <input type="text" value="+91" disabled class="w-16 px-2 py-3 border border-slate-300 rounded bg-slate-100 text-center font-bold">
-                          <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}" class="flex-1 px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
-                      </div>
-
-                      <!-- Address -->
-                      <div class="address-wrapper">
-                          <button type="button" class="locate-btn" onclick="detectUserLocation(this)">
-                              <i class="fas fa-location-arrow"></i> Detect Location
-                          </button>
-                          <textarea name="ADDRESS" id="address-input" placeholder="Full Delivery Address" required rows="3" 
-                                    onfocus="if(!this.value) detectUserLocation(this.previousElementSibling)"
-                                    oninput="handleAddressInput(this)"
-                                    class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700 pr-32"></textarea>
-                          <div id="address-suggestions" class="location-suggestions"></div>
-                      </div>
-
-                      <!-- City & Pin -->
-                      <div class="grid grid-cols-2 gap-3">
-                          <input type="text" name="CITY" placeholder="City" required class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
-                          <input type="tel" name="PINCODE" placeholder="Pincode" required maxlength="6" class="w-full px-4 py-3 border border-slate-300 rounded focus:border-blue-500 outline-none font-medium text-slate-700">
-                      </div>
-                  </div>
-
-                  <button type="submit" id="submit-btn" class="w-full py-4 bg-slate-900 text-white rounded font-bold text-lg hover:bg-slate-800 transition-colors uppercase tracking-widest">
-                      Submit Order
-                  </button>
-              </form>
-          </div>
-      </div>
-  </div>
-
-  <!-- Sticky Mobile Bottom CTA -->
-  <div class="sticky-cta px-4 py-3" id="mobile-sticky-cta">
-    <div class="flex items-center gap-4 w-full">
-      <div class="flex-1 text-left">
-        <p class="text-[10px] font-black text-emerald-700 uppercase tracking-widest leading-none mb-1">Special Offer Price</p>
-        <p class="text-xl font-black text-slate-900 leading-none">₹<span class="dynamic-offer-price">1499</span></p>
-      </div>
-      <button onclick="toggleOrderModal(true)" class="bg-red-700 active:bg-red-800 text-white px-6 py-3.5 rounded-full font-black text-[10px] uppercase tracking-widest shadow-xl">
-        Order Now
-      </button>
-    </div>
-  </div>
-
-  <!-- Floating FAB for Desktop/Mobile -->
-  <div class="floating-fab">
-    <a href="javascript:void(0)" onclick="toggleOrderModal(true)" class="fab-btn">
-      <i class="fas fa-shopping-cart"></i>
-    </a>
-    <a href="javascript:void(0)" target="_blank" class="whatsapp-float-new" data-wa-link style="display: none;">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
-
-  <!-- Scripts -->
-  <script type="module">
-    import { db } from "./js/dynamic-config.js";
-    import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-    // Modal Operations
-    window.toggleOrderModal = (show) => {
-      const modal = document.getElementById('order-modal');
-      if (show) modal.classList.add('active');
-      else modal.classList.remove('active');
-    };
-
-    // Close on overlay click
-    document.getElementById('order-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'order-modal') toggleOrderModal(false);
-    });
-
-    // Lead Submission
-    async function handleLeadSubmission(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      const originalText = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-
-      const formData = new FormData(e.target);
-      const payload = {
-        name: formData.get('NAME'),
-        phone: formData.get('PHONENO'),
-        location: formData.get('ADDRESS'),
-        city: formData.get('CITY'),
-        pincode: formData.get('PINCODE'),
-        source: 'index_page',
-        browser: navigator.userAgent,
-        platform: navigator.platform,
-        screen_resolution: window.screen.width + "x" + window.screen.height,
-        referrer: document.referrer,
-        createdAt: serverTimestamp(),
-        status: 'new'
-      };
-
-      try {
-        await addDoc(collection(db, "leads"), payload);
-        window.location.href = "thank.html";
-      } catch (error) {
-        console.error("Error adding lead: ", error);
-        alert("Failed to place order. Please check your connection.");
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-      }
-    }
-
-    document.getElementById('order-info-form').addEventListener('submit', handleLeadSubmission);
-
-    // Scroll Listener
-    window.addEventListener('scroll', () => {
-      const sticky = document.getElementById('mobile-sticky-cta');
-      if (sticky) {
-        if (window.scrollY > 400) sticky.classList.add('visible');
-        else sticky.classList.remove('visible');
-      }
-    });
-
-    // ═══════════════ LOCATION SYSTEM ═══════════════
-    window.detectUserLocation = function(btn) {
-        if (!navigator.geolocation) {
-            alert("Geolocation is not supported by your browser.");
-            return;
+            try {
+                await addDoc(collection(db, "leads"), payload);
+                window.location.href = "thank.html";
+            } catch (error) {
+                console.error(error);
+                alert("Error placing order. Please try again.");
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
         }
 
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Detecting...';
-        btn.disabled = true;
+        document.getElementById('order-info-form').addEventListener('submit', handleSubmit);
+        document.getElementById('modal-order-form').addEventListener('submit', handleSubmit);
 
-        navigator.geolocation.getCurrentPosition(async (pos) => {
-            try {
-                const { latitude, longitude } = pos.coords;
-                // Reverse Geocoding using Nominatim (OpenStreetMap)
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`, {
-                    headers: { 'User-Agent': 'PurevedaWebsiteBot/1.0' }
-                });
-                const data = await res.json();
-                
-                if (data && data.display_name) {
-                    const input = document.getElementById('address-input');
-                    input.value = data.display_name;
+        // Sticky CTA Scroll
+        window.addEventListener('scroll', () => {
+            const sticky = document.getElementById('mobile-sticky-cta');
+            if (window.scrollY > 500) sticky.classList.add('visible');
+            else sticky.classList.remove('visible');
+        });
+
+        // ═══════════════ LOCATION SYSTEM ═══════════════
+        window.triggerAutoLocation = function(input) {
+            const form = input.closest('form');
+            const addressField = form.querySelector('[name="ADDRESS"]');
+            const locateBtn = form.querySelector('.locate-btn');
+            
+            if (addressField && !addressField.value && locateBtn && !locateBtn.disabled) {
+                if (!form.dataset.locationAttempted) {
+                    form.dataset.locationAttempted = "true";
+                    detectUserLocation(locateBtn);
+                }
+            }
+        };
+
+        window.detectUserLocation = function(btn) {
+            const form = btn.closest('form');
+            const addrInput = form.querySelector('[name="ADDRESS"]');
+            const pinInput = form.querySelector('[name="PINCODE"]');
+            const cityInput = form.querySelector('[name="CITY"]');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Detecting...';
+            btn.disabled = true;
+
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                try {
+                    const { latitude, longitude } = pos.coords;
+                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`);
+                    const data = await res.json();
                     
-                    // Try to find pincode/city
-                    const pincode = data.address.postcode || '';
-                    const city = data.address.city || data.address.town || data.address.village || '';
-                    
-                    if (pincode) document.getElementsByName('PINCODE')[0].value = pincode;
-                    if (city) document.getElementsByName('CITY')[0].value = city;
-                    
-                    btn.innerHTML = '<i class="fas fa-check"></i> Found!';
+                    if (data && data.display_name) {
+                        addrInput.value = data.display_name;
+                        addrInput.classList.add('bg-emerald-50');
+                        setTimeout(() => addrInput.classList.remove('bg-emerald-50'), 1500);
+
+                        let pincode = data.address.postcode || '';
+                        if (!pincode) {
+                            const match = data.display_name.match(/\b\d{5,6}\b/);
+                            if (match) pincode = match[0];
+                        }
+
+                        const city = data.address.city || data.address.town || data.address.village || data.address.state_district || '';
+
+                        if (pincode && pinInput) {
+                            pinInput.value = pincode;
+                            pinInput.classList.add('bg-emerald-50');
+                        }
+                        if (city && cityInput) {
+                            cityInput.value = city;
+                            cityInput.classList.add('bg-emerald-50');
+                        }
+                        
+                        btn.innerHTML = '<i class="fas fa-check"></i> Found';
+                        setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    btn.innerHTML = '<i class="fas fa-times"></i> Error';
                     setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
-                } else {
-                    throw new Error("Location not found");
                 }
-            } catch (err) {
-                console.error(err);
-                btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed';
+            }, () => {
+                btn.innerHTML = '<i class="fas fa-times"></i> Denied';
                 setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
+            }, { enableHighAccuracy: true });
+        };
+
+        let debounce;
+        window.handleAddressInput = function(input) {
+            const form = input.closest('form');
+            const suggs = form.querySelector('.location-suggestions');
+            const pinField = form.querySelector('[name="PINCODE"]');
+            const cityField = form.querySelector('[name="CITY"]');
+            const query = input.value.trim();
+
+            if (query.length < 3) {
+                suggs.style.display = 'none';
+                return;
             }
-        }, (err) => {
-            console.error(err);
-            btn.innerHTML = '<i class="fas fa-times"></i> Denied';
-            setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
-        }, { enableHighAccuracy: true });
-    };
 
-    let debounceTimer;
-    window.handleAddressInput = function(input) {
-        const query = input.value.trim();
-        const suggestionsEl = document.getElementById('address-suggestions');
+            clearTimeout(debounce);
+            debounce = setTimeout(async () => {
+                try {
+                    const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`);
+                    const data = await res.json();
+                    
+                    if (data.features && data.features.length > 0) {
+                        suggs.innerHTML = '';
+                        data.features.forEach(f => {
+                            const p = f.properties;
+                            const label = [p.name, p.street, p.district, p.city, p.state, p.country].filter(Boolean).join(', ');
+                            const div = document.createElement('div');
+                            div.className = 'suggestion-item';
+                            div.innerHTML = `<i class="fas fa-map-marker-alt opacity-40"></i> ${label}`;
+                            div.onclick = () => {
+                                input.value = label;
+                                suggs.style.display = 'none';
+                                if (p.postcode && pinField) pinField.value = p.postcode;
+                                if (p.city && cityField) cityField.value = p.city;
+                            };
+                            suggs.appendChild(div);
+                        });
+                        suggs.style.display = 'block';
+                    }
+                } catch (e) {}
+            }, 300);
+        };
 
-        if (query.length < 3) {
-            suggestionsEl.style.display = 'none';
-            return;
-        }
-
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(async () => {
-            try {
-                // Using Photon API (OpenStreetMap based autocomplete)
-                const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`);
-                const data = await res.json();
-                
-                if (data.features && data.features.length > 0) {
-                    suggestionsEl.innerHTML = '';
-                    data.features.forEach(feat => {
-                        const props = feat.properties;
-                        const label = [
-                            props.name, 
-                            props.street, 
-                            props.district, 
-                            props.city, 
-                            props.state, 
-                            props.country
-                        ].filter(Boolean).join(', ');
-
-                        const div = document.createElement('div');
-                        div.className = 'suggestion-item';
-                        div.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${label}`;
-                        div.onclick = () => {
-                            input.value = label;
-                            suggestionsEl.style.display = 'none';
-                            
-                            if (props.postcode) document.getElementsByName('PINCODE')[0].value = props.postcode;
-                            if (props.city) document.getElementsByName('CITY')[0].value = props.city;
-                        };
-                        suggestionsEl.appendChild(div);
-                    });
-                    suggestionsEl.style.display = 'block';
-                } else {
-                    suggestionsEl.style.display = 'none';
-                }
-            } catch (e) {
-                console.error("Autocomplete error:", e);
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.address-wrapper')) {
+                document.querySelectorAll('.location-suggestions').forEach(el => el.style.display = 'none');
             }
-        }, 300);
-    };
-
-    // Close suggestions when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.address-wrapper')) {
-            const el = document.getElementById('address-suggestions');
-            if (el) el.style.display = 'none';
-        }
-    });
-  </script>
+        });
+    </script>
 </body>
 </html>

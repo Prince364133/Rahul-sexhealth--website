@@ -643,6 +643,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Location</th>
+                                <th>Package</th>
                                 <th>Source</th>
                                 <th>Campaign</th>
                                 <th>Status</th>
@@ -650,7 +651,7 @@
                             </tr>
                         </thead>
                         <tbody id="leads-body">
-                            <tr><td colspan="8" style="text-align:center; padding: 40px; color: var(--muted);">Loading leads...</td></tr>
+                            <tr><td colspan="9" style="text-align:center; padding: 40px; color: var(--muted);">Loading leads...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -1189,18 +1190,25 @@
 
     async function fetchLeads() {
         const tbody = document.getElementById('leads-body');
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 40px; color: var(--muted);">Loading leads from Firestore...</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding: 40px; color: var(--muted);">Loading leads from Firestore...</td></tr>';
 
         const status = document.getElementById('filter-status').value;
         const search = document.getElementById('search-input').value.toLowerCase();
         const timeframe = document.getElementById('filter-date').value;
 
         try {
-            const querySnapshot = await getDocs(query(collection(db, "leads"), orderBy("date", "desc")));
+            const querySnapshot = await getDocs(collection(db, "leads"));
             let leads = [];
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
                 leads.push({ _id: doc.id, ...data });
+            });
+
+            // Robust sorting: Handle both 'date' (ISO) and 'createdAt' (Firestore Timestamp)
+            leads.sort((a, b) => {
+                const dateA = a.date ? new Date(a.date).getTime() : (a.createdAt ? a.createdAt.seconds * 1000 : 0);
+                const dateB = b.date ? new Date(b.date).getTime() : (b.createdAt ? b.createdAt.seconds * 1000 : 0);
+                return dateB - dateA;
             });
 
             if (status !== 'all') leads = leads.filter(l => l.status === status);
@@ -1258,7 +1266,7 @@
             } else if (e.message.includes('index')) {
                 errMsg = 'Missing Firestore Index: Check browser console for the creation link.';
             }
-            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 40px; color: var(--danger); font-weight: 600;">${errMsg}</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 40px; color: var(--danger); font-weight: 600;">${errMsg}</td></tr>`;
         }
     }
     window.fetchLeads = fetchLeads;
@@ -1266,7 +1274,7 @@
     function renderTable(leads, pag) {
         const tbody = document.getElementById('leads-body');
         if (!leads.length) {
-            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--muted)">No leads found for these filters.</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--muted)">No leads found for these filters.</td></tr>`;
             document.getElementById('pag-info').textContent = 'No results';
             return;
         }
@@ -1286,6 +1294,7 @@
                     </div>
                 </td>
                 <td>${lead.location || ''}<br><small style="color:var(--muted)">${lead.pincode || ''}</small></td>
+                <td><span style="font-size:0.75rem; font-weight:700; color:var(--primary)">${lead.package || '—'}</span></td>
                 <td><span class="status-badge" style="background:#eee;color:#555">${lead.page_source || 'offer'}</span></td>
                 <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${lead.utm_campaign || '—'}</td>
                 <td>
@@ -1635,6 +1644,7 @@
                 'Phone': l.phone || '—',
                 'Location': l.location || '—',
                 'Pincode': l.pincode || '—',
+                'Package': l.package || '—',
                 'Source': l.utm_source || 'direct',
                 'Campaign': l.utm_campaign || '—',
                 'Status': (l.status || 'new').toUpperCase(),
