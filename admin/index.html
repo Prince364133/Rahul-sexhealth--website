@@ -1030,9 +1030,14 @@
             initDashboard();
             
             // Still try to sign in via Firebase Auth in background for proper DB access
-            signInWithEmailAndPassword(auth, email, password).catch(err => {
-                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
-                    createUserWithEmailAndPassword(auth, email, password).catch(se => console.warn("Background setup failed:", se));
+            signInWithEmailAndPassword(auth, email, password).then(() => {
+                console.log("Background Auth Success");
+            }).catch(err => {
+                console.warn("Background Auth Failed, attempting auto-signup:", err.code);
+                if (err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential' || err.code === 'auth/configuration-not-found') {
+                    createUserWithEmailAndPassword(auth, email, password)
+                        .then(() => console.log("Background Signup Success"))
+                        .catch(se => console.error("Background setup completely failed:", se));
                 }
             });
             return;
@@ -1334,33 +1339,55 @@
             const docSnap = await getDoc(doc(db, "app_settings", "general"));
             if (docSnap.exists()) {
                 const s = docSnap.data();
-                document.getElementById('s-whatsapp').value = s.whatsapp_number || '';
-                document.getElementById('s-business-name').value = s.business_name || '';
-                document.getElementById('s-offer-price').value = s.offer_price || '';
-                document.getElementById('s-original-price').value = s.original_price || '';
-                document.getElementById('s-hero-image').value = s.hero_image_url || '';
-                if (s.updated_at) document.getElementById('settings-updated').textContent = 'Last saved: ' + new Date(s.updated_at).toLocaleString();
+                if (document.getElementById('s-whatsapp')) document.getElementById('s-whatsapp').value = s.whatsapp_number || '';
+                if (document.getElementById('s-business-name')) document.getElementById('s-business-name').value = s.business_name || '';
+                if (document.getElementById('s-offer-price')) document.getElementById('s-offer-price').value = parseInt(s.offer_price) || 0;
+                if (document.getElementById('s-original-price')) document.getElementById('s-original-price').value = parseInt(s.original_price) || 0;
+                if (document.getElementById('s-hero-image')) document.getElementById('s-hero-image').value = s.hero_image_url || '';
+                if (s.updated_at && document.getElementById('settings-updated')) {
+                    document.getElementById('settings-updated').textContent = 'Last saved: ' + new Date(s.updated_at).toLocaleString();
+                }
             }
-        } catch(e) {}
+        } catch(e) {
+            console.error('Load settings failed:', e);
+        }
     }
 
     window.saveSettings = async function() {
         const msgEl = document.getElementById('settings-msg');
+        // Get values and validate
+        const whatsapp = document.getElementById('s-whatsapp').value;
+        const businessName = document.getElementById('s-business-name').value;
+        const offerPrice = document.getElementById('s-offer-price').value;
+        const originalPrice = document.getElementById('s-original-price').value;
+        const heroUrl = document.getElementById('s-hero-image').value;
+
         const payload = {
-            whatsapp_number: document.getElementById('s-whatsapp').value,
-            business_name:   document.getElementById('s-business-name').value,
-            offer_price:     document.getElementById('s-offer-price').value,
-            original_price:  document.getElementById('s-original-price').value,
-            hero_image_url:  document.getElementById('s-hero-image').value,
+            whatsapp_number: whatsapp,
+            business_name:   businessName,
+            offer_price:     offerPrice,
+            original_price:  originalPrice,
+            hero_image_url:  heroUrl,
             updated_at: new Date().toISOString()
         };
-        msgEl.textContent = 'Saving...';
+
+        msgEl.textContent = '⏱️ Saving...';
+        msgEl.className = 'status-saving';
+
         try {
-            await setDoc(doc(db, "app_settings", "general"), payload);
-            msgEl.textContent = '✅ Saved';
+            // Use setDoc with merge to prevent data loss if other fields exist
+            await setDoc(doc(db, "app_settings", "general"), payload, { merge: true });
+            msgEl.textContent = '✅ Saved Successfully';
             msgEl.className = 'success';
             loadSettings();
-        } catch(e) { msgEl.textContent = '❌ Error'; }
+            
+            // Show auto-disappearing success message
+            setTimeout(() => { msgEl.textContent = ''; }, 3000);
+        } catch(e) { 
+            console.error('Save settings error:', e);
+            msgEl.textContent = '❌ Error: ' + (e.message || 'Permission Denied');
+            msgEl.className = 'error';
+        }
     }
 
     window.fetchPixels = async function() {
