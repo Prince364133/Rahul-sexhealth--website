@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#991b1b">
   
-  <title>Inquiry Received — Shakti Power Up</title>
+  <title>Inquiry Received — Hammer of Thor</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -46,8 +46,8 @@
 
   <header class="bg-white border-b border-slate-100 py-6">
     <div class="max-w-7xl mx-auto px-4 flex justify-center items-center gap-3">
-      <img src="img/logo.png" alt="Shakti Power Up" class="h-10 object-contain invert brightness-0 grayscale opacity-20">
-      <span class="text-2xl font-black text-slate-900 tracking-tighter uppercase italic dynamic-business-name">Shakti <span class="text-red-700">Power Up</span></span>
+      <img src="img/logo.png" alt="Hammer of Thor" class="h-10 object-contain invert brightness-0 grayscale opacity-20">
+      <span class="text-2xl font-black text-slate-900 tracking-tighter uppercase italic dynamic-business-name">Hammer of <span class="text-red-700">Thor</span></span>
     </div>
   </header>
 
@@ -73,7 +73,7 @@
              <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-200/50">
                <div>
                  <h4 class="text-[10px] font-black text-red-700 uppercase tracking-widest leading-none mb-1">Package Selected</h4>
-                 <p class="text-lg font-black text-slate-800" id="thx-pack">Shakti Power Up Pack</p>
+                 <p class="text-lg font-black text-slate-800" id="thx-pack">Hammer of Thor Pack</p>
                </div>
                <div class="text-right">
                  <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Total Cost</h4>
@@ -144,24 +144,10 @@
   </main>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { db } from "./js/dynamic-config.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAY_TN3to4yAqk7IJNqVSKFS-fSuynXwOw",
-      authDomain: "teste-erhij8.firebaseapp.com",
-      projectId: "teste-erhij8",
-      storageBucket: "teste-erhij8.firebasestorage.app",
-      messagingSenderId: "744778225564",
-      appId: "1:744778225564:web:f5d6b73e501495b3dfda59",
-      measurementId: "G-JRQJXP4531"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // 1. Data Retrieval
-    let selectedPack = { name: "Shakti Power Up Pack", price: "1499" };
+    // Data Retrieval from LocalStorage (initial state)
+    let selectedPack = { name: "Hammer of Thor Pack", price: "1499" };
     try {
       const stored = localStorage.getItem('hf_selected_pack');
       if (stored) { 
@@ -172,66 +158,13 @@
     document.getElementById('thx-pack').textContent = selectedPack.name;
     document.getElementById('thx-price').textContent = selectedPack.price;
 
-    // 2. Load Config & Pixels
-    async function init() {
-      try {
-        const docSnap = await getDoc(doc(db, "app_settings", "general"));
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          
-          // ALWAYS Sync price from Admin Panel explicitly
-          if (data.offer_price) {
-             document.getElementById('thx-price').textContent = data.offer_price;
-          }
-
-          if (data.whatsapp_number) {
-            const cleanWA = data.whatsapp_number.replace(/\D/g, '');
-            document.querySelectorAll('[data-wa-link]').forEach(el => {
-              el.href = `https://wa.me/${cleanWA}?text=${encodeURIComponent(`नमस्ते, मैंने ${data.business_name || 'Shakti Power Up'} - ${selectedPack.name} का ऑर्डर दिया है। कृपया मेरा ऑर्डर कन्फर्म करें।`)}`;
-              el.style.display = 'flex';
-            });
-          } else {
-            document.querySelectorAll('[data-wa-link]').forEach(el => {
-              el.style.display = 'none';
-            });
-          }
-           if (data.business_name) {
-            document.querySelectorAll('.dynamic-business-name').forEach(el => {
-              el.textContent = data.business_name;
-            });
-          }
-        }
-      } catch(e) { console.error('Config load error:', e); }
-
-      try {
-        const querySnapshot = await getDocs(collection(db, "pixels"));
-        querySnapshot.forEach((doc) => {
-          const p = doc.data();
-          if (p.pixelCode) {
-              const div = document.createElement('div');
-              div.innerHTML = p.pixelCode;
-              Array.from(div.querySelectorAll('script')).forEach(oldScript => {
-                const newScript = document.createElement('script');
-                Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-                newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-                document.head.appendChild(newScript);
-              });
-              Array.from(div.childNodes).forEach(node => {
-                if (node.nodeName !== 'SCRIPT') document.head.appendChild(node.cloneNode(true));
-              });
-          }
-        });
-        
-        // Tracking
-        setTimeout(() => {
-          if (typeof fbq === 'function') {
-            fbq('track', 'Purchase', { currency: "INR", value: parseInt(selectedPack.price) });
-          }
-        }, 2000);
-      } catch(e) { console.error('Pixels load error:', e); }
-    }
-
-    init();
+    // Tracking
+    setTimeout(() => {
+      if (typeof fbq === 'function') {
+        const price = document.getElementById('thx-price').textContent || selectedPack.price;
+        fbq('track', 'Purchase', { currency: "INR", value: parseInt(price) });
+      }
+    }, 2000);
 
     // Success Animation with Red/Gold theme
     const script = document.createElement('script');

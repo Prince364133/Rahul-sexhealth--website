@@ -48,7 +48,7 @@ async function seed() {
     // 2. Seed Admin User
     const adminUser = {
       email: "admin@pureveda.com",
-      password: "364133", // Will be hashed by pre-save hook
+      password: "Prince364133", // Will be hashed by pre-save hook
       role: "admin"
     };
 
@@ -92,7 +92,7 @@ async function seed() {
 ╠══════════════════════════════════════════════╣
 ║ Admin Login Details:                         ║
 ║ Email: admin@pureveda.com                    ║
-║ Pass:  364133                                ║
+║ Pass:  Prince364133                         ║
 ║                                              ║
 ║ Admin Dashboard URL:                         ║
 ║ /admin/index.html                            ║
