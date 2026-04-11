@@ -1146,7 +1146,12 @@
                 Object.entries(statusBreakdown).map(([id, count]) => ({ _id: id, count })),
                 Object.entries(campaignBreakdown).map(([id, count]) => ({ _id: id, count }))
             );
-        } catch(e) { console.error('Stats error:', e); }
+        } catch(e) { 
+            console.error('Stats error:', e); 
+            if (e.message.includes('permission-denied')) {
+                alert("Permission Denied: Please check Firestore Security Rules.");
+            }
+        }
     }
     window.fetchStats = fetchStats;
 
@@ -1245,7 +1250,16 @@
                 totalPages: Math.ceil(leads.length / limitVal), 
                 total: leads.length 
             });
-        } catch(e) { console.error('Leads fetch failed:', e); }
+        } catch(e) { 
+            console.error('Leads fetch failed:', e);
+            let errMsg = 'Failed to load leads.';
+            if (e.message.includes('permission-denied')) {
+                errMsg = 'Permission Denied: Check Firestore rules.';
+            } else if (e.message.includes('index')) {
+                errMsg = 'Missing Firestore Index: Check browser console for the creation link.';
+            }
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding: 40px; color: var(--danger); font-weight: 600;">${errMsg}</td></tr>`;
+        }
     }
     window.fetchLeads = fetchLeads;
 
@@ -1330,8 +1344,100 @@
         } catch(e) { console.error('Save notes failed:', e); }
     }
 
-    window.openImportModal = () => toggleModal('import-modal', true);
+    window.openImportModal = () => {
+        document.getElementById('import-file').value = '';
+        document.getElementById('import-result').classList.add('hidden');
+        document.getElementById('btn-do-import').disabled = true;
+        toggleModal('import-modal', true);
+    };
     window.toggleModal = (id, show) => document.getElementById(id).classList.toggle('hidden', !show);
+
+    let importData = [];
+    window.handleFileSelect = function(input) {
+        const file = input.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheet];
+            const json = XLSX.utils.sheet_to_json(worksheet);
+
+            const resultEl = document.getElementById('import-result');
+            if (json.length === 0) {
+                resultEl.textContent = "Error: File is empty";
+                resultEl.className = "import-status error";
+                resultEl.classList.remove('hidden');
+                return;
+            }
+
+            // Simple validation
+            const sample = json[0];
+            const missing = ['Name', 'Phone', 'Location', 'Pincode'].filter(f => !sample.hasOwnProperty(f));
+            
+            if (missing.length > 0) {
+                resultEl.textContent = "Missing columns: " + missing.join(', ');
+                resultEl.className = "import-status error";
+                resultEl.classList.remove('hidden');
+                document.getElementById('btn-do-import').disabled = true;
+            } else {
+                importData = json;
+                resultEl.textContent = `Ready to import ${json.length} leads.`;
+                resultEl.className = "import-status success";
+                resultEl.classList.remove('hidden');
+                document.getElementById('btn-do-import').disabled = false;
+            }
+        };
+        reader.readAsArrayBuffer(file);
+    };
+
+    window.doImport = async function() {
+        const btn = document.getElementById('btn-do-import');
+        const resultEl = document.getElementById('import-result');
+        const oldText = btn.innerHTML;
+        
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Importing...';
+
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (const lead of importData) {
+            try {
+                // Map fields to Firestore format
+                const payload = {
+                    name: lead.Name || 'Unknown',
+                    phone: String(lead.Phone || '').replace(/\D/g, ''),
+                    location: lead.Location || lead.Address || '',
+                    pincode: lead.Pincode || '',
+                    status: 'new',
+                    date: new Date().toISOString(),
+                    page_source: 'import',
+                    utm_campaign: lead.Campaign || 'bulk-import',
+                    notes: lead.Notes || 'Imported via bulk upload'
+                };
+                
+                await setDoc(doc(collection(db, "leads")), payload);
+                successCount++;
+                resultEl.textContent = `Importing: ${successCount} / ${importData.length}...`;
+            } catch (e) {
+                console.error("Import row failed:", e);
+                errorCount++;
+            }
+        }
+
+        resultEl.textContent = `Import Finished: ${successCount} Success, ${errorCount} Failed.`;
+        resultEl.className = "import-status success";
+        btn.innerHTML = 'Done';
+        
+        // Refresh tables
+        fetchLeads();
+        fetchStats();
+        
+        setTimeout(() => toggleModal('import-modal', false), 2000);
+    };
 
     // ===== SETTINGS & PIXELS =====
     window.loadSettings = async function() {
