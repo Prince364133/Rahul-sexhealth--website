@@ -26,6 +26,56 @@
             color: #1e293b;
         }
 
+        /* Luxury Page Loader */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+        }
+        
+        #page-loader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            position: relative;
+            animation: loader-pulse 2s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #ef4444;
+            border-radius: 50%;
+            animation: loader-spin 1s linear infinite;
+        }
+
+        @keyframes loader-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes loader-spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Modal & UI System (Synced with index.html) */
         .modal-overlay {
             position: fixed;
@@ -358,6 +408,16 @@
     </style>
 </head>
 <body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full object-contain dynamic-hero-image">
+            </div>
+            <div class="text-white font-black italic uppercase tracking-widest text-xl mb-4 dynamic-business-name">Loading...</div>
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
     <!-- High-Impact Top Banner -->
     <!-- High-Impact Top Banner (Updated to Teal) -->
     <div class="bg-[#005c69] text-white py-3 px-4 text-center text-xs md:text-lg font-black uppercase tracking-tight sticky top-0 z-[2000] shadow-lg flex items-center justify-center gap-2">
@@ -392,7 +452,7 @@
                     <div class="swiper-wrapper">
                         <!-- Dynamic Image Slide -->
                         <div class="swiper-slide">
-                            <img src="img/hammer_of_thor_hero_ritual.png" alt="Pureveda" class="w-full h-full object-cover dynamic-hero-image">
+                            <img src="img/hammer_of_thor_hero_ritual.png" fetchpriority="high" alt="Pureveda" class="w-full h-full object-cover dynamic-hero-image">
                         </div>
                         <!-- Graph Slide (Requested) -->
                         <div class="swiper-slide">
@@ -624,7 +684,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="relative group">
-                    <img src="img/ayurvedic_herbs_premium.png" alt="Hammer of Thor Formula" class="rounded-[3rem] drop-shadow-3xl transform transition group-hover:scale-105 duration-700">
+                    <img src="img/ayurvedic_herbs_premium.png" alt="Hammer of Thor Formula" class="rounded-[3rem] drop-shadow-3xl transform transition group-hover:scale-105 duration-700 dynamic-hero-image">
                     <div class="absolute -bottom-10 -right-10 bg-white p-6 rounded-[2rem] shadow-2xl border-4 border-red-50 hidden md:block">
                         <img src="img/ingredients.png" class="w-48 rounded-xl shadow-lg border-2 border-slate-100">
                     </div>
@@ -709,7 +769,7 @@
 
     <!-- ═══════════════ EXPERT SECTION ═══════════════ -->
     <div id="expert" class="w-full bg-slate-950 py-24 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-center bg-no-repeat pointer-events-none" style="background-image: url('img/ayurvedic_herbs_premium.png'); background-size: contain;"></div>
+        <div class="absolute inset-0 opacity-10 bg-center bg-no-repeat pointer-events-none dynamic-hero-image" style="background-image: url('img/ayurvedic_herbs_premium.png'); background-size: contain;"></div>
         <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-red-900/20 to-transparent"></div>
         
         <div class="max-w-6xl mx-auto relative z-10">
@@ -1473,6 +1533,52 @@
                 document.querySelectorAll('.location-suggestions').forEach(el => el.style.display = 'none');
             }
         });
+    </script>
+    <script>
+        (function() {
+            let dataReady = false;
+            let imagesReady = false;
+            let checkInterval;
+
+            function checkReady() {
+                if (dataReady && imagesReady) {
+                    clearInterval(checkInterval);
+                    const loader = document.getElementById('page-loader');
+                    if (loader) {
+                        loader.classList.add('loaded');
+                        document.body.style.overflow = ''; // Re-enable scroll
+                    }
+                }
+            }
+
+            // Wait for dynamic data from dynamic-config.js
+            document.addEventListener('dynamicDataReady', () => {
+                dataReady = true;
+                checkReady();
+            });
+
+            // Wait for critical images
+            window.addEventListener('load', () => {
+                imagesReady = true;
+                checkReady();
+            });
+
+            // Initial state
+            document.body.style.overflow = 'hidden';
+            
+            // Safety timeout (4 seconds)
+            setTimeout(() => {
+                if (!dataReady || !imagesReady) {
+                    console.log('Loading timeout - showing page anyway');
+                    dataReady = true;
+                    imagesReady = true;
+                    checkReady();
+                }
+            }, 4000);
+
+            // Double check periodically
+            checkInterval = setInterval(checkReady, 500);
+        })();
     </script>
 </body>
 </html>

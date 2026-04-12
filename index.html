@@ -21,6 +21,56 @@
 
         body { font-family: 'Inter', sans-serif; }
 
+        /* Luxury Page Loader */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+        }
+        
+        #page-loader.loaded {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loader-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2rem;
+            position: relative;
+            animation: loader-pulse 2s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #ef4444;
+            border-radius: 50%;
+            animation: loader-spin 1s linear infinite;
+        }
+
+        @keyframes loader-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes loader-spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Modal System */
         .modal-overlay {
             position: fixed;
@@ -150,6 +200,16 @@
     </style>
 </head>
 <body class="bg-slate-50">
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full object-contain dynamic-hero-image">
+            </div>
+            <div class="text-white font-black italic uppercase tracking-widest text-xl mb-4 dynamic-business-name">Loading...</div>
+            <div class="loader-spinner"></div>
+        </div>
+    </div>
 
     <!-- Top Announcement -->
     <div class="bg-red-800 text-white py-2 px-4 text-center text-[10px] sm:text-xs font-black uppercase tracking-widest sticky top-0 z-[1000]">
@@ -161,7 +221,7 @@
         <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden mb-8">
             <div class="grid md:grid-cols-2">
                 <div class="relative h-72 md:h-auto overflow-hidden">
-                    <img src="img/hammer_of_thor_hero_ritual.png" alt="Pureveda Premium Pack" class="w-full h-full object-cover dynamic-hero-image">
+                    <img src="img/hammer_of_thor_hero_ritual.png" fetchpriority="high" alt="Pureveda Premium Pack" class="w-full h-full object-cover dynamic-hero-image">
                     <div class="absolute top-4 left-4 z-10">
                         <span class="bg-red-700 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">New Formula</span>
                     </div>
@@ -642,6 +702,51 @@
                 document.querySelectorAll('.location-suggestions').forEach(el => el.style.display = 'none');
             }
         });
+    </script>
+    <script>
+        (function() {
+            let dataReady = false;
+            let imagesReady = false;
+            let checkInterval;
+
+            function checkReady() {
+                if (dataReady && imagesReady) {
+                    clearInterval(checkInterval);
+                    const loader = document.getElementById('page-loader');
+                    if (loader) {
+                        loader.classList.add('loaded');
+                        document.body.style.overflow = ''; // Re-enable scroll
+                    }
+                }
+            }
+
+            // Wait for dynamic data from dynamic-config.js
+            document.addEventListener('dynamicDataReady', () => {
+                dataReady = true;
+                checkReady();
+            });
+
+            // Wait for critical images
+            window.addEventListener('load', () => {
+                imagesReady = true;
+                checkReady();
+            });
+
+            // Initial state
+            document.body.style.overflow = 'hidden';
+            
+            // Safety timeout (4 seconds)
+            setTimeout(() => {
+                if (!dataReady || !imagesReady) {
+                    dataReady = true;
+                    imagesReady = true;
+                    checkReady();
+                }
+            }, 4000);
+
+            // Double check periodically
+            checkInterval = setInterval(checkReady, 500);
+        })();
     </script>
 </body>
 </html>

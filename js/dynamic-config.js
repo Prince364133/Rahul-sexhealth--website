@@ -27,7 +27,11 @@ function updateDynamicElements(data) {
   // Update hero image if URL is provided
   if (heroImageUrl) {
     document.querySelectorAll('.dynamic-hero-image').forEach(el => {
-      el.src = heroImageUrl;
+      if (el.tagName === 'IMG') {
+        el.src = heroImageUrl;
+      } else {
+        el.style.backgroundImage = `url('${heroImageUrl}')`;
+      }
     });
   }
 
@@ -97,11 +101,18 @@ async function injectPixels() {
 }
 
 // Start real-time sync
+let firstDataReceived = false;
+
 onSnapshot(doc(db, "app_settings", "general"), (docSnap) => {
   if (docSnap.exists()) {
     updateDynamicElements(docSnap.data());
   } else {
     updateDynamicElements({});
+  }
+  
+  if (!firstDataReceived) {
+    firstDataReceived = true;
+    document.dispatchEvent(new CustomEvent('dynamicDataReady'));
   }
 });
 
