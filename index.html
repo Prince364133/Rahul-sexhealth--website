@@ -21,55 +21,6 @@
 
         body { font-family: 'Inter', sans-serif; }
 
-        /* Luxury Page Loader */
-        #page-loader {
-            position: fixed;
-            inset: 0;
-            background: #0f172a;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
-        }
-        
-        #page-loader.loaded {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .loader-logo {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 2rem;
-            position: relative;
-            animation: loader-pulse 2s infinite ease-in-out;
-        }
-
-        .loader-spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top-color: #ef4444;
-            border-radius: 50%;
-            animation: loader-spin 1s linear infinite;
-        }
-
-        @keyframes loader-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        @keyframes loader-spin {
-            to { transform: rotate(360deg); }
-        }
 
         /* Modal System */
         .modal-overlay {
@@ -200,16 +151,6 @@
     </style>
 </head>
 <body class="bg-slate-50">
-    <!-- Page Loader -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <div class="loader-logo">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="w-full h-full object-contain dynamic-hero-image">
-            </div>
-            <div class="text-white font-black italic uppercase tracking-widest text-xl mb-4 dynamic-business-name">Loading...</div>
-            <div class="loader-spinner"></div>
-        </div>
-    </div>
 
     <!-- Top Announcement -->
     <div class="bg-red-800 text-white py-2 px-4 text-center text-[10px] sm:text-xs font-black uppercase tracking-widest sticky top-0 z-[1000]">
@@ -221,7 +162,7 @@
         <div class="bg-white rounded-[2.5rem] shadow-xl overflow-hidden mb-8">
             <div class="grid md:grid-cols-2">
                 <div class="relative h-72 md:h-auto overflow-hidden">
-                    <img src="img/hammer_of_thor_hero_ritual.png" fetchpriority="high" alt="Pureveda Premium Pack" class="w-full h-full object-cover dynamic-hero-image">
+                    <img src="img/hammer_of_thor_hero_ritual.png" fetchpriority="high" alt="Pureveda Premium Pack" class="w-full h-full object-cover dynamic-hero-image skeleton skeleton-img">
                     <div class="absolute top-4 left-4 z-10">
                         <span class="bg-red-700 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">New Formula</span>
                     </div>
@@ -229,7 +170,7 @@
                 <div class="p-8 md:p-16 flex flex-col justify-center">
                     <div class="inline-block bg-red-100 text-red-800 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-6">#1 Ayurvedic Supplement</div>
                     <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-tight mb-6 tracking-tighter uppercase italic hidden md:block">
-                        <span class="dynamic-business-name">Pureveda</span>
+                        <span class="dynamic-business-name skeleton skeleton-text">Pureveda</span>
                     </h1>
                     <p class="text-lg text-slate-600 font-bold mb-10 leading-relaxed italic">
                         The ultimate natural formula for energy, stamina, and performance. Crafted from 100% pure Ayurvedic herbs.
@@ -244,7 +185,7 @@
         <!-- Product Intro Section -->
         <div class="max-w-4xl mx-auto px-6 py-12">
             <div class="bg-white/40 backdrop-blur-sm p-4 md:p-8 rounded-[3rem] border border-slate-100">
-                <h2 class="text-4xl md:text-5xl font-black text-red-700 leading-tight mb-6 tracking-tighter uppercase italic text-center dynamic-business-name">
+                <h2 class="text-4xl md:text-5xl font-black text-red-700 leading-tight mb-6 tracking-tighter uppercase italic text-center dynamic-business-name skeleton skeleton-text">
                     "Hammer of Thor"
                 </h2>
                 <p class="text-xl md:text-2xl text-slate-800 font-bold leading-relaxed mb-10 text-center">
@@ -291,10 +232,10 @@
             <div class="absolute top-0 right-0 w-96 h-96 bg-red-600 blur-[200px] opacity-10"></div>
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 relative z-10">
                 <div class="md:w-1/2 order-2 md:order-1">
-                    <img src="img/bottle_hero.png" class="w-full max-w-sm mx-auto drop-shadow-[0_0_50px_rgba(220,38,38,0.3)] hover:scale-110 transition duration-700 dynamic-hero-image">
+                    <img src="img/bottle_hero.png" class="w-full max-w-sm mx-auto drop-shadow-[0_0_50px_rgba(220,38,38,0.3)] hover:scale-110 transition duration-700 dynamic-hero-image skeleton skeleton-img">
                 </div>
                 <div class="md:w-1/2 text-white space-y-8 order-1 md:order-2">
-                    <h1 class="text-4xl md:text-6xl font-black italic uppercase leading-tight dynamic-business-name">Product Name</h1>
+                    <h1 class="text-4xl md:text-6xl font-black italic uppercase leading-tight dynamic-business-name skeleton skeleton-text">Product Name</h1>
                     <h2 class="text-2xl md:text-3xl font-bold italic uppercase leading-tight text-red-500">Fast Acting <span class="text-white">Absorption</span> Technology</h2>
                     <div class="flex gap-4 items-center">
                         <div class="w-24 h-24 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-2">
@@ -406,7 +347,7 @@
                                 </div>
                                 <p class="font-black text-white italic tracking-tight">2 Months Course — Best Value</p>
                             </div>
-                            <span class="font-black text-white block">₹<span class="dynamic-offer-price">1499</span></span>
+                            <span class="font-black text-white block">₹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></span>
                             <input type="hidden" name="PACKAGE" value="2 Months Course — Best Value">
                         </div>
                     </div>
@@ -496,7 +437,7 @@
                                 </div>
                             </div>
                             <div class="text-right">
-                                <span class="font-black text-slate-900 block">₹<span class="dynamic-offer-price">1499</span></span>
+                                <span class="font-black text-slate-900 block">₹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></span>
                                 <input type="radio" name="PACKAGE" value="2 Months Course — Best Value" checked class="hidden">
                             </div>
                         </label>
@@ -515,7 +456,7 @@
         <div class="flex items-center justify-between gap-4">
             <div>
                 <p class="text-[10px] font-black text-slate-500 uppercase leading-none mb-1">Price Now</p>
-                <p class="text-xl font-black text-slate-900">₹<span class="dynamic-offer-price">1499</span></p>
+                <p class="text-xl font-black text-slate-900">₹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></p>
             </div>
             <button onclick="toggleOrderModal(true)" class="bg-red-700 text-white px-10 py-4 rounded-xl font-black uppercase tracking-widest text-xs">Order Now</button>
         </div>
@@ -702,51 +643,6 @@
                 document.querySelectorAll('.location-suggestions').forEach(el => el.style.display = 'none');
             }
         });
-    </script>
-    <script>
-        (function() {
-            let dataReady = false;
-            let imagesReady = false;
-            let checkInterval;
-
-            function checkReady() {
-                if (dataReady && imagesReady) {
-                    clearInterval(checkInterval);
-                    const loader = document.getElementById('page-loader');
-                    if (loader) {
-                        loader.classList.add('loaded');
-                        document.body.style.overflow = ''; // Re-enable scroll
-                    }
-                }
-            }
-
-            // Wait for dynamic data from dynamic-config.js
-            document.addEventListener('dynamicDataReady', () => {
-                dataReady = true;
-                checkReady();
-            });
-
-            // Wait for critical images
-            window.addEventListener('load', () => {
-                imagesReady = true;
-                checkReady();
-            });
-
-            // Initial state
-            document.body.style.overflow = 'hidden';
-            
-            // Safety timeout (4 seconds)
-            setTimeout(() => {
-                if (!dataReady || !imagesReady) {
-                    dataReady = true;
-                    imagesReady = true;
-                    checkReady();
-                }
-            }, 4000);
-
-            // Double check periodically
-            checkInterval = setInterval(checkReady, 500);
-        })();
     </script>
 </body>
 </html>
