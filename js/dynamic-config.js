@@ -140,7 +140,7 @@ function updateDynamicElements(data) {
 async function injectPixels() {
     // Only inject on thank.html if needed, OR on all pages if requested
     // The user specifically asked for "pixel-injection system on the thank-you page"
-    if (window.location.pathname.includes('thank.html')) {
+    if (window.location.pathname.includes('thankyou')) {
         try {
             const querySnapshot = await getDocs(collection(db, "pixels"));
             querySnapshot.forEach((doc) => {

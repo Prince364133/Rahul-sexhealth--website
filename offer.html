@@ -1280,7 +1280,7 @@
 
             try {
                 await addDoc(collection(db, "leads"), payload);
-                window.location.href = "thank";
+                window.location.href = "thankyou";
             } catch (err) {
                 console.error(err);
                 alert("Submission failed. Please try again.");
