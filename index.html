@@ -289,6 +289,7 @@
                 </div>
 
                 <form id="order-info-form" class="relative z-10 space-y-6">
+                    <div id="inline-error-msg" class="hidden text-red-600 font-bold text-sm text-center bg-red-50 p-3 rounded-xl border border-red-100 mb-4"></div>
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-1">
                             <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Full Name</label>
@@ -376,6 +377,7 @@
                 </div>
                 
                 <form id="modal-order-form" class="space-y-4">
+                    <div id="modal-error-msg" class="hidden text-red-600 font-bold text-sm text-center bg-red-50 p-3 rounded-xl border border-red-100 mb-4"></div>
                     <div class="space-y-1">
                         <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Full Name</label>
                         <input type="text" name="NAME" placeholder="Enter your full name" required 
@@ -449,8 +451,7 @@
                 </form>
             </div>
         </div>
-    </div>
-
+ 
     <!-- Sticky Bottom Mobile CTA -->
     <div class="sticky-cta px-4 py-3" id="mobile-sticky-cta">
         <div class="flex items-center justify-between gap-4">
@@ -474,7 +475,7 @@
 
     <script type="module">
         import { db } from "./js/dynamic-config.js";
-        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         // Modal Controls
         window.toggleOrderModal = (show) => {
@@ -497,20 +498,41 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
 
             const formData = new FormData(e.target);
-            const payload = {
-                name: formData.get('NAME'),
-                phone: formData.get('PHONENO'),
-                location: formData.get('ADDRESS'),
-                city: formData.get('CITY'),
-                pincode: formData.get('PINCODE'),
-                package: formData.get('PACKAGE') || 'Standard Pack',
-                source: e.target.id === 'modal-order-form' ? 'index_modal' : 'index_inline',
-                date: new Date().toISOString(),
-                createdAt: serverTimestamp(),
-                status: 'new'
-            };
+            const phone = formData.get('PHONENO').trim();
 
+            // ====== DUPLICATE CHECK ======
             try {
+                const errorMsg = e.target.querySelector('[id$="-error-msg"]');
+                if (errorMsg) errorMsg.classList.add('hidden');
+
+                const q = query(collection(db, "leads"), where("phone", "==", phone));
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    if (errorMsg) {
+                        errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
+                        errorMsg.classList.remove('hidden');
+                        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        alert("This number is already registered. We have already received your order.");
+                    }
+                    btn.disabled = false;
+                    btn.innerHTML = originalText;
+                    return;
+                }
+
+                const payload = {
+                    name: formData.get('NAME'),
+                    phone: phone,
+                    location: formData.get('ADDRESS'),
+                    city: formData.get('CITY'),
+                    pincode: formData.get('PINCODE'),
+                    package: formData.get('PACKAGE') || 'Standard Pack',
+                    source: e.target.id === 'modal-order-form' ? 'index_modal' : 'index_inline',
+                    date: new Date().toISOString(),
+                    createdAt: serverTimestamp(),
+                    status: 'new'
+                };
+
                 await addDoc(collection(db, "leads"), payload);
                 window.location.href = "thank";
             } catch (error) {

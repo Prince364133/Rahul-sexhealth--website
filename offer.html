@@ -1094,6 +1094,7 @@
                 </div>
 
                 <form id="order-info" class="space-y-4">
+                    <div id="offer-error-msg" class="hidden text-red-600 font-bold text-sm text-center bg-red-50 p-3 rounded-xl border border-red-100 mb-4"></div>
                     <input type="hidden" name="SOURCE" value="offer_modal">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-800">Full Name</label>
@@ -1244,7 +1245,7 @@
     <!-- Combined Firebase Logic -->
     <script type="module">
         import { db } from "./js/dynamic-config.js";
-        import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         // Form Submission
         async function submitLead(e) {
@@ -1264,21 +1265,40 @@
             btn.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Processing...";
             btn.disabled = true;
 
-            const payload = {
-                name: form.querySelector('input[name="NAME"]').value.trim(),
-                phone: phone,
-                location: form.querySelector('[name="ADDRESS"]').value.trim(),
-                pincode: form.querySelector('[name="PINCODE"]')?.value.trim() || '',
-                city: form.querySelector('[name="CITY"]')?.value.trim() || '',
-                source: form.querySelector('[name="SOURCE"]')?.value || 'offer_modal',
-                browser: navigator.userAgent,
-                platform: navigator.platform,
-                screen: `${window.screen.width}x${window.screen.height}`,
-                createdAt: serverTimestamp(),
-                status: "new"
-            };
-
+            // ====== DUPLICATE CHECK ======
             try {
+                const errorMsg = form.querySelector('#offer-error-msg');
+                if (errorMsg) errorMsg.classList.add('hidden');
+
+                const q = query(collection(db, "leads"), where("phone", "==", phone));
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    if (errorMsg) {
+                        errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
+                        errorMsg.classList.remove('hidden');
+                        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        alert("This number is already registered. We have already received your order.");
+                    }
+                    btn.disabled = false;
+                    btn.innerHTML = orig;
+                    return;
+                }
+
+                const payload = {
+                    name: form.querySelector('input[name="NAME"]').value.trim(),
+                    phone: phone,
+                    location: form.querySelector('[name="ADDRESS"]').value.trim(),
+                    pincode: form.querySelector('[name="PINCODE"]')?.value.trim() || '',
+                    city: form.querySelector('[name="CITY"]')?.value.trim() || '',
+                    source: form.querySelector('[name="SOURCE"]')?.value || 'offer_modal',
+                    browser: navigator.userAgent,
+                    platform: navigator.platform,
+                    screen: `${window.screen.width}x${window.screen.height}`,
+                    createdAt: serverTimestamp(),
+                    status: "new"
+                };
+
                 await addDoc(collection(db, "leads"), payload);
                 window.location.href = "thank";
             } catch (err) {
@@ -1479,9 +1499,6 @@
                 document.querySelectorAll('.location-suggestions').forEach(el => el.style.display = 'none');
             }
         });
-    </script>
-    <script>
-
     </script>
     <!-- Google Translate Script -->
     <script src="js/translator.js"></script>
