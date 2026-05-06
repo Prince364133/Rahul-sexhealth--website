@@ -1098,7 +1098,7 @@
                     <input type="hidden" name="SOURCE" value="offer_modal">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-800">Full Name</label>
-                        <input type="text" name="NAME" placeholder="Enter your full name" required 
+                        <input type="text" name="NAME" placeholder="Enter your full name" required autocomplete="chrome-off" 
                                onfocus="triggerAutoLocation(this)"
                                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-red-600 outline-none font-medium">
                     </div>
@@ -1107,7 +1107,7 @@
                         <label class="text-xs font-bold text-slate-800">Phone Number</label>
                         <div class="flex">
                             <div class="flex items-center px-4 bg-slate-50 border border-r-0 border-slate-300 rounded-l-lg text-slate-500 font-bold">+91</div>
-                            <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}"
+                            <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}" autocomplete="chrome-off"
                                    onfocus="triggerAutoLocation(this)"
                                    class="flex-1 px-4 py-3 border border-slate-300 rounded-r-lg focus:border-red-600 outline-none font-medium">
                         </div>
@@ -1121,7 +1121,7 @@
                             <button type="button" class="locate-btn" onclick="detectUserLocation(this)">
                                 <i class="fas fa-location-arrow"></i> Detect Location
                             </button>
-                            <textarea name="ADDRESS" placeholder="House No., Street, Village/City" required rows="2"
+                            <textarea name="ADDRESS" placeholder="House No., Street, Village/City" required rows="2" autocomplete="chrome-off"
                                       onfocus="triggerAutoLocation(this)"
                                       oninput="handleAddressInput(this)"
                                       class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-red-600 outline-none font-medium pr-32"></textarea>
@@ -1132,13 +1132,13 @@
                     <div class="grid grid-cols-2 gap-3">
                         <div class="space-y-1">
                             <label class="text-xs font-bold text-slate-800">City</label>
-                            <input type="text" name="CITY" placeholder="City" required 
+                            <input type="text" name="CITY" placeholder="City" required autocomplete="chrome-off" 
                                    onfocus="triggerAutoLocation(this)"
                                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-red-600 outline-none font-medium">
                         </div>
                         <div class="space-y-1">
                             <label class="text-xs font-bold text-slate-800">Pincode</label>
-                            <input type="tel" name="PINCODE" placeholder="6-digit pincode" required maxlength="6"
+                            <input type="tel" name="PINCODE" placeholder="6-digit pincode" required maxlength="6" autocomplete="chrome-off"
                                    onfocus="triggerAutoLocation(this)"
                                    class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-red-600 outline-none font-medium">
                         </div>
