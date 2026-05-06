@@ -102,28 +102,30 @@
         }
     }
 
-    // Inject toggle into header
+    // Inject toggle into header or nav
     function injectToggle() {
-        const headerFlex = document.querySelector('header div.flex');
+        const headerFlex = document.querySelector('header div.flex') || document.querySelector('nav div.flex');
         if (headerFlex && !document.getElementById('custom-lang-toggle')) {
             const toggleHTML = `
-                <div id="custom-lang-toggle" class="flex items-center gap-1 bg-slate-100 p-1 rounded-full border border-slate-200">
-                    <button id="lang-hi" class="text-xs font-black px-3 py-1.5 rounded-full transition-all tracking-wider ${isHindi ? 'bg-slate-900 text-white' : 'text-slate-500'}">HIN</button>
-                    <button id="lang-en" class="text-xs font-black px-3 py-1.5 rounded-full transition-all tracking-wider ${!isHindi ? 'bg-slate-900 text-white' : 'text-slate-500'}">ENG</button>
+                <div id="custom-lang-toggle" class="flex items-center gap-1 bg-slate-100 p-1 rounded-full border border-slate-200 ml-auto">
+                    <button id="lang-hi" class="text-[10px] sm:text-xs font-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all tracking-wider ${isHindi ? 'bg-slate-900 text-white' : 'text-slate-500'}">HIN</button>
+                    <button id="lang-en" class="text-[10px] sm:text-xs font-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-full transition-all tracking-wider ${!isHindi ? 'bg-slate-900 text-white' : 'text-slate-500'}">ENG</button>
                 </div>
             `;
-            // Ensure header has space for it
+            // Ensure container has space for it
             headerFlex.classList.add('justify-between');
             headerFlex.insertAdjacentHTML('beforeend', toggleHTML);
             
-            document.getElementById('lang-hi').addEventListener('click', () => {
+            document.getElementById('lang-hi').addEventListener('click', (e) => {
+                e.preventDefault();
                 if(!isHindi) {
                     isHindi = true;
                     setCookie("preflang", "hi", 30);
                     updateTexts();
                 }
             });
-            document.getElementById('lang-en').addEventListener('click', () => {
+            document.getElementById('lang-en').addEventListener('click', (e) => {
+                e.preventDefault();
                 if(isHindi) {
                     isHindi = false;
                     setCookie("preflang", "en", 30);
