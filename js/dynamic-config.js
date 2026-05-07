@@ -80,7 +80,8 @@ function updateDynamicElements(settings) {
         }
     });
 
-    // 4. Logo Elements
+    // 4. Logo Elements (Disabled as per user request)
+    /*
     document.querySelectorAll('.dynamic-logo').forEach(img => {
         if (heroImage) {
             img.src = heroImage;
@@ -88,6 +89,7 @@ function updateDynamicElements(settings) {
             img.style.opacity = '1';
         }
     });
+    */
 
     // 5. Background Images
     document.querySelectorAll('.dynamic-bg-image').forEach(el => {
