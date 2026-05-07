@@ -140,8 +140,11 @@ function updateDynamicElements(data) {
   const videoContainer = document.getElementById('dynamic-video-container');
   
   if (videoContainer) {
+    // Look for a parent that might be a wrapper (e.g. in offer.html)
+    const wrapper = videoContainer.closest('.video-section') || videoContainer;
+
     if (videoUrl) {
-      videoContainer.style.display = 'block';
+      wrapper.style.display = 'block';
       const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
       
       if (isYouTube) {
@@ -173,8 +176,8 @@ function updateDynamicElements(data) {
           </video>`;
       }
     } else {
-      // No video URL provided, hide the container
-      videoContainer.style.display = 'none';
+      // No video URL provided, hide the container/wrapper
+      wrapper.style.display = 'none';
       videoContainer.innerHTML = '';
     }
   }

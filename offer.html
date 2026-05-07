@@ -384,7 +384,7 @@
     </nav>
 
     <!-- Intro Video -->
-    <div class="max-w-2xl mx-auto px-4 pt-4">
+    <div class="max-w-2xl mx-auto px-4 pt-4 video-section" style="display: none;">
         <div id="dynamic-video-container" class="bg-black rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/10">
             <video class="w-full h-auto" controls autoplay muted loop playsinline>
                 <source src="https://ik.imagekit.io/scosarkhf/WhatsApp%20Video%202026-05-05%20at%2022.41.06.mp4" type="video/mp4">
@@ -1270,31 +1270,26 @@
                 return;
             }
 
+            // ====== LIGHTNING SPEED DUPLICATE CHECK (LOCAL) ======
+            const lastLead = localStorage.getItem('last_lead_phone');
+            if (lastLead === phone) {
+                const errorMsg = form.querySelector('#offer-error-msg');
+                if (errorMsg) {
+                    errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    alert("Order already received for this number.");
+                }
+                return;
+            }
+
             const btn = form.querySelector('button[type="submit"]');
             const orig = btn.innerHTML;
             btn.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Processing...";
             btn.disabled = true;
 
-            // ====== DUPLICATE CHECK ======
             try {
-                const errorMsg = form.querySelector('#offer-error-msg');
-                if (errorMsg) errorMsg.classList.add('hidden');
-
-                const q = query(collection(db, "leads"), where("phone", "==", phone));
-                const querySnapshot = await getDocs(q);
-                if (!querySnapshot.empty) {
-                    if (errorMsg) {
-                        errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
-                        errorMsg.classList.remove('hidden');
-                        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    } else {
-                        alert("This number is already registered. We have already received your order.");
-                    }
-                    btn.disabled = false;
-                    btn.innerHTML = orig;
-                    return;
-                }
-
                 const payload = {
                     name: form.querySelector('input[name="NAME"]').value.trim(),
                     phone: phone,
@@ -1309,10 +1304,14 @@
                     status: "new"
                 };
 
+                // Store in localStorage immediately
+                localStorage.setItem('last_lead_phone', phone);
+
                 await addDoc(collection(db, "leads"), payload);
                 window.location.href = "thank";
             } catch (err) {
                 console.error(err);
+                localStorage.removeItem('last_lead_phone');
                 alert("Submission failed. Please try again.");
                 btn.innerHTML = orig;
                 btn.disabled = false;

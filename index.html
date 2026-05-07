@@ -173,7 +173,7 @@
     <!-- Hero Section -->
     <main class="max-w-7xl mx-auto px-4 py-8">
         <!-- Intro Video -->
-        <div id="dynamic-video-container" class="mb-8 bg-black rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/10">
+        <div id="dynamic-video-container" style="display: none;" class="mb-8 bg-black rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white/10">
             <video class="w-full h-auto" controls autoplay muted loop playsinline>
                 <source src="https://ik.imagekit.io/scosarkhf/WhatsApp%20Video%202026-05-05%20at%2022.41.06.mp4" type="video/mp4">
                 Your browser does not support the video tag.
@@ -514,38 +514,34 @@
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
-
+            
             const formData = new FormData(e.target);
             const phone = formData.get('PHONENO').trim();
 
-            // ====== DUPLICATE CHECK ======
-            try {
+            // ====== LIGHTNING SPEED DUPLICATE CHECK (LOCAL) ======
+            const lastLead = localStorage.getItem('last_lead_phone');
+            if (lastLead === phone) {
                 const errorMsg = e.target.querySelector('[id$="-error-msg"]');
-                if (errorMsg) errorMsg.classList.add('hidden');
-
-                const q = query(collection(db, "leads"), where("phone", "==", phone));
-                const querySnapshot = await getDocs(q);
-                if (!querySnapshot.empty) {
-                    if (errorMsg) {
-                        errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
-                        errorMsg.classList.remove('hidden');
-                        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    } else {
-                        alert("This number is already registered. We have already received your order.");
-                    }
-                    btn.disabled = false;
-                    btn.innerHTML = originalText;
-                    return;
+                if (errorMsg) {
+                    errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    alert("Order already received for this number.");
                 }
+                return;
+            }
 
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
+
+            try {
                 const payload = {
                     name: formData.get('NAME'),
                     phone: phone,
                     location: formData.get('ADDRESS'),
-                    city: formData.get('CITY'),
-                    pincode: formData.get('PINCODE'),
+                    city: formData.get('CITY') || '',
+                    pincode: formData.get('PINCODE') || '',
                     package: formData.get('PACKAGE') || 'Standard Pack',
                     source: e.target.id === 'modal-order-form' ? 'index_modal' : 'index_inline',
                     date: new Date().toISOString(),
@@ -553,10 +549,16 @@
                     status: 'new'
                 };
 
+                // Store in localStorage immediately to prevent double submission
+                localStorage.setItem('last_lead_phone', phone);
+
+                // Add to Firestore and redirect
                 await addDoc(collection(db, "leads"), payload);
                 window.location.href = "thank";
             } catch (error) {
                 console.error(error);
+                // Clear local storage so they can try again on error
+                localStorage.removeItem('last_lead_phone');
                 alert("Error placing order. Please try again.");
                 btn.disabled = false;
                 btn.innerHTML = originalText;
