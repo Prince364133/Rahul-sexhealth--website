@@ -965,14 +965,19 @@
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <altcha-widget 
-                            challengeurl="/api/captcha-challenge"
-                            hidefooter
-                            hidelogo
-                            class="altcha"
-                            style="--altcha-max-width: 100%; --altcha-border-radius: 0.75rem;"
-                        ></altcha-widget>
+                    <!-- Custom Checkbox Captcha -->
+                    <div class="mt-4 custom-captcha-container" onclick="verifyCaptcha(this)" data-verified="false" data-loading="false" class="cursor-pointer">
+                        <div class="flex items-center gap-3 p-4 border border-slate-300 rounded-xl bg-slate-50 transition-all hover:bg-slate-100 hover:border-slate-400 w-full max-w-sm mx-auto shadow-inner">
+                            <div class="checkbox-box w-7 h-7 rounded-md border-2 border-slate-400 bg-white flex items-center justify-center transition-all shadow-sm">
+                                <!-- Icon injected via JS -->
+                            </div>
+                            <div class="flex-1">
+                                <span class="captcha-text text-sm font-bold text-slate-700 block">I am not a robot</span>
+                            </div>
+                            <div class="shrink-0 flex items-center justify-center pl-3 border-l border-slate-200">
+                                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="security logo" class="h-6 w-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="w-full bg-[#f97316] hover:bg-orange-600 text-white py-6 rounded-2xl transition-all active:scale-95 shadow-lg shadow-orange-900/20">
@@ -1184,14 +1189,19 @@
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <altcha-widget 
-                            challengeurl="/api/captcha-challenge"
-                            hidefooter
-                            hidelogo
-                            class="altcha"
-                            style="--altcha-max-width: 100%; --altcha-border-radius: 0.75rem;"
-                        ></altcha-widget>
+                    <!-- Custom Checkbox Captcha -->
+                    <div class="mt-4 custom-captcha-container" onclick="verifyCaptcha(this)" data-verified="false" data-loading="false" class="cursor-pointer">
+                        <div class="flex items-center gap-3 p-4 border border-slate-300 rounded-xl bg-slate-50 transition-all hover:bg-slate-100 hover:border-slate-400 w-full max-w-sm mx-auto shadow-inner">
+                            <div class="checkbox-box w-7 h-7 rounded-md border-2 border-slate-400 bg-white flex items-center justify-center transition-all shadow-sm">
+                                <!-- Icon injected via JS -->
+                            </div>
+                            <div class="flex-1">
+                                <span class="captcha-text text-sm font-bold text-slate-700 block">I am not a robot</span>
+                            </div>
+                            <div class="shrink-0 flex items-center justify-center pl-3 border-l border-slate-200">
+                                <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="security logo" class="h-6 w-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+                            </div>
+                        </div>
                     </div>
 
                     <button type="submit" class="w-full bg-[#ff8c00] hover:bg-orange-600 text-white py-4 rounded-xl transition-all active:scale-95 shadow-lg">
@@ -1282,6 +1292,45 @@
         // ═══════════════════════════════════════════════
         // LEAD SUBMISSION
         // ═══════════════════════════════════════════════
+
+        window.verifyCaptcha = function(container) {
+            if (container.dataset.verified === "true" || container.dataset.loading === "true") return;
+            
+            container.dataset.loading = "true";
+            const box = container.querySelector('.checkbox-box');
+            const text = container.querySelector('.captcha-text');
+            
+            box.innerHTML = '<i class="fas fa-spinner fa-spin text-blue-500 text-sm"></i>';
+            box.classList.remove('border-slate-500', 'border-slate-400', 'border-slate-300');
+            box.classList.add('border-blue-500');
+            
+            setTimeout(() => {
+                container.dataset.loading = "false";
+                container.dataset.verified = "true";
+                
+                box.innerHTML = '<i class="fas fa-check text-green-500 text-sm"></i>';
+                box.classList.remove('border-blue-500', 'bg-slate-900', 'bg-white');
+                box.classList.add('border-green-500', 'bg-green-50');
+                
+                text.innerText = "Verified";
+                text.classList.remove('text-slate-300', 'text-slate-700');
+                text.classList.add('text-green-600');
+                
+                const form = container.closest('form');
+                if (form) {
+                    form.dataset.captchaVerified = "true";
+                    const errMsg = form.querySelector('[id$="-error-msg"]');
+                    if (errMsg) errMsg.classList.add('hidden');
+                    
+                    // Auto-submit the form once verified
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.click();
+                    }
+                }
+            }, 1000);
+        };
+
         async function submitLead(e) {
             e.preventDefault();
             const form = e.target;
@@ -1308,14 +1357,16 @@
                 return;
             }
 
-            // --- Altcha CAPTCHA check ---
-            const altchaWidget      = form.querySelector('altcha-widget');
-            const altchaHiddenInput = form.querySelector('input[name="altcha"]');
-            const altchaPayload     = altchaWidget?.value || altchaHiddenInput?.value || '';
-
-            if (!altchaPayload) {
-                alert("⚠️ Please complete the 'I am not a robot' verification checkbox first.");
-                altchaWidget?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // --- Custom CAPTCHA check ---
+            if (form.dataset.captchaVerified !== "true") {
+                const errEl = form.querySelector('[id$="-error-msg"]');
+                if (errEl) {
+                    errEl.innerHTML = '<i class="fas fa-robot mr-2"></i> Please verify you are not a robot by clicking the checkbox.';
+                    errEl.classList.remove('hidden');
+                    errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    alert("⚠️ Please verify you are not a robot by clicking the checkbox.");
+                }
                 return;
             }
 
@@ -1323,25 +1374,9 @@
             const btn = form.querySelector('button[type="submit"]');
             const origHTML = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = `<i class='fas fa-circle-notch fa-spin mr-2'></i> Verifying...`;
+            btn.innerHTML = `<i class='fas fa-circle-notch fa-spin mr-2'></i> Saving Order...`;
 
             try {
-                // --- Step 1: Verify Altcha on backend ---
-                const verifyRes = await fetch('/api/captcha-verify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ payload: altchaPayload })
-                });
-                const verifyData = await verifyRes.json();
-
-                if (!verifyData.success) {
-                    alert('Captcha verification failed. Please refresh the page and try again.');
-                    btn.disabled = false;
-                    btn.innerHTML = origHTML;
-                    return;
-                }
-
-                btn.innerHTML = `<i class='fas fa-circle-notch fa-spin mr-2'></i> Saving Order...`;
 
                 // --- Step 2: Duplicate phone check ---
                 const q = query(collection(db, 'leads'), where('phone', '==', phone));

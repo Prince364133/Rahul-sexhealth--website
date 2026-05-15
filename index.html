@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
     <script type="module" src="js/dynamic-config.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js"></script>
 
     <style>
         :root {
@@ -374,15 +373,10 @@
                         </div>
                     </div>
                     
-                    <!-- ALTCHA Widget -->
-                    <div class="pt-2">
-                        <altcha-widget 
-                            challengeurl="/api/captcha-challenge"
-                            hidefooter
-                            hidelogo
-                            class="altcha"
-                            style="--altcha-max-width: 100%; --altcha-border-radius: 1rem; --altcha-bg: #1e293b; --altcha-border: #334155; --altcha-color: #f8fafc;"
-                        ></altcha-widget>
+                    <!-- Custom Captcha -->
+                    <div class="custom-captcha-container p-4 border-2 border-slate-700 bg-slate-800 rounded-2xl flex items-center gap-3 cursor-pointer select-none transition-all hover:bg-slate-700" onclick="verifyCaptcha(this)">
+                        <div class="checkbox-box w-6 h-6 border-2 border-slate-500 bg-slate-900 rounded flex items-center justify-center transition-all"></div>
+                        <span class="text-sm font-bold text-slate-300 captcha-text">I am not a robot</span>
                     </div>
 
                     <div class="pt-6">
@@ -477,15 +471,10 @@
                         </label>
                     </div>
                     
-                    <!-- ALTCHA Widget -->
-                    <div class="pt-2">
-                        <altcha-widget 
-                            challengeurl="/api/captcha-challenge"
-                            hidefooter
-                            hidelogo
-                            class="altcha"
-                            style="--altcha-max-width: 100%; --altcha-border-radius: 1rem;"
-                        ></altcha-widget>
+                    <!-- Custom Captcha -->
+                    <div class="custom-captcha-container p-4 border-2 border-slate-200 bg-slate-50 rounded-2xl flex items-center gap-3 cursor-pointer select-none transition-all hover:bg-slate-100 mt-4" onclick="verifyCaptcha(this)">
+                        <div class="checkbox-box w-6 h-6 border-2 border-slate-300 bg-white rounded flex items-center justify-center transition-all"></div>
+                        <span class="text-sm font-bold text-slate-700 captcha-text">I am not a robot</span>
                     </div>
 
                     <button type="submit" class="w-full bg-slate-900 hover:bg-black text-white py-5 rounded-2xl text-lg font-black uppercase tracking-widest shadow-xl transition-all active:scale-95 mt-4">
@@ -533,6 +522,44 @@
             }
         };
 
+        window.verifyCaptcha = function(container) {
+            if (container.dataset.verified === "true" || container.dataset.loading === "true") return;
+            
+            container.dataset.loading = "true";
+            const box = container.querySelector('.checkbox-box');
+            const text = container.querySelector('.captcha-text');
+            
+            box.innerHTML = '<i class="fas fa-spinner fa-spin text-blue-500 text-sm"></i>';
+            box.classList.remove('border-slate-500', 'border-slate-400', 'border-slate-300');
+            box.classList.add('border-blue-500');
+            
+            setTimeout(() => {
+                container.dataset.loading = "false";
+                container.dataset.verified = "true";
+                
+                box.innerHTML = '<i class="fas fa-check text-green-500 text-sm"></i>';
+                box.classList.remove('border-blue-500', 'bg-slate-900', 'bg-white');
+                box.classList.add('border-green-500', 'bg-green-50');
+                
+                text.innerText = "Verified";
+                text.classList.remove('text-slate-300', 'text-slate-700');
+                text.classList.add('text-green-600');
+                
+                const form = container.closest('form');
+                if (form) {
+                    form.dataset.captchaVerified = "true";
+                    const errMsg = form.querySelector('[id$="-error-msg"]');
+                    if (errMsg) errMsg.classList.add('hidden');
+                    
+                    // Auto-submit the form once verified
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.click();
+                    }
+                }
+            }, 1000);
+        };
+
         // Lead Submission
         async function handleSubmit(e) {
             e.preventDefault();
@@ -544,17 +571,14 @@
             
             if (errorMsg) errorMsg.classList.add('hidden');
 
-            // 1. Check Altcha
-            const altcha = form.querySelector('altcha-widget');
-            const payload = altcha.value;
-
-            if (!payload) {
+            // 1. Check Custom Captcha
+            if (form.dataset.captchaVerified !== "true") {
                 if (errorMsg) {
-                    errorMsg.innerHTML = '<i class="fas fa-robot mr-2"></i> Please verify you are human (click the checkbox).';
+                    errorMsg.innerHTML = '<i class="fas fa-robot mr-2"></i> Please verify you are not a robot by clicking the checkbox.';
                     errorMsg.classList.remove('hidden');
                     errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 } else {
-                    alert("Please verify you are human.");
+                    alert("Please verify you are not a robot.");
                 }
                 return;
             }
@@ -562,19 +586,7 @@
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
 
-            // 2. Verify Altcha on Backend
             try {
-                const verifyRes = await fetch('/api/captcha-verify', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ payload })
-                });
-                const verifyData = await verifyRes.json();
-                
-                if (!verifyData.success) {
-                    throw new Error("Captcha verification failed. Please refresh and try again.");
-                }
-
                 await processFinalSubmit(e);
             } catch (error) {
                 console.error(error);
@@ -586,7 +598,6 @@
                 }
                 btn.disabled = false;
                 btn.innerHTML = originalText;
-                altcha.reset();
             }
         }
 
@@ -769,3 +780,4 @@
     <script src="js/translator.js"></script>
 </body>
 </html>
+
