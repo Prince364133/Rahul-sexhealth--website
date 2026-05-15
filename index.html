@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
     <script type="module" src="js/dynamic-config.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js"></script>
 
     <style>
         :root {
@@ -313,16 +314,16 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div class="space-y-1">
                             <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Full Name</label>
-                            <input type="text" name="NAME" placeholder="Enter your name" required autocomplete="new-password" 
-                                   readonly onfocus="this.removeAttribute('readonly'); triggerAutoLocation(this)"
+                            <input type="text" name="NAME" placeholder="Enter your name" autocomplete="off"
+                                   onfocus="triggerAutoLocation(this)"
                                    class="w-full bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all">
                         </div>
                         <div class="space-y-1">
                             <label class="text-[10px] font-black text-slate-500 uppercase tracking-widest pl-4">Mobile Number</label>
                             <div class="flex gap-2">
                                 <span class="bg-slate-800 border-2 border-slate-700 rounded-2xl px-4 flex items-center font-bold text-slate-400">+91</span>
-                                <input type="tel" name="PHONENO" placeholder="10-digit number" required maxlength="10" pattern="[0-9]{10}" autocomplete="new-password"
-                                       readonly onfocus="this.removeAttribute('readonly'); triggerAutoLocation(this)"
+                                <input type="tel" name="PHONENO" placeholder="10-digit number" autocomplete="off"
+                                       onfocus="triggerAutoLocation(this)"
                                        class="flex-1 bg-slate-800 border-2 border-slate-700 rounded-2xl px-6 py-4 outline-none focus:border-red-600 font-bold transition-all">
                             </div>
                         </div>
@@ -366,11 +367,22 @@
                                 <div class="w-6 h-6 rounded-full bg-red-600 flex items-center justify-center">
                                     <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
                                 </div>
-                                <p class="font-black text-white italic tracking-tight">2 Months Course — Best Value</p>
+                                <p class="font-black text-white italic tracking-tight">2 Months Course â€” Best Value</p>
                             </div>
-                            <span class="font-black text-white block">₹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></span>
-                            <input type="hidden" name="PACKAGE" value="2 Months Course — Best Value">
+                            <span class="font-black text-white block">â‚¹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></span>
+                            <input type="hidden" name="PACKAGE" value="2 Months Course â€” Best Value">
                         </div>
+                    </div>
+                    
+                    <!-- ALTCHA Widget -->
+                    <div class="pt-2">
+                        <altcha-widget 
+                            challengeurl="/api/captcha-challenge"
+                            hidefooter
+                            hidelogo
+                            class="altcha"
+                            style="--altcha-max-width: 100%; --altcha-border-radius: 1rem; --altcha-bg: #1e293b; --altcha-border: #334155; --altcha-color: #f8fafc;"
+                        ></altcha-widget>
                     </div>
 
                     <div class="pt-6">
@@ -400,8 +412,8 @@
                     <div id="modal-error-msg" class="hidden text-red-600 font-bold text-sm text-center bg-red-50 p-3 rounded-xl border border-red-100 mb-4"></div>
                     <div class="space-y-1">
                         <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Full Name</label>
-                        <input type="text" name="NAME" placeholder="Enter your full name" required autocomplete="new-password" 
-                               readonly onfocus="this.removeAttribute('readonly'); triggerAutoLocation(this)"
+                        <input type="text" name="NAME" placeholder="Enter your full name" required autocomplete="off" 
+                               onfocus="triggerAutoLocation(this)"
                                class="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold">
                     </div>
 
@@ -409,8 +421,8 @@
                         <label class="text-xs font-black text-slate-800 uppercase tracking-widest">Phone Number</label>
                         <div class="flex gap-2">
                             <span class="bg-slate-100 border-2 border-slate-100 rounded-2xl px-4 flex items-center font-bold text-slate-500">+91</span>
-                            <input type="tel" name="PHONENO" placeholder="10-digit number" required maxlength="10" pattern="[0-9]{10}" autocomplete="new-password"
-                                   readonly onfocus="this.removeAttribute('readonly'); triggerAutoLocation(this)"
+                            <input type="tel" name="PHONENO" placeholder="10-digit number" required autocomplete="off"
+                                   onfocus="triggerAutoLocation(this)"
                                    class="flex-1 px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-red-600 outline-none font-bold">
                         </div>
                     </div>
@@ -454,15 +466,26 @@
                                     <div class="w-2.5 h-2.5 rounded-full bg-white"></div>
                                 </div>
                                 <div>
-                                    <p class="font-black text-slate-900 leading-tight">2 Months Course — <span class="text-red-600">Best Value</span></p>
+                                    <p class="font-black text-slate-900 leading-tight">2 Months Course â€” <span class="text-red-600">Best Value</span></p>
                                     <p class="text-xs font-bold text-slate-500">Includes Advanced Strength Oil & Vitality Capsules</p>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <span class="font-black text-slate-900 block">₹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></span>
-                                <input type="radio" name="PACKAGE" value="2 Months Course — Best Value" checked class="hidden">
+                                <span class="font-black text-slate-900 block">â‚¹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></span>
+                                <input type="radio" name="PACKAGE" value="2 Months Course â€” Best Value" checked class="hidden">
                             </div>
                         </label>
+                    </div>
+                    
+                    <!-- ALTCHA Widget -->
+                    <div class="pt-2">
+                        <altcha-widget 
+                            challengeurl="/api/captcha-challenge"
+                            hidefooter
+                            hidelogo
+                            class="altcha"
+                            style="--altcha-max-width: 100%; --altcha-border-radius: 1rem;"
+                        ></altcha-widget>
                     </div>
 
                     <button type="submit" class="w-full bg-slate-900 hover:bg-black text-white py-5 rounded-2xl text-lg font-black uppercase tracking-widest shadow-xl transition-all active:scale-95 mt-4">
@@ -477,36 +500,12 @@
         <div class="flex items-center justify-between gap-4">
             <div>
                 <p class="text-[10px] font-black text-slate-500 uppercase leading-none mb-1">Price Now</p>
-                <p class="text-xl font-black text-slate-900">₹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></p>
+                <p class="text-xl font-black text-slate-900">â‚¹<span class="dynamic-offer-price skeleton skeleton-text">1499</span></p>
             </div>
             <button onclick="toggleOrderModal(true)" class="bg-red-700 text-white px-10 py-4 rounded-xl font-black uppercase tracking-widest text-xs">Order Now</button>
         </div>
     </div>
 
-    <!-- CAPTCHA Modal -->
-    <div id="captcha-modal" class="modal-overlay">
-        <div class="modal-content !max-w-[350px] !rounded-[2rem]">
-            <div class="p-8 text-center">
-                <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-user-check text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-black text-slate-900 uppercase italic tracking-tighter">Are you human?</h3>
-                <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-6 mt-1">Solve to complete your order</p>
-                
-                <div class="bg-slate-50 p-6 rounded-2xl border-2 border-slate-100 mb-6">
-                    <span id="captcha-question" class="text-2xl font-black text-slate-900 tracking-widest"></span>
-                </div>
-                
-                <input type="number" id="captcha-answer" placeholder="Enter answer" 
-                       class="w-full px-5 py-4 bg-slate-100 border-2 border-transparent focus:border-red-600 rounded-2xl outline-none font-bold text-center mb-6 text-xl">
-                
-                <button id="verify-captcha-btn" class="w-full bg-red-700 hover:bg-red-800 text-white py-4 rounded-xl font-black uppercase tracking-widest active:scale-95 transition-all shadow-lg shadow-red-900/20">
-                    Verify & Order
-                </button>
-                <p id="captcha-error" class="hidden text-red-600 font-bold text-[10px] mt-4 uppercase tracking-widest">Incorrect answer, try again!</p>
-            </div>
-        </div>
-    </div>
 
     <!-- Floating controls -->
     <div class="floating-fab">
@@ -534,49 +533,61 @@
             }
         };
 
-        // CAPTCHA Logic
-        let currentCaptchaAnswer = null;
-        let pendingFormEvent = null;
-
-        function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 9) + 1;
-            const num2 = Math.floor(Math.random() * 9) + 1;
-            currentCaptchaAnswer = num1 + num2;
-            document.getElementById('captcha-question').textContent = `${num1} + ${num2} = ?`;
-            document.getElementById('captcha-answer').value = '';
-            document.getElementById('captcha-error').classList.add('hidden');
-        }
-
-        window.toggleCaptchaModal = (show) => {
-            const modal = document.getElementById('captcha-modal');
-            if (show) {
-                generateCaptcha();
-                modal.classList.add('active');
-            } else {
-                modal.classList.remove('active');
-            }
-        };
-
-        document.getElementById('verify-captcha-btn').addEventListener('click', () => {
-            const userAnswer = parseInt(document.getElementById('captcha-answer').value);
-            if (userAnswer === currentCaptchaAnswer) {
-                toggleCaptchaModal(false);
-                if (pendingFormEvent) {
-                    processFinalSubmit(pendingFormEvent);
-                    pendingFormEvent = null;
-                }
-            } else {
-                document.getElementById('captcha-error').classList.remove('hidden');
-                document.getElementById('captcha-answer').value = '';
-                document.getElementById('captcha-answer').focus();
-            }
-        });
-
         // Lead Submission
         async function handleSubmit(e) {
             e.preventDefault();
-            pendingFormEvent = e;
-            toggleCaptchaModal(true);
+            
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            const errorMsg = form.querySelector('[id$="-error-msg"]');
+            
+            if (errorMsg) errorMsg.classList.add('hidden');
+
+            // 1. Check Altcha
+            const altcha = form.querySelector('altcha-widget');
+            const payload = altcha.value;
+
+            if (!payload) {
+                if (errorMsg) {
+                    errorMsg.innerHTML = '<i class="fas fa-robot mr-2"></i> Please verify you are human (click the checkbox).';
+                    errorMsg.classList.remove('hidden');
+                    errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    alert("Please verify you are human.");
+                }
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
+
+            // 2. Verify Altcha on Backend
+            try {
+                const verifyRes = await fetch('/api/captcha-verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ payload })
+                });
+                const verifyData = await verifyRes.json();
+                
+                if (!verifyData.success) {
+                    throw new Error("Captcha verification failed. Please refresh and try again.");
+                }
+
+                await processFinalSubmit(e);
+            } catch (error) {
+                console.error(error);
+                if (errorMsg) {
+                    errorMsg.innerHTML = `<i class="fas fa-exclamation-circle mr-2"></i> ${error.message}`;
+                    errorMsg.classList.remove('hidden');
+                } else {
+                    alert(error.message);
+                }
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                altcha.reset();
+            }
         }
 
         async function processFinalSubmit(e) {
@@ -641,7 +652,7 @@
             else sticky.classList.remove('visible');
         });
 
-        // ═══════════════ LOCATION SYSTEM ═══════════════
+        // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• LOCATION SYSTEM â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
         window.triggerAutoLocation = function(input) {
             const form = input.closest('form');
             const addressField = form.querySelector('[name="ADDRESS"]');

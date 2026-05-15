@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/altcha/dist/altcha.min.js"></script>
     <script type="module" src="js/dynamic-config.js"></script>
     <style>
         :root {
@@ -891,12 +892,13 @@
                     <h2 class="text-3xl font-black text-slate-900 inline-block border-b-4 border-slate-900 pb-1">Contact Us</h2>
                 </div>
 
-                <form class="order-form-capture space-y-6">
+                <form id="inline-order-form" class="order-form-capture space-y-6" novalidate>
+                    <div id="inline-error-msg" class="hidden text-red-600 font-bold text-sm text-center bg-red-50 p-3 rounded-xl border border-red-100 mb-4"></div>
                     <input type="hidden" name="SOURCE" value="offer_inline">
                     
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-slate-800">Full Name</label>
-                        <input type="text" name="NAME" placeholder="Enter your full name" required 
+                        <input type="text" name="NAME" placeholder="Enter your full name" autocomplete="off"
                                onfocus="triggerAutoLocation(this)"
                                class="w-full px-4 py-3 border-2 border-slate-100 rounded-xl focus:border-red-600 outline-none font-medium text-lg">
                     </div>
@@ -905,7 +907,7 @@
                         <label class="text-sm font-bold text-slate-800">Phone Number</label>
                         <div class="flex">
                             <div class="flex items-center px-4 bg-slate-50 border-2 border-r-0 border-slate-100 rounded-l-xl text-slate-500 font-bold">+91</div>
-                            <input type="tel" name="PHONENO" placeholder="Enter 10-digit mobile number" required maxlength="10" pattern="[0-9]{10}"
+                            <input type="tel" name="PHONENO" placeholder="Enter 10-digit mobile number" autocomplete="off"
                                    onfocus="triggerAutoLocation(this)"
                                    class="flex-1 px-4 py-3 border-2 border-slate-100 rounded-r-xl focus:border-red-600 outline-none font-medium text-lg">
                         </div>
@@ -919,7 +921,7 @@
                             <button type="button" class="locate-btn !top-1 !right-1" onclick="detectUserLocation(this)">
                                 <i class="fas fa-location-arrow"></i> Detect Location
                             </button>
-                            <textarea name="ADDRESS" placeholder="House No., Street, Village/City" required rows="2"
+                            <textarea name="ADDRESS" placeholder="House No., Street, Village/City" rows="2"
                                       onfocus="triggerAutoLocation(this)"
                                       oninput="handleAddressInput(this)"
                                       class="w-full px-4 py-3 border-2 border-slate-100 rounded-xl focus:border-red-600 outline-none font-medium text-lg pr-32"></textarea>
@@ -929,7 +931,7 @@
 
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-slate-800">Pincode</label>
-                        <input type="tel" name="PINCODE" placeholder="6-digit pincode" required maxlength="6"
+                        <input type="tel" name="PINCODE" placeholder="6-digit pincode" maxlength="6"
                                onfocus="triggerAutoLocation(this)"
                                class="w-full px-4 py-3 border-2 border-slate-100 rounded-xl focus:border-red-600 outline-none font-medium text-lg">
                     </div>
@@ -961,6 +963,16 @@
                                 <i class="fas fa-truck"></i> Cash on Delivery • Free Discreet Shipping
                             </p>
                         </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <altcha-widget 
+                            challengeurl="/api/captcha-challenge"
+                            hidefooter
+                            hidelogo
+                            class="altcha"
+                            style="--altcha-max-width: 100%; --altcha-border-radius: 0.75rem;"
+                        ></altcha-widget>
                     </div>
 
                     <button type="submit" class="w-full bg-[#f97316] hover:bg-orange-600 text-white py-6 rounded-2xl transition-all active:scale-95 shadow-lg shadow-orange-900/20">
@@ -1103,13 +1115,13 @@
                     <h2 class="text-2xl font-black text-slate-900 inline-block border-b-2 border-slate-900 pb-1">Contact Us</h2>
                 </div>
 
-                <form id="order-info" class="space-y-4" autocomplete="off">
+                <form id="order-info" class="space-y-4" autocomplete="off" novalidate>
                     <div id="offer-error-msg" class="hidden text-red-600 font-bold text-sm text-center bg-red-50 p-3 rounded-xl border border-red-100 mb-4"></div>
                     <input type="hidden" name="SOURCE" value="offer_modal">
                     <div class="space-y-1">
                         <label class="text-xs font-bold text-slate-800">Full Name</label>
-                        <input type="text" name="NAME" placeholder="Enter your full name" required autocomplete="new-password" 
-                               readonly onfocus="this.removeAttribute('readonly'); triggerAutoLocation(this)"
+                        <input type="text" name="NAME" placeholder="Enter your full name" required autocomplete="off" 
+                               onfocus="triggerAutoLocation(this)"
                                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:border-red-600 outline-none font-medium">
                     </div>
 
@@ -1117,8 +1129,8 @@
                         <label class="text-xs font-bold text-slate-800">Phone Number</label>
                         <div class="flex">
                             <div class="flex items-center px-4 bg-slate-50 border border-r-0 border-slate-300 rounded-l-lg text-slate-500 font-bold">+91</div>
-                            <input type="tel" name="PHONENO" placeholder="Mobile Number" required maxlength="10" pattern="[0-9]{10}" autocomplete="new-password"
-                                   readonly onfocus="this.removeAttribute('readonly'); triggerAutoLocation(this)"
+                            <input type="tel" name="PHONENO" placeholder="Mobile Number" required autocomplete="off"
+                                   onfocus="triggerAutoLocation(this)"
                                    class="flex-1 px-4 py-3 border border-slate-300 rounded-r-lg focus:border-red-600 outline-none font-medium">
                         </div>
                     </div>
@@ -1170,6 +1182,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <altcha-widget 
+                            challengeurl="/api/captcha-challenge"
+                            hidefooter
+                            hidelogo
+                            class="altcha"
+                            style="--altcha-max-width: 100%; --altcha-border-radius: 0.75rem;"
+                        ></altcha-widget>
                     </div>
 
                     <button type="submit" class="w-full bg-[#ff8c00] hover:bg-orange-600 text-white py-4 rounded-xl transition-all active:scale-95 shadow-lg">
@@ -1229,31 +1251,6 @@
         </div>
     </div>
 
-    <!-- CAPTCHA Modal -->
-    <div id="captcha-modal" class="modal-overlay">
-        <div class="modal-content !max-w-[350px] !rounded-[2rem]">
-            <div class="p-8 text-center">
-                <div class="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-user-check text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-black text-slate-900 uppercase italic tracking-tighter">Are you human?</h3>
-                <p class="text-slate-500 font-bold text-xs uppercase tracking-widest mb-6 mt-1">Solve to complete your order</p>
-                
-                <div class="bg-slate-50 p-6 rounded-2xl border-2 border-slate-100 mb-6">
-                    <span id="captcha-question" class="text-2xl font-black text-slate-900 tracking-widest"></span>
-                </div>
-                
-                <input type="number" id="captcha-answer" placeholder="Enter answer" 
-                       class="w-full px-5 py-4 bg-slate-100 border-2 border-transparent focus:border-red-600 rounded-2xl outline-none font-bold text-center mb-6 text-xl">
-                
-                <button id="verify-captcha-btn" class="w-full bg-red-700 hover:bg-red-800 text-white py-4 rounded-xl font-black uppercase tracking-widest active:scale-95 transition-all shadow-lg shadow-red-900/20">
-                    Verify & Order
-                </button>
-                <p id="captcha-error" class="hidden text-red-600 font-bold text-[10px] mt-4 uppercase tracking-widest">Incorrect answer, try again!</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Sticky Mobile CTA -->
     <div class="sticky-cta px-6 py-4" id="mobile-sticky-cta">
       <div class="flex items-center gap-5">
@@ -1281,240 +1278,211 @@
     <script type="module">
         import { db } from "./js/dynamic-config.js";
         import { collection, addDoc, serverTimestamp, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        
-        // CAPTCHA Logic
-        let currentCaptchaAnswer = null;
-        let pendingFormEvent = null;
 
-        function generateCaptcha() {
-            const num1 = Math.floor(Math.random() * 9) + 1;
-            const num2 = Math.floor(Math.random() * 9) + 1;
-            currentCaptchaAnswer = num1 + num2;
-            document.getElementById('captcha-question').textContent = `${num1} + ${num2} = ?`;
-            document.getElementById('captcha-answer').value = '';
-            document.getElementById('captcha-error').classList.add('hidden');
-        }
-
-        window.toggleCaptchaModal = (show) => {
-            const modal = document.getElementById('captcha-modal');
-            if (show) {
-                generateCaptcha();
-                modal.classList.add('active');
-            } else {
-                modal.classList.remove('active');
-            }
-        };
-
-        document.getElementById('verify-captcha-btn').addEventListener('click', () => {
-            const userAnswer = parseInt(document.getElementById('captcha-answer').value);
-            if (userAnswer === currentCaptchaAnswer) {
-                toggleCaptchaModal(false);
-                if (pendingFormEvent) {
-                    processFinalSubmit(pendingFormEvent);
-                    pendingFormEvent = null;
-                }
-            } else {
-                document.getElementById('captcha-error').classList.remove('hidden');
-                document.getElementById('captcha-answer').value = '';
-                document.getElementById('captcha-answer').focus();
-            }
-        });
-
-        // Form Submission
+        // ═══════════════════════════════════════════════
+        // LEAD SUBMISSION
+        // ═══════════════════════════════════════════════
         async function submitLead(e) {
             e.preventDefault();
-            
-            // Check validation first
             const form = e.target;
-            const phoneInput = form.querySelector('input[name="PHONENO"]');
-            const phone = phoneInput.value.trim();
-            const phoneRegex = /^[6-9]\d{9}$/;
 
-            if (!phoneRegex.test(phone)) {
-                alert("Please enter a valid 10-digit mobile number.");
+            // --- Get form field values ---
+            const name   = (form.querySelector('[name="NAME"]')?.value    || '').trim();
+            const phone  = (form.querySelector('[name="PHONENO"]')?.value || '').trim();
+            const address= (form.querySelector('[name="ADDRESS"]')?.value || '').trim();
+            const pincode= (form.querySelector('[name="PINCODE"]')?.value || '').trim();
+            const city   = (form.querySelector('[name="CITY"]')?.value    || '').trim();
+            const source = (form.querySelector('[name="SOURCE"]')?.value  || 'offer_page');
+
+            // --- Validation ---
+            if (!name) {
+                alert('Please enter your full name.');
+                form.querySelector('[name="NAME"]')?.focus();
                 return;
             }
 
-            pendingFormEvent = e;
-            toggleCaptchaModal(true);
-        }
-
-        async function processFinalSubmit(e) {
-            const form = e.target;
-            const phoneInput = form.querySelector('input[name="PHONENO"]');
-            const phone = phoneInput.value.trim();
             const phoneRegex = /^[6-9]\d{9}$/;
-
             if (!phoneRegex.test(phone)) {
-                alert("Please enter a valid 10-digit mobile number.");
+                alert('Please enter a valid 10-digit mobile number starting with 6-9.');
+                form.querySelector('[name="PHONENO"]')?.focus();
                 return;
             }
 
+            // --- Altcha CAPTCHA check ---
+            const altchaWidget      = form.querySelector('altcha-widget');
+            const altchaHiddenInput = form.querySelector('input[name="altcha"]');
+            const altchaPayload     = altchaWidget?.value || altchaHiddenInput?.value || '';
+
+            if (!altchaPayload) {
+                alert("⚠️ Please complete the 'I am not a robot' verification checkbox first.");
+                altchaWidget?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // --- Disable button, show loading ---
             const btn = form.querySelector('button[type="submit"]');
-            const orig = btn.innerHTML;
-            btn.innerHTML = "<i class='fas fa-circle-notch fa-spin'></i> Processing...";
+            const origHTML = btn.innerHTML;
             btn.disabled = true;
+            btn.innerHTML = `<i class='fas fa-circle-notch fa-spin mr-2'></i> Verifying...`;
 
-            // ====== DUPLICATE CHECK ======
             try {
-                const errorMsg = form.querySelector('#offer-error-msg');
-                if (errorMsg) errorMsg.classList.add('hidden');
+                // --- Step 1: Verify Altcha on backend ---
+                const verifyRes = await fetch('/api/captcha-verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ payload: altchaPayload })
+                });
+                const verifyData = await verifyRes.json();
 
-                const q = query(collection(db, "leads"), where("phone", "==", phone));
-                const querySnapshot = await getDocs(q);
-                if (!querySnapshot.empty) {
-                    if (errorMsg) {
-                        errorMsg.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i> This number is already registered. We have already received your order.';
-                        errorMsg.classList.remove('hidden');
-                        errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    } else {
-                        alert("This number is already registered. We have already received your order.");
-                    }
+                if (!verifyData.success) {
+                    alert('Captcha verification failed. Please refresh the page and try again.');
                     btn.disabled = false;
-                    btn.innerHTML = orig;
+                    btn.innerHTML = origHTML;
                     return;
                 }
 
-                const payload = {
-                    name: form.querySelector('input[name="NAME"]').value.trim(),
-                    phone: phone,
-                    location: form.querySelector('[name="ADDRESS"]').value.trim(),
-                    pincode: form.querySelector('[name="PINCODE"]')?.value.trim() || '',
-                    city: form.querySelector('[name="CITY"]')?.value.trim() || '',
-                    source: form.querySelector('[name="SOURCE"]')?.value || 'offer_modal',
-                    browser: navigator.userAgent,
-                    platform: navigator.platform,
-                    screen: `${window.screen.width}x${window.screen.height}`,
-                    createdAt: serverTimestamp(),
-                    status: "new"
-                };
+                btn.innerHTML = `<i class='fas fa-circle-notch fa-spin mr-2'></i> Saving Order...`;
 
-                await addDoc(collection(db, "leads"), payload);
-                window.location.href = "thank";
+                // --- Step 2: Duplicate phone check ---
+                const q = query(collection(db, 'leads'), where('phone', '==', phone));
+                const snap = await getDocs(q);
+                if (!snap.empty) {
+                    const errEl = form.querySelector('[id$="-error-msg"]');
+                    if (errEl) {
+                        errEl.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>This number is already registered. We already received your order!';
+                        errEl.classList.remove('hidden');
+                        errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        alert('This number is already registered. We already received your order!');
+                    }
+                    btn.disabled = false;
+                    btn.innerHTML = origHTML;
+                    return;
+                }
+
+                // --- Step 3: Save lead to Firestore ---
+                await addDoc(collection(db, 'leads'), {
+                    name, phone, address, pincode, city, source,
+                    browser:  navigator.userAgent,
+                    platform: navigator.platform,
+                    screen:   `${screen.width}x${screen.height}`,
+                    createdAt: serverTimestamp(),
+                    status: 'new'
+                });
+
+                // Redirect to thank-you page
+                window.location.href = 'thank';
+
             } catch (err) {
-                console.error(err);
-                alert("Submission failed. Please try again.");
-                btn.innerHTML = orig;
+                console.error('Lead submission error:', err);
+                alert('Submission failed. Please try again.');
                 btn.disabled = false;
+                btn.innerHTML = origHTML;
             }
         }
 
-        // Event Listeners
-        document.querySelectorAll('form').forEach(f => f.addEventListener('submit', submitLead));
-        
-        // Sticky CTA Scroll listener
-        window.addEventListener('scroll', () => {
-            const sticky = document.getElementById('mobile-sticky-cta');
-            if (sticky) {
-                if (window.scrollY > 600) sticky.classList.add('visible');
-                else sticky.classList.remove('visible');
-            }
+        // ═══════════════════════════════════════════════
+        // ATTACH SUBMIT LISTENERS
+        // Module scripts run after DOM is parsed, so direct attach works
+        // ═══════════════════════════════════════════════
+        document.querySelectorAll('form').forEach(f => {
+            f.addEventListener('submit', submitLead);
         });
 
-        // Swiper Initialization
-        const swiper = new Swiper(".heroSwiper", {
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-
-        // Global Modal Function
+        // ═══════════════════════════════════════════════
+        // MODAL CONTROLS (exposed globally for onclick attrs)
+        // ═══════════════════════════════════════════════
         window.toggleOrderModal = (show) => {
             const modal = document.getElementById('order-modal');
-            if (modal) {
-                if (show) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
+            if (!modal) return;
+            if (show) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
             }
         };
 
-        // Close on Escape & Backdrop
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') toggleOrderModal(false);
-        });
-        
-        document.getElementById('order-modal')?.addEventListener('click', (e) => {
-            if (e.target.id === 'order-modal') toggleOrderModal(false);
+            if (e.key === 'Escape') window.toggleOrderModal(false);
         });
 
-        // ═══════════════ LOCATION SYSTEM ═══════════════
-        // ═══════════════ LOCATION SYSTEM (Multi-Form Support) ═══════════════
-        // ═══════════════ LOCATION SYSTEM (Multi-Form Support) ═══════════════
+        document.getElementById('order-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'order-modal') window.toggleOrderModal(false);
+        });
+
+        // ═══════════════════════════════════════════════
+        // STICKY CTA SCROLL
+        // ═══════════════════════════════════════════════
+        window.addEventListener('scroll', () => {
+            const sticky = document.getElementById('mobile-sticky-cta');
+            if (sticky) sticky.classList.toggle('visible', window.scrollY > 600);
+        });
+
+        // ═══════════════════════════════════════════════
+        // SWIPER INIT (direct — module scripts run after DOM is parsed)
+        // ═══════════════════════════════════════════════
+        if (typeof Swiper !== 'undefined') {
+            new Swiper('.heroSwiper', {
+                loop: true,
+                autoplay: { delay: 4000, disableOnInteraction: false },
+                pagination: { el: '.swiper-pagination', clickable: true },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            });
+        }
+
+        // ═══════════════════════════════════════════════
+        // LOCATION SYSTEM (exposed globally)
+        // ═══════════════════════════════════════════════
         window.triggerAutoLocation = function(input) {
             const form = input.closest('form');
+            if (!form) return;
             const addressField = form.querySelector('[name="ADDRESS"]');
-            const locateBtn = form.querySelector('.locate-btn');
-            
-            // Anti-annoyance: only trigger if address is empty and detection hasn't been attempted
-            if (addressField && !addressField.value && locateBtn && !locateBtn.disabled) {
-                if (!form.dataset.locationAttempted) {
-                    form.dataset.locationAttempted = "true";
-                    detectUserLocation(locateBtn);
-                }
+            const locateBtn    = form.querySelector('.locate-btn');
+            if (addressField && !addressField.value && locateBtn && !locateBtn.disabled && !form.dataset.locationAttempted) {
+                form.dataset.locationAttempted = 'true';
+                window.detectUserLocation(locateBtn);
             }
         };
 
         window.detectUserLocation = function(btn) {
-            const form = btn.closest('form');
+            const form        = btn.closest('form');
             const addressInput = form.querySelector('[name="ADDRESS"]');
-            const pinInput = form.querySelector('[name="PINCODE"]');
-            const cityInput = form.querySelector('[name="CITY"]');
+            const pinInput     = form.querySelector('[name="PINCODE"]');
+            const cityInput    = form.querySelector('[name="CITY"]');
             const originalText = btn.innerHTML;
-            
+
             btn.innerHTML = '<i class="fas fa-spinner fa-spin text-[10px]"></i> Detecting...';
-            btn.disabled = true;
+            btn.disabled  = true;
+
+            if (!navigator.geolocation) {
+                btn.innerHTML = '<i class="fas fa-times"></i> Unsupported';
+                setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
+                return;
+            }
 
             navigator.geolocation.getCurrentPosition(async (pos) => {
                 try {
                     const { latitude, longitude } = pos.coords;
-                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`, {
-                        headers: { 'User-Agent': 'PurevedaWebsiteBot/1.0' }
-                    });
+                    const res  = await fetch(
+                        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+                        { headers: { 'User-Agent': 'PurevedaWebsiteBot/1.0' } }
+                    );
                     const data = await res.json();
-                    
-                    if (data && data.display_name) {
+                    if (data?.display_name) {
                         if (addressInput) {
                             addressInput.value = data.display_name;
                             addressInput.classList.add('bg-emerald-50');
                             setTimeout(() => addressInput.classList.remove('bg-emerald-50'), 1500);
                         }
-                        
-                        let pincode = data.address.postcode || '';
-                        if (!pincode) {
-                            const pinMatch = data.display_name.match(/\b\d{5,6}\b/);
-                            if (pinMatch) pincode = pinMatch[0];
-                        }
-
-                        const city = data.address.city || data.address.town || data.address.village || data.address.state_district || '';
-
-                        if (pincode && pinInput) {
-                            pinInput.value = pincode;
-                            pinInput.classList.add('bg-emerald-50');
-                        }
-                        if (city && cityInput) {
-                            cityInput.value = city;
-                            cityInput.classList.add('bg-emerald-50');
-                        }
-                        
+                        const pincode = data.address?.postcode || (data.display_name.match(/\b\d{5,6}\b/) || [])[0] || '';
+                        const city    = data.address?.city || data.address?.town || data.address?.village || data.address?.state_district || '';
+                        if (pincode && pinInput)  { pinInput.value  = pincode; pinInput.classList.add('bg-emerald-50'); }
+                        if (city    && cityInput) { cityInput.value = city;    cityInput.classList.add('bg-emerald-50'); }
                         btn.innerHTML = '<i class="fas fa-check"></i> Found';
                         setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
-                    } else {
-                        throw new Error("Location not found");
-                    }
+                    } else { throw new Error('No result'); }
                 } catch (err) {
                     console.error(err);
                     btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Failed';
@@ -1524,52 +1492,36 @@
                 console.error(err);
                 btn.innerHTML = '<i class="fas fa-times"></i> Denied';
                 setTimeout(() => { btn.innerHTML = originalText; btn.disabled = false; }, 2000);
-            }, { enableHighAccuracy: true });
+            }, { enableHighAccuracy: true, timeout: 10000 });
         };
 
         let debounceTimer;
         window.handleAddressInput = function(input) {
-            const form = input.closest('form');
+            const form          = input.closest('form');
             const suggestionsEl = form.querySelector('.location-suggestions');
-            const pincodeInput = form.querySelector('[name="PINCODE"]');
-            const query = input.value.trim();
+            const pincodeInput  = form.querySelector('[name="PINCODE"]');
+            const cityInput     = form.querySelector('[name="CITY"]');
+            const searchQuery   = input.value.trim();
 
-            if (query.length < 3) {
-                if (suggestionsEl) suggestionsEl.style.display = 'none';
-                return;
-            }
-
+            if (searchQuery.length < 3) { if (suggestionsEl) suggestionsEl.style.display = 'none'; return; }
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(async () => {
                 try {
-                    const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&limit=5`);
+                    const res  = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(searchQuery)}&limit=5`);
                     const data = await res.json();
-                    
-                    if (data.features && data.features.length > 0 && suggestionsEl) {
+                    if (data.features?.length > 0 && suggestionsEl) {
                         suggestionsEl.innerHTML = '';
                         data.features.forEach(feat => {
-                            const props = feat.properties;
-                            const label = [
-                                props.name, props.street, props.district, props.city, props.state, props.country
-                            ].filter(Boolean).join(', ');
-
-                            const div = document.createElement('div');
+                            const p     = feat.properties;
+                            const label = [p.name, p.street, p.district, p.city, p.state, p.country].filter(Boolean).join(', ');
+                            const div   = document.createElement('div');
                             div.className = 'suggestion-item text-sm p-3 cursor-pointer border-b last:border-0 hover:bg-slate-50';
-                            div.innerHTML = `<i class="fas fa-map-marker-alt text-slate-400 mr-2"></i> ${label}`;
-                            div.onclick = () => {
-                                input.value = label;
+                            div.innerHTML = `<i class="fas fa-map-marker-alt text-slate-400 mr-2"></i>${label}`;
+                            div.onclick   = () => {
+                                input.value             = label;
                                 suggestionsEl.style.display = 'none';
-                                
-                                if (props.postcode && pincodeInput) {
-                                    pincodeInput.value = props.postcode;
-                                    pincodeInput.classList.add('bg-emerald-50');
-                                    setTimeout(() => pincodeInput.classList.remove('bg-emerald-50'), 1500);
-                                }
-                                if (props.city && form.querySelector('[name="CITY"]')) {
-                                    form.querySelector('[name="CITY"]').value = props.city;
-                                    form.querySelector('[name="CITY"]').classList.add('bg-emerald-50');
-                                    setTimeout(() => form.querySelector('[name="CITY"]').classList.remove('bg-emerald-50'), 1500);
-                                }
+                                if (p.postcode && pincodeInput) { pincodeInput.value = p.postcode; pincodeInput.classList.add('bg-emerald-50'); setTimeout(() => pincodeInput.classList.remove('bg-emerald-50'), 1500); }
+                                if (p.city     && cityInput)    { cityInput.value    = p.city;     cityInput.classList.add('bg-emerald-50');    setTimeout(() => cityInput.classList.remove('bg-emerald-50'),    1500); }
                             };
                             suggestionsEl.appendChild(div);
                         });
